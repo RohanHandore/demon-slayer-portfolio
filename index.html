@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohan Handore - Portfolio</title>
+    <title>Rohan Handore - Cyberpunk Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="theme-color" content="#1A0E08">
+    <meta name="description" content="Rohan Handore - Cyberpunk Web Developer & DevOps Engineer">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
+                <img src="assets/icons/my logo.png" alt="Rohan Handore Logo" class="logo-img">
                 <h2>Rohan Handore</h2>
             </div>
             <ul class="nav-menu">
@@ -24,9 +27,6 @@
                 </li>
                 <li class="nav-item">
                     <a href="#portfolio" class="nav-link">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#blog" class="nav-link">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a href="#contact" class="nav-link">Contact</a>
@@ -42,15 +42,23 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <!-- Background Video -->
+        <div class="hero-video">
+            <video autoplay muted loop playsinline>
+                <source src="assets/videos/Demon slayer website design.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="hero-title">
                     Hello, I am <span class="highlight">Rohan</span>
                 </h1>
-                <h2 class="hero-subtitle">Web Designer | Developer | DevOps Engineer</h2>
+                <h2 class="hero-subtitle">Software Engineer | Cloud Architect | Digital Samurai</h2>
                 <p class="hero-description">
                     Hard-working web developer with a flair for creating elegant solutions in the least amount of time. 
-                    Passionate about software architecture and web designing.
+                    Passionate about software architecture and web designing. Building the future, one line of code at a time.
                 </p>
                 <div class="hero-buttons">
                     <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
@@ -60,7 +68,7 @@
             <div class="hero-image">
                 <div class="profile-card">
                     <div class="profile-image">
-                        <i class="fas fa-user-circle"></i>
+                        <img src="assets/images/Gemini_Generated_Image_2frcrz2frcrz2frc.png" alt="Rohan Handore Profile Picture" class="profile-picture">
                     </div>
                     <h3>Rohan Handore</h3>
                     <p>Software Engineer</p>
@@ -78,11 +86,11 @@
             <h2 class="section-title">Who am I?</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>A Web Designer / Developer | DevOps Engineer</h3>
+                    <h3>A Software Engineer | Cloud Architect | Digital Samurai</h3>
                     <p>
                         Hard-working web developer with a flair for creating elegant solutions in the least amount of time. 
                         Passionate about software architecture and web designing. Strong in design and integration with 
-                        intuitive problem-solving skills.
+                        intuitive problem-solving skills. Crafting digital experiences in the neon-lit future.
                     </p>
                     
                     <div class="personal-info">
@@ -279,31 +287,6 @@
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <h2 class="section-title">Latest Blog Posts</h2>
-            <div class="blog-grid">
-                <article class="blog-item">
-                    <div class="blog-icon">🌟</div>
-                    <h3>Setting Up and Using Open Source LLM</h3>
-                    <p>The blog covers using open-source LLMs like LLAMA-2 from HuggingFace, with setup and inference guidance on Google Colab. It offers code snippets for tasks, aiding users in efficient LLM utilization.</p>
-                </article>
-
-                <article class="blog-item">
-                    <div class="blog-icon">📓</div>
-                    <h3>How to use AI as a developer?</h3>
-                    <p>The blog explores using AI code generators, including popular tools like OpenAI Codex, GitHub Copilot, and ChatGPT, discussing their capabilities, limitations, and considerations for usage in coding tasks.</p>
-                </article>
-
-                <article class="blog-item">
-                    <div class="blog-icon">🤗</div>
-                    <h3>How to download open source LLM models from huggingface and use it locally on your machine</h3>
-                    <p>The blog outlines steps for downloading and locally deploying open-source LLM models from Hugging Face, emphasizing the transformers library and performance evaluation.</p>
-                </article>
-            </div>
-        </div>
-    </section>
 
     <!-- Social Media Section -->
     <section class="social-media">

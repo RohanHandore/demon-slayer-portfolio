@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initFormHandling();
     initLoadingScreen();
     initParallaxEffect();
+    initCyberpunkEffects();
+    initParticleSystem();
+    initGlitchEffect();
+    initVideoBackground();
 });
 
 // Navigation functionality
@@ -55,11 +59,11 @@ function initNavigation() {
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+            navbar.style.background = 'rgba(26, 14, 8, 0.99)';
+            navbar.style.boxShadow = '0 2px 20px rgba(255, 179, 63, 0.4)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            navbar.style.background = 'rgba(26, 14, 8, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(255, 179, 63, 0.3)';
         }
     });
 }
@@ -80,7 +84,7 @@ function initScrollAnimations() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.portfolio-item, .blog-item, .skill-category, .education-item');
+    const animatedElements = document.querySelectorAll('.portfolio-item, .skill-category, .education-item');
     animatedElements.forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
@@ -92,13 +96,19 @@ function initTypingEffect() {
     const titleElement = document.querySelector('.hero-title');
     if (!titleElement) return;
 
-    const text = titleElement.innerHTML;
+    // Store the original HTML content
+    const originalHTML = titleElement.innerHTML;
+    
+    // Extract just the text content for typing effect
+    const textContent = titleElement.textContent;
     titleElement.innerHTML = '';
     
     let i = 0;
     const typeWriter = () => {
-        if (i < text.length) {
-            titleElement.innerHTML += text.charAt(i);
+        if (i < textContent.length) {
+            // Reconstruct the HTML with the typed portion
+            const typedText = textContent.substring(0, i + 1);
+            titleElement.innerHTML = typedText.replace('Rohan', '<span class="highlight">Rohan</span>');
             i++;
             setTimeout(typeWriter, 50);
         }
@@ -442,3 +452,226 @@ const debouncedScrollHandler = debounce(function() {
 }, 10);
 
 window.addEventListener('scroll', debouncedScrollHandler);
+
+// Cyberpunk Effects
+function initCyberpunkEffects() {
+    // Add cyberpunk glow to interactive elements
+    const interactiveElements = document.querySelectorAll('.btn, .nav-link, .portfolio-item, .social-link');
+    
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.style.filter = 'drop-shadow(0 0 10px rgba(255, 179, 63, 0.6))';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.filter = 'none';
+        });
+    });
+    
+    // Add matrix-style background effect
+    createMatrixRain();
+}
+
+// Particle System
+function initParticleSystem() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    
+    const particleContainer = document.createElement('div');
+    particleContainer.className = 'particle-container';
+    particleContainer.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    `;
+    
+    hero.appendChild(particleContainer);
+    
+    // Create floating particles
+    for (let i = 0; i < 20; i++) {
+        createParticle(particleContainer);
+    }
+}
+
+function createParticle(container) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.cssText = `
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: #FFB33F;
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: float ${Math.random() * 10 + 10}s linear infinite;
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        box-shadow: 0 0 6px rgba(255, 179, 63, 0.8);
+    `;
+    
+    container.appendChild(particle);
+}
+
+// Glitch Effect
+function initGlitchEffect() {
+    const glitchElements = document.querySelectorAll('.hero-title, .section-title');
+    
+    glitchElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.style.animation = 'glitch 0.3s ease-in-out';
+        });
+        
+        element.addEventListener('animationend', function() {
+            this.style.animation = '';
+        });
+    });
+}
+
+// Matrix Rain Effect
+function createMatrixRain() {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.1;
+    `;
+    
+    document.body.appendChild(canvas);
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+    const matrixArray = matrix.split("");
+    
+    const fontSize = 10;
+    const columns = canvas.width / fontSize;
+    
+    const drops = [];
+    for (let x = 0; x < columns; x++) {
+        drops[x] = 1;
+    }
+    
+    function drawMatrix() {
+        ctx.fillStyle = 'rgba(26, 14, 8, 0.04)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#FFB33F';
+        ctx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+            const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+    
+    setInterval(drawMatrix, 35);
+    
+    window.addEventListener('resize', function() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
+
+// Add CSS for new animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes float {
+        0% {
+            transform: translateY(100vh) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.6;
+        }
+        90% {
+            opacity: 0.6;
+        }
+        100% {
+            transform: translateY(-100px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes glitch {
+        0% {
+            transform: translate(0);
+        }
+        20% {
+            transform: translate(-2px, 2px);
+        }
+        40% {
+            transform: translate(-2px, -2px);
+        }
+        60% {
+            transform: translate(2px, 2px);
+        }
+        80% {
+            transform: translate(2px, -2px);
+        }
+        100% {
+            transform: translate(0);
+        }
+    }
+    
+    .particle {
+        animation: float 15s linear infinite;
+    }
+`;
+document.head.appendChild(style);
+
+// Video Background Enhancement
+function initVideoBackground() {
+    const video = document.querySelector('.hero-video video');
+    if (!video) return;
+    
+    // Ensure video plays smoothly
+    video.addEventListener('loadeddata', function() {
+        this.play().catch(e => {
+            console.log('Video autoplay prevented:', e);
+        });
+    });
+    
+    // Add cyberpunk filter effects on scroll
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * 0.5;
+        
+        if (video) {
+            video.style.transform = `translateY(${rate}px)`;
+            video.style.filter = `contrast(${1.1 + scrolled * 0.0005}) brightness(${0.8 - scrolled * 0.0003}) saturate(${1.2 + scrolled * 0.0004})`;
+        }
+    });
+    
+    // Add hover effects to video
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.addEventListener('mouseenter', function() {
+            if (video) {
+                video.style.filter = 'contrast(1.3) brightness(0.9) saturate(1.4) hue-rotate(5deg)';
+            }
+        });
+        
+        hero.addEventListener('mouseleave', function() {
+            if (video) {
+                video.style.filter = 'contrast(1.1) brightness(0.8) saturate(1.2)';
+            }
+        });
+    }
+}
