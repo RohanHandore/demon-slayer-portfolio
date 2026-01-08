@@ -1,5 +1,7 @@
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS first
+    initEmailJS();
     // Initialize all functionality
     initNavigation();
     initScrollAnimations();
@@ -12,7 +14,42 @@ document.addEventListener('DOMContentLoaded', function() {
     initParticleSystem();
     initGlitchEffect();
     initVideoBackground();
+    initImageLoading();
 });
+
+// Initialize EmailJS
+function initEmailJS() {
+    // EmailJS Public Key
+    const publicKey = '2_8uMrBuH0mkkl-cZ';
+    
+    // Function to initialize EmailJS
+    function initialize() {
+        if (typeof emailjs !== 'undefined') {
+            try {
+                emailjs.init(publicKey);
+                console.log('EmailJS initialized successfully');
+                return true;
+            } catch (error) {
+                console.error('Error initializing EmailJS:', error);
+                return false;
+            }
+        }
+        return false;
+    }
+    
+    // Try to initialize immediately
+    if (!initialize()) {
+        // If not ready, wait for window load or retry
+        if (document.readyState === 'loading') {
+            window.addEventListener('load', function() {
+                setTimeout(initialize, 500);
+            });
+        } else {
+            // Retry after a delay
+            setTimeout(initialize, 1000);
+        }
+    }
+}
 
 // Navigation functionality
 function initNavigation() {
@@ -141,7 +178,7 @@ function initSmoothScrolling() {
     });
 }
 
-// Form handling
+// Form handling with EmailJS
 function initFormHandling() {
     const contactForm = document.querySelector('.contact-form');
     
@@ -166,9 +203,66 @@ function initFormHandling() {
                 return;
             }
             
-            // Simulate form submission
-            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-            this.reset();
+            // Disable submit button during submission
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            
+            // EmailJS service configuration
+            const serviceID = 'service_g3ep51n';
+            const templateID = 'template_3elsi69';
+            
+            // Prepare template parameters matching your EmailJS template
+            const templateParams = {
+                title: 'Portfolio Contact',
+                subject: 'New Contact Form Submission',
+                from_name: name,
+                from_email: email,
+                message: message
+            };
+            
+            // Check if EmailJS is loaded and initialized
+            if (typeof emailjs === 'undefined') {
+                showNotification('Email service not loaded. Please refresh the page and try again.', 'error');
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+                return;
+            }
+            
+            // Ensure EmailJS is initialized before sending
+            const publicKey = '2_8uMrBuH0mkkl-cZ';
+            try {
+                emailjs.init(publicKey);
+            } catch (e) {
+                // Already initialized or error, continue anyway
+            }
+            
+            // Send email using EmailJS
+            emailjs.send(serviceID, templateID, templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                    contactForm.reset();
+                }, function(error) {
+                    console.error('EmailJS Error:', error);
+                    let errorMessage = 'Failed to send message. ';
+                    
+                    // Provide more specific error messages
+                    if (error.text) {
+                        errorMessage += `Error: ${error.text}. `;
+                    } else if (error.status) {
+                        errorMessage += `Error code: ${error.status}. `;
+                    }
+                    
+                    errorMessage += 'Please try again or contact me directly at rohanhandore021@gmail.com';
+                    showNotification(errorMessage, 'error');
+                })
+                .finally(function() {
+                    // Re-enable submit button
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
+                });
         });
     }
 }
@@ -341,35 +435,16 @@ function initScrollToTop() {
     const scrollToTopBtn = document.createElement('button');
     scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
     scrollToTopBtn.className = 'scroll-to-top';
-    scrollToTopBtn.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 1.2rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-    `;
+    scrollToTopBtn.setAttribute('aria-label', 'Scroll to top');
     
     document.body.appendChild(scrollToTopBtn);
     
     // Show/hide button based on scroll position
     window.addEventListener('scroll', function() {
         if (window.scrollY > 300) {
-            scrollToTopBtn.style.opacity = '1';
-            scrollToTopBtn.style.visibility = 'visible';
+            scrollToTopBtn.classList.add('visible');
         } else {
-            scrollToTopBtn.style.opacity = '0';
-            scrollToTopBtn.style.visibility = 'hidden';
+            scrollToTopBtn.classList.remove('visible');
         }
     });
     
@@ -635,6 +710,32 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Image Loading States
+function initImageLoading() {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    images.forEach(img => {
+        // Add loading class
+        img.classList.add('loading');
+        
+        // Handle image load
+        if (img.complete) {
+            img.classList.remove('loading');
+            img.classList.add('loaded');
+        } else {
+            img.addEventListener('load', function() {
+                this.classList.remove('loading');
+                this.classList.add('loaded');
+            });
+            
+            img.addEventListener('error', function() {
+                this.classList.remove('loading');
+                this.style.opacity = '0.5';
+            });
+        }
+    });
+}
 
 // Video Background Enhancement
 function initVideoBackground() {
