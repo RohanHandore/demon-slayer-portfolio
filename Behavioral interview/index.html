@@ -480,6 +480,29 @@
             }
         }
 
+    
+        /* Mobile Responsive - iPhone 13 and similar */
+        @media (max-width: 768px) {
+            .container { padding: 2rem 16px; }
+            header h1 { font-size: 1.6rem; }
+            .subtitle { font-size: 0.95rem; }
+            .category-title { font-size: 1.2rem; }
+            .topics-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .topic-card { padding: 1.25rem; }
+            .topic-card h3 { font-size: 1rem; }
+            .topic-card p { font-size: 0.85rem; }
+            .top-nav { padding: 0.875rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 1.5rem 12px; }
+            header h1 { font-size: 1.4rem; }
+            .subtitle { font-size: 0.9rem; }
+            .category-section { margin-bottom: 2rem; }
+            .category-title { font-size: 1.1rem; padding-bottom: 0.5rem; }
+            .topic-card { padding: 1rem; }
+            .topic-card h3 { font-size: 0.95rem; }
+        }
+
     </style>
 </head>
 <body>

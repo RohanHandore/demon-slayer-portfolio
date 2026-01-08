@@ -129,6 +129,34 @@
                 margin: 2rem 0;
             }
         }
+    
+        /* Mobile Responsive - iPhone 13 and similar (390px) */
+        @media (max-width: 768px) {
+            .blog-post-container { padding: 80px 16px 2rem; }
+            .blog-post-header h1 { font-size: 1.6rem; line-height: 1.3; }
+            .blog-post-header .blog-category { font-size: 0.8rem; padding: 0.4rem 1rem; }
+            .blog-post-meta { gap: 1rem; font-size: 0.85rem; }
+            .blog-post-content { font-size: 0.95rem; }
+            .blog-post-content h2 { font-size: 1.4rem; margin-top: 2rem; }
+            .blog-post-content h3 { font-size: 1.15rem; }
+            .blog-post-content pre { padding: 1rem; font-size: 0.8rem; margin: 1rem -16px; border-radius: 0; }
+            .blog-post-content ul, .blog-post-content ol { padding-left: 1.25rem; }
+            .tip-box, .warning-box { padding: 1rem; margin: 1.5rem 0; }
+            .back-to-blog { font-size: 0.9rem; }
+        }
+        @media (max-width: 480px) {
+            .blog-post-container { padding: 75px 12px 1.5rem; }
+            .blog-post-header h1 { font-size: 1.4rem; }
+            .blog-post-header { margin-bottom: 2rem; padding-bottom: 1.5rem; }
+            .blog-post-meta { flex-direction: column; gap: 0.5rem; }
+            .blog-post-content { font-size: 0.9rem; line-height: 1.8; }
+            .blog-post-content h2 { font-size: 1.25rem; }
+            .blog-post-content h3 { font-size: 1.05rem; }
+            .blog-post-content code { font-size: 0.8rem; word-break: break-word; }
+            .blog-post-content pre { padding: 0.75rem; font-size: 0.75rem; }
+            .blog-post-content pre code { white-space: pre-wrap; word-break: break-word; }
+        }
+
     </style>
 </head>
 <body>
