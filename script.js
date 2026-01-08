@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initGlitchEffect();
     initVideoBackground();
     initImageLoading();
+    initBlogInteractions();
 });
 
 // Initialize EmailJS
@@ -775,4 +776,26 @@ function initVideoBackground() {
             }
         });
     }
+}
+
+// Blog Interactions
+function initBlogInteractions() {
+    const blogItems = document.querySelectorAll('.blog-item');
+    
+    blogItems.forEach(item => {
+        // Make entire card clickable
+        const readMoreLink = item.querySelector('.blog-read-more');
+        if (readMoreLink) {
+            item.addEventListener('click', function(e) {
+                // Don't trigger if clicking the read more link directly
+                if (e.target.closest('.blog-read-more')) {
+                    return;
+                }
+                readMoreLink.click();
+            });
+            
+            // Add pointer cursor
+            item.style.cursor = 'pointer';
+        }
+    });
 }

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design Fundamentals | Rohan Handore</title>
+    <link rel="icon" type="image/png" href="../assets/images/Gemini_Generated_Image_2frcrz2frcrz2frc.png">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blog-post-container { max-width: 900px; margin: 0 auto; padding: 100px 20px 4rem; }
+        .blog-post-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #3B1C0E; }
+        .blog-post-header .blog-category { display: inline-block; margin-bottom: 1rem; padding: 0.5rem 1.5rem; background: rgba(255, 179, 63, 0.1); border: 2px solid #FFB33F; border-radius: 25px; color: #FFB33F; font-weight: 600; }
+        .blog-post-header h1 { font-size: 2.5rem; color: #FFE8B0; margin-bottom: 1rem; text-shadow: 0 0 10px rgba(255, 232, 176, 0.3); }
+        .blog-post-meta { display: flex; justify-content: center; align-items: center; gap: 2rem; color: #FFB33F; font-size: 0.95rem; flex-wrap: wrap; }
+        .blog-post-meta span { display: flex; align-items: center; gap: 0.5rem; }
+        .blog-post-content { color: #FFE8B0; line-height: 1.9; font-size: 1.1rem; }
+        .blog-post-content h2 { color: #FFB33F; font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.25rem; text-shadow: 0 0 8px rgba(255, 179, 63, 0.3); }
+        .blog-post-content h3 { color: #FFB33F; font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.8rem; }
+        .blog-post-content p { margin-bottom: 1.5rem; opacity: 0.9; }
+        .blog-post-content ul, .blog-post-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+        .blog-post-content li { margin-bottom: 0.8rem; opacity: 0.9; }
+        .blog-post-content strong { color: #FFB33F; }
+        .blog-post-content code { background: rgba(26, 14, 8, 0.8); padding: 0.2rem 0.5rem; border-radius: 4px; color: #FFB33F; font-family: 'Courier New', monospace; border: 1px solid #3B1C0E; }
+        .blog-post-content pre { background: rgba(26, 14, 8, 0.9); padding: 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.5rem 0; border: 1px solid #3B1C0E; }
+        .blog-post-content pre code { background: none; border: none; padding: 0; color: #FFE8B0; }
+        .back-to-blog { display: inline-flex; align-items: center; gap: 0.5rem; color: #FFB33F; text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: all 0.3s ease; }
+        .back-to-blog:hover { color: #FFE8B0; gap: 0.8rem; }
+        .tip-box { background: rgba(255, 179, 63, 0.1); border-left: 4px solid #FFB33F; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .tip-box strong { color: #FFB33F; display: block; margin-bottom: 0.5rem; }
+        .warning-box { background: rgba(220, 53, 69, 0.1); border-left: 4px solid #dc3545; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .warning-box strong { color: #dc3545; display: block; margin-bottom: 0.5rem; }
+        @media (max-width: 768px) { .blog-post-container { padding: 90px 20px 2rem; } .blog-post-header h1 { font-size: 1.8rem; } .blog-post-content { font-size: 1rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.8rem;">
+                    <img src="../assets/icons/my logo.png" alt="Rohan Handore Logo" class="logo-img" loading="lazy">
+                    <h2>Rohan Handore</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="../index.html#portfolio" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="../assets/CV.pdf" download="Rohan_Handore_Resume.pdf" class="nav-resume-btn"><i class="fas fa-download"></i> Resume</a>
+            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <div class="blog-post-container">
+        <a href="index.html" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        <article class="blog-post-content">
+            <div class="blog-post-header">
+                <span class="blog-category">System Design</span>
+                <h1>System Design Fundamentals</h1>
+                <div class="blog-post-meta">
+                    <span><i class="fas fa-calendar"></i> January 5, 2025</span>
+                    <span><i class="fas fa-clock"></i> 16 min read</span>
+                    <span><i class="fas fa-user"></i> Rohan Handore</span>
+                </div>
+            </div>
+            
+            <p>System design isn't about memorizing solutions—it's about understanding trade-offs. Every decision has costs and benefits. The best engineers can articulate those trade-offs clearly and make informed decisions based on actual requirements.</p>
+
+            <h2>The Foundation: Requirements First</h2>
+            <p>Before drawing any boxes and arrows, understand what you're building:</p>
+
+            <h3>Functional Requirements</h3>
+            <p>What does the system need to do?</p>
+            <ul>
+                <li>Users can upload files</li>
+                <li>Users can share files with others</li>
+                <li>Files can be organized in folders</li>
+            </ul>
+
+            <h3>Non-Functional Requirements</h3>
+            <p>How well does it need to work?</p>
+            <ul>
+                <li><strong>Scale:</strong> How many users? How much data?</li>
+                <li><strong>Latency:</strong> How fast should responses be?</li>
+                <li><strong>Availability:</strong> What uptime is required?</li>
+                <li><strong>Consistency:</strong> Can we tolerate stale data?</li>
+            </ul>
+
+            <div class="tip-box">
+                <strong>💡 The Numbers Matter</strong>
+                <p>There's a huge difference between designing for 1,000 users and 1,000,000 users. Always quantify requirements. "Fast" isn't a requirement—"95th percentile latency under 200ms" is.</p>
+            </div>
+
+            <h2>1. Scalability: Vertical vs. Horizontal</h2>
+            
+            <h3>Vertical Scaling (Scale Up)</h3>
+            <p>Add more power to existing machines: more CPU, more RAM, bigger disks.</p>
+            <ul>
+                <li><strong>Pros:</strong> Simple, no code changes needed</li>
+                <li><strong>Cons:</strong> Physical limits, single point of failure, expensive</li>
+            </ul>
+
+            <h3>Horizontal Scaling (Scale Out)</h3>
+            <p>Add more machines to distribute the load.</p>
+            <ul>
+                <li><strong>Pros:</strong> Virtually unlimited scaling, better fault tolerance</li>
+                <li><strong>Cons:</strong> More complex, requires distributed system thinking</li>
+            </ul>
+
+            <pre><code>// When you scale horizontally, you need a load balancer
+
+Client → Load Balancer → [Server 1]
+                      → [Server 2]
+                      → [Server 3]
+
+// Load balancing strategies:
+// - Round Robin: Simple rotation
+// - Least Connections: Route to server with fewest active connections
+// - IP Hash: Same client always hits same server (useful for sessions)
+// - Weighted: Route more traffic to more powerful servers</code></pre>
+
+            <h2>2. The CAP Theorem: Pick Two (Sort Of)</h2>
+            <p>In a distributed system, you can't have all three:</p>
+            <ul>
+                <li><strong>Consistency:</strong> Every read gets the most recent write</li>
+                <li><strong>Availability:</strong> Every request gets a response</li>
+                <li><strong>Partition Tolerance:</strong> System works despite network failures</li>
+            </ul>
+
+            <p>In practice, network partitions happen, so you're choosing between consistency and availability during failures.</p>
+
+            <pre><code>// CP System (Consistency + Partition Tolerance)
+// Example: Banking system
+// During a network partition, some nodes become unavailable
+// but data is always consistent
+
+// AP System (Availability + Partition Tolerance)
+// Example: Social media feed
+// System always responds, but you might see stale data
+// Eventually consistent</code></pre>
+
+            <div class="warning-box">
+                <strong>⚠️ Reality Check</strong>
+                <p>Most systems don't need to make this choice most of the time. CAP only applies during network partitions. Design for the common case, have a strategy for the edge cases.</p>
+            </div>
+
+            <h2>3. Databases: SQL vs. NoSQL</h2>
+            
+            <h3>SQL Databases (PostgreSQL, MySQL)</h3>
+            <p>Best for: Structured data, complex queries, ACID transactions</p>
+            <pre><code>-- Strong consistency, complex joins
+SELECT u.name, COUNT(o.id) as order_count
+FROM users u
+LEFT JOIN orders o ON u.id = o.user_id
+WHERE u.created_at > '2024-01-01'
+GROUP BY u.id
+HAVING COUNT(o.id) > 5;</code></pre>
+
+            <h3>NoSQL Databases (MongoDB, Cassandra, DynamoDB)</h3>
+            <p>Best for: Flexible schemas, high write throughput, horizontal scaling</p>
+            <pre><code>// Document store - flexible schema
+{
+    "user_id": "123",
+    "name": "John",
+    "orders": [
+        { "id": "o1", "total": 99.99, "items": [...] },
+        { "id": "o2", "total": 149.99, "items": [...] }
+    ],
+    "preferences": {
+        "theme": "dark",
+        "notifications": true
+    }
+}</code></pre>
+
+            <h3>When to Use What</h3>
+            <ul>
+                <li><strong>SQL:</strong> Financial data, user accounts, anything requiring transactions</li>
+                <li><strong>Document DB:</strong> Content management, user profiles, catalogs</li>
+                <li><strong>Key-Value:</strong> Caching, session storage, real-time data</li>
+                <li><strong>Wide-Column:</strong> Time-series data, analytics, high-write workloads</li>
+                <li><strong>Graph:</strong> Social networks, recommendation engines, fraud detection</li>
+            </ul>
+
+            <h2>4. Caching: The Performance Multiplier</h2>
+            <p>Caching is the #1 way to improve performance. But it introduces complexity.</p>
+
+            <pre><code>// Cache-Aside Pattern (most common)
+function getUser(userId) {
+    // Try cache first
+    let user = cache.get(`user:${userId}`);
+    
+    if (user) {
+        return user; // Cache hit
+    }
+    
+    // Cache miss - fetch from database
+    user = database.query('SELECT * FROM users WHERE id = ?', userId);
+    
+    // Store in cache for next time
+    cache.set(`user:${userId}`, user, { ttl: 3600 });
+    
+    return user;
+}</code></pre>
+
+            <h3>Cache Invalidation Strategies</h3>
+            <ul>
+                <li><strong>TTL (Time To Live):</strong> Cache expires after a set time. Simple but can serve stale data.</li>
+                <li><strong>Write-Through:</strong> Update cache when updating database. Consistent but slower writes.</li>
+                <li><strong>Write-Behind:</strong> Update cache immediately, sync to database later. Fast but complex.</li>
+                <li><strong>Event-Based:</strong> Invalidate cache when data changes. Requires event infrastructure.</li>
+            </ul>
+
+            <div class="tip-box">
+                <strong>💡 The Two Hard Problems</strong>
+                <p>"There are only two hard things in Computer Science: cache invalidation and naming things." — Phil Karlton. Take cache invalidation seriously.</p>
+            </div>
+
+            <h2>5. Message Queues: Decoupling Services</h2>
+            <p>When Service A doesn't need an immediate response from Service B, use a queue.</p>
+
+            <pre><code>// Without queue - tight coupling
+async function processOrder(order) {
+    await saveOrder(order);
+    await sendEmail(order);      // If email fails, order fails
+    await updateInventory(order); // If inventory fails, order fails
+    await notifyShipping(order);  // If shipping fails, order fails
+}
+
+// With queue - loose coupling
+async function processOrder(order) {
+    await saveOrder(order);
+    
+    // These happen asynchronously, can retry independently
+    queue.publish('order.created', order);
+}
+
+// Separate consumers handle each concern
+queue.subscribe('order.created', async (order) => {
+    await sendEmail(order);
+});
+
+queue.subscribe('order.created', async (order) => {
+    await updateInventory(order);
+});</code></pre>
+
+            <h2>6. Database Replication and Sharding</h2>
+            
+            <h3>Replication: Copies of Your Data</h3>
+            <pre><code>// Master-Slave Replication
+// Writes go to master, reads can go to slaves
+
+[Write] → [Master DB] → [Slave 1] ← [Read]
+                      → [Slave 2] ← [Read]
+                      → [Slave 3] ← [Read]
+
+// Benefits: Read scaling, fault tolerance
+// Drawbacks: Replication lag, write bottleneck</code></pre>
+
+            <h3>Sharding: Splitting Your Data</h3>
+            <pre><code>// Horizontal sharding by user_id
+// Users 1-1M     → Shard 1
+// Users 1M-2M    → Shard 2
+// Users 2M-3M    → Shard 3
+
+function getShard(userId) {
+    const shardCount = 3;
+    return userId % shardCount; // Simple modulo sharding
+}
+
+// Better: Consistent hashing for easier scaling</code></pre>
+
+            <h2>7. API Design for Scale</h2>
+            
+            <h3>Rate Limiting</h3>
+            <pre><code>// Token bucket algorithm
+class RateLimiter {
+    constructor(tokensPerSecond, bucketSize) {
+        this.tokens = bucketSize;
+        this.lastRefill = Date.now();
+        this.tokensPerSecond = tokensPerSecond;
+        this.bucketSize = bucketSize;
+    }
+    
+    tryConsume() {
+        this.refill();
+        if (this.tokens > 0) {
+            this.tokens--;
+            return true;
+        }
+        return false;
+    }
+    
+    refill() {
+        const now = Date.now();
+        const elapsed = (now - this.lastRefill) / 1000;
+        this.tokens = Math.min(
+            this.bucketSize,
+            this.tokens + elapsed * this.tokensPerSecond
+        );
+        this.lastRefill = now;
+    }
+}</code></pre>
+
+            <h3>Pagination</h3>
+            <pre><code>// Offset pagination - simple but slow at scale
+GET /users?page=1000&limit=20
+// Database: OFFSET 20000 LIMIT 20 (scans 20,000 rows!)
+
+// Cursor pagination - efficient at any scale
+GET /users?cursor=abc123&limit=20
+// Database: WHERE id > cursor LIMIT 20 (uses index)</code></pre>
+
+            <h2>8. Observability: Know Your System</h2>
+            
+            <h3>The Three Pillars</h3>
+            <ul>
+                <li><strong>Logs:</strong> Detailed records of what happened</li>
+                <li><strong>Metrics:</strong> Numerical measurements over time</li>
+                <li><strong>Traces:</strong> Request flow across services</li>
+            </ul>
+
+            <pre><code>// Structured logging
+logger.info('Order processed', {
+    orderId: order.id,
+    userId: order.userId,
+    total: order.total,
+    processingTimeMs: endTime - startTime,
+    paymentMethod: order.paymentMethod
+});
+
+// Key metrics to track
+- Request rate (requests/second)
+- Error rate (errors/requests)
+- Latency percentiles (p50, p95, p99)
+- Saturation (CPU, memory, connections)</code></pre>
+
+            <h2>Design Process: A Framework</h2>
+            <ol>
+                <li><strong>Clarify requirements:</strong> Ask questions, quantify constraints</li>
+                <li><strong>High-level design:</strong> Draw the major components</li>
+                <li><strong>Deep dive:</strong> Detail critical paths and algorithms</li>
+                <li><strong>Identify bottlenecks:</strong> Where will the system fail first?</li>
+                <li><strong>Scale:</strong> How do we handle 10x, 100x traffic?</li>
+                <li><strong>Trade-offs:</strong> What are we sacrificing for our choices?</li>
+            </ol>
+
+            <h2>Conclusion</h2>
+            <p>System design is fundamentally about trade-offs. There's no perfect architecture—only the right architecture for your specific requirements, constraints, and team.</p>
+            <p>Start simple. Measure everything. Optimize the bottlenecks. Repeat.</p>
+        </article>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Created With ❤️ By Rohan</p>
+        </div>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>

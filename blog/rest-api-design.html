@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API Design: Principles and Patterns | Rohan Handore</title>
+    <link rel="icon" type="image/png" href="../assets/images/Gemini_Generated_Image_2frcrz2frcrz2frc.png">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blog-post-container { max-width: 900px; margin: 0 auto; padding: 100px 20px 4rem; }
+        .blog-post-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #3B1C0E; }
+        .blog-post-header .blog-category { display: inline-block; margin-bottom: 1rem; padding: 0.5rem 1.5rem; background: rgba(255, 179, 63, 0.1); border: 2px solid #FFB33F; border-radius: 25px; color: #FFB33F; font-weight: 600; }
+        .blog-post-header h1 { font-size: 2.5rem; color: #FFE8B0; margin-bottom: 1rem; text-shadow: 0 0 10px rgba(255, 232, 176, 0.3); }
+        .blog-post-meta { display: flex; justify-content: center; align-items: center; gap: 2rem; color: #FFB33F; font-size: 0.95rem; flex-wrap: wrap; }
+        .blog-post-meta span { display: flex; align-items: center; gap: 0.5rem; }
+        .blog-post-content { color: #FFE8B0; line-height: 1.9; font-size: 1.1rem; }
+        .blog-post-content h2 { color: #FFB33F; font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.25rem; text-shadow: 0 0 8px rgba(255, 179, 63, 0.3); }
+        .blog-post-content h3 { color: #FFB33F; font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.8rem; }
+        .blog-post-content p { margin-bottom: 1.5rem; opacity: 0.9; }
+        .blog-post-content ul, .blog-post-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+        .blog-post-content li { margin-bottom: 0.8rem; opacity: 0.9; }
+        .blog-post-content strong { color: #FFB33F; }
+        .blog-post-content code { background: rgba(26, 14, 8, 0.8); padding: 0.2rem 0.5rem; border-radius: 4px; color: #FFB33F; font-family: 'Courier New', monospace; border: 1px solid #3B1C0E; }
+        .blog-post-content pre { background: rgba(26, 14, 8, 0.9); padding: 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.5rem 0; border: 1px solid #3B1C0E; }
+        .blog-post-content pre code { background: none; border: none; padding: 0; color: #FFE8B0; }
+        .back-to-blog { display: inline-flex; align-items: center; gap: 0.5rem; color: #FFB33F; text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: all 0.3s ease; }
+        .back-to-blog:hover { color: #FFE8B0; gap: 0.8rem; }
+        .tip-box { background: rgba(255, 179, 63, 0.1); border-left: 4px solid #FFB33F; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .tip-box strong { color: #FFB33F; display: block; margin-bottom: 0.5rem; }
+        .table-container { overflow-x: auto; margin: 1.5rem 0; }
+        .styled-table { width: 100%; border-collapse: collapse; background: rgba(26, 14, 8, 0.8); border-radius: 8px; overflow: hidden; }
+        .styled-table th, .styled-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #3B1C0E; }
+        .styled-table th { background: rgba(255, 179, 63, 0.1); color: #FFB33F; font-weight: 600; }
+        .styled-table td { color: #FFE8B0; }
+        @media (max-width: 768px) { .blog-post-container { padding: 90px 20px 2rem; } .blog-post-header h1 { font-size: 1.8rem; } .blog-post-content { font-size: 1rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.8rem;">
+                    <img src="../assets/icons/my logo.png" alt="Rohan Handore Logo" class="logo-img" loading="lazy">
+                    <h2>Rohan Handore</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="../index.html#portfolio" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="../assets/CV.pdf" download="Rohan_Handore_Resume.pdf" class="nav-resume-btn"><i class="fas fa-download"></i> Resume</a>
+            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <div class="blog-post-container">
+        <a href="index.html" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        <article class="blog-post-content">
+            <div class="blog-post-header">
+                <span class="blog-category">Backend</span>
+                <h1>REST API Design: Principles and Patterns</h1>
+                <div class="blog-post-meta">
+                    <span><i class="fas fa-calendar"></i> January 20, 2025</span>
+                    <span><i class="fas fa-clock"></i> 15 min read</span>
+                    <span><i class="fas fa-user"></i> Rohan Handore</span>
+                </div>
+            </div>
+            
+            <p>I've designed and consumed hundreds of APIs over my career. Some were a joy to work with—intuitive, consistent, well-documented. Others made me question my career choices. Let's talk about what separates the two.</p>
+
+            <h2>REST is a Contract, Not Just an Architecture</h2>
+            <p>When you design an API, you're creating a contract with every developer who will ever use it. Break that contract—with inconsistent naming, unexpected behaviors, or poor error handling—and you'll spend more time answering support questions than building features.</p>
+            <p>The best APIs are boring. They're predictable. They do exactly what you expect them to do.</p>
+
+            <h2>1. Resource Naming: The Foundation</h2>
+            <p>URLs should represent resources (nouns), not actions (verbs). The HTTP method tells you the action.</p>
+
+            <pre><code>// Bad - verbs in URLs
+POST /createUser
+GET /getUserById/123
+POST /deleteUser/123
+
+// Good - nouns with proper HTTP methods
+POST   /users          → Create a user
+GET    /users/123      → Get user 123
+PUT    /users/123      → Update user 123
+DELETE /users/123      → Delete user 123</code></pre>
+
+            <h3>Plural vs Singular</h3>
+            <p>Pick one and stick with it. I prefer plural because it's more consistent:</p>
+
+            <pre><code>GET  /users           → List all users
+GET  /users/123       → Get specific user
+POST /users           → Create a user
+GET  /users/123/posts → Get posts for user 123</code></pre>
+
+            <h3>Nested Resources</h3>
+            <p>Keep nesting shallow. More than two levels deep becomes confusing:</p>
+
+            <pre><code>// Good - shallow nesting
+GET /users/123/posts
+GET /posts/456/comments
+
+// Avoid - too deep
+GET /users/123/posts/456/comments/789/replies</code></pre>
+
+            <h2>2. HTTP Methods: Use Them Correctly</h2>
+            
+            <div class="table-container">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Purpose</th>
+                            <th>Idempotent?</th>
+                            <th>Safe?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>GET</code></td>
+                            <td>Retrieve resource(s)</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td><code>POST</code></td>
+                            <td>Create a new resource</td>
+                            <td>No</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><code>PUT</code></td>
+                            <td>Replace entire resource</td>
+                            <td>Yes</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><code>PATCH</code></td>
+                            <td>Partial update</td>
+                            <td>No*</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><code>DELETE</code></td>
+                            <td>Remove resource</td>
+                            <td>Yes</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Idempotency Matters</strong>
+                <p>Idempotent operations can be safely retried. If a network error occurs during a PUT request, the client can retry without fear of creating duplicate data. This is crucial for building reliable systems.</p>
+            </div>
+
+            <h2>3. Status Codes: Tell the Client What Happened</h2>
+            <p>Don't return 200 OK with an error message in the body. Use status codes properly:</p>
+
+            <pre><code>// Success codes
+200 OK           → Request succeeded
+201 Created      → Resource created (return the new resource)
+204 No Content   → Success, nothing to return (good for DELETE)
+
+// Client errors
+400 Bad Request  → Malformed request syntax
+401 Unauthorized → Authentication required
+403 Forbidden    → Authenticated but not authorized
+404 Not Found    → Resource doesn't exist
+409 Conflict     → Resource conflict (e.g., duplicate email)
+422 Unprocessable→ Validation errors
+
+// Server errors
+500 Internal     → Something broke on our end
+503 Unavailable  → Service temporarily down</code></pre>
+
+            <h2>4. Error Handling: Be Helpful</h2>
+            <p>When things go wrong, give developers enough information to fix the problem:</p>
+
+            <pre><code>// Bad - unhelpful error
+{
+    "error": "Invalid request"
+}
+
+// Good - actionable error response
+{
+    "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "The request contains invalid data",
+        "details": [
+            {
+                "field": "email",
+                "message": "Must be a valid email address",
+                "received": "not-an-email"
+            },
+            {
+                "field": "age",
+                "message": "Must be at least 18",
+                "received": 16
+            }
+        ],
+        "documentation": "https://api.example.com/docs/errors#VALIDATION_ERROR"
+    }
+}</code></pre>
+
+            <h2>5. Pagination: Don't Return Everything</h2>
+            <p>Never return unbounded lists. A table with a million rows will crash your server and the client.</p>
+
+            <pre><code>// Cursor-based pagination (preferred)
+GET /posts?cursor=abc123&limit=20
+
+{
+    "data": [...],
+    "pagination": {
+        "next_cursor": "def456",
+        "has_more": true
+    }
+}
+
+// Offset-based pagination (simpler but less efficient)
+GET /posts?page=3&per_page=20
+
+{
+    "data": [...],
+    "pagination": {
+        "current_page": 3,
+        "per_page": 20,
+        "total_pages": 50,
+        "total_items": 1000
+    }
+}</code></pre>
+
+            <div class="tip-box">
+                <strong>💡 Why Cursor Pagination?</strong>
+                <p>Offset pagination breaks when data changes between requests. If new items are added, users might see duplicates or miss items. Cursor pagination is stable regardless of data changes.</p>
+            </div>
+
+            <h2>6. Filtering, Sorting, and Searching</h2>
+            <p>Use query parameters for filtering and sorting:</p>
+
+            <pre><code>// Filtering
+GET /posts?status=published&author_id=123
+
+// Sorting
+GET /posts?sort=-created_at,title  // "-" prefix for descending
+
+// Searching
+GET /posts?search=javascript
+
+// Combined
+GET /posts?status=published&sort=-created_at&search=api&limit=20</code></pre>
+
+            <h2>7. Versioning: Plan for Change</h2>
+            <p>Your API will change. Plan for it from day one:</p>
+
+            <pre><code>// URL versioning (most common)
+GET /v1/users
+GET /v2/users
+
+// Header versioning (cleaner URLs)
+GET /users
+Accept: application/vnd.myapi.v2+json</code></pre>
+
+            <p>My preference is URL versioning—it's explicit, easy to understand, and works in browser address bars.</p>
+
+            <h2>8. Security Essentials</h2>
+            <ul>
+                <li><strong>Always use HTTPS.</strong> No exceptions. Ever.</li>
+                <li><strong>Validate all input.</strong> Never trust client data.</li>
+                <li><strong>Rate limiting.</strong> Protect yourself from abuse.</li>
+                <li><strong>Authentication.</strong> Use proven standards like OAuth 2.0 or JWT.</li>
+                <li><strong>Never expose internal IDs.</strong> Use UUIDs or public-facing identifiers.</li>
+            </ul>
+
+            <pre><code>// Rate limit headers
+HTTP/1.1 200 OK
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 95
+X-RateLimit-Reset: 1640000000
+
+// When rate limited
+HTTP/1.1 429 Too Many Requests
+Retry-After: 60</code></pre>
+
+            <h2>9. Documentation: Your API's First Impression</h2>
+            <p>If your API isn't documented, it doesn't exist. Use OpenAPI (Swagger) specification:</p>
+
+            <pre><code>openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+
+paths:
+  /users:
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 8
+      responses:
+        '201':
+          description: User created successfully</code></pre>
+
+            <h2>Real-World Design Checklist</h2>
+            <ol>
+                <li>✅ Resource names are plural nouns</li>
+                <li>✅ HTTP methods match their semantic meaning</li>
+                <li>✅ Status codes accurately reflect outcomes</li>
+                <li>✅ Errors include actionable information</li>
+                <li>✅ Pagination is implemented for list endpoints</li>
+                <li>✅ Filtering and sorting use query parameters</li>
+                <li>✅ API is versioned from day one</li>
+                <li>✅ Authentication is implemented</li>
+                <li>✅ Rate limiting is in place</li>
+                <li>✅ OpenAPI documentation is up to date</li>
+            </ol>
+
+            <h2>Conclusion</h2>
+            <p>Great API design is about empathy. Think about the developer who will consume your API at 2 AM trying to ship a feature. Make their life easy with consistent patterns, clear errors, and comprehensive documentation.</p>
+            <p>Your API is a product. Treat it like one.</p>
+        </article>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Created With ❤️ By Rohan</p>
+        </div>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>

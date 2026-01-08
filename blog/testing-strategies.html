@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Strategies: Unit, Integration, and Beyond | Rohan Handore</title>
+    <link rel="icon" type="image/png" href="../assets/images/Gemini_Generated_Image_2frcrz2frcrz2frc.png">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blog-post-container { max-width: 900px; margin: 0 auto; padding: 100px 20px 4rem; }
+        .blog-post-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #3B1C0E; }
+        .blog-post-header .blog-category { display: inline-block; margin-bottom: 1rem; padding: 0.5rem 1.5rem; background: rgba(255, 179, 63, 0.1); border: 2px solid #FFB33F; border-radius: 25px; color: #FFB33F; font-weight: 600; }
+        .blog-post-header h1 { font-size: 2.5rem; color: #FFE8B0; margin-bottom: 1rem; text-shadow: 0 0 10px rgba(255, 232, 176, 0.3); }
+        .blog-post-meta { display: flex; justify-content: center; align-items: center; gap: 2rem; color: #FFB33F; font-size: 0.95rem; flex-wrap: wrap; }
+        .blog-post-meta span { display: flex; align-items: center; gap: 0.5rem; }
+        .blog-post-content { color: #FFE8B0; line-height: 1.9; font-size: 1.1rem; }
+        .blog-post-content h2 { color: #FFB33F; font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.25rem; text-shadow: 0 0 8px rgba(255, 179, 63, 0.3); }
+        .blog-post-content h3 { color: #FFB33F; font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.8rem; }
+        .blog-post-content p { margin-bottom: 1.5rem; opacity: 0.9; }
+        .blog-post-content ul, .blog-post-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+        .blog-post-content li { margin-bottom: 0.8rem; opacity: 0.9; }
+        .blog-post-content strong { color: #FFB33F; }
+        .blog-post-content code { background: rgba(26, 14, 8, 0.8); padding: 0.2rem 0.5rem; border-radius: 4px; color: #FFB33F; font-family: 'Courier New', monospace; border: 1px solid #3B1C0E; }
+        .blog-post-content pre { background: rgba(26, 14, 8, 0.9); padding: 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.5rem 0; border: 1px solid #3B1C0E; }
+        .blog-post-content pre code { background: none; border: none; padding: 0; color: #FFE8B0; }
+        .back-to-blog { display: inline-flex; align-items: center; gap: 0.5rem; color: #FFB33F; text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: all 0.3s ease; }
+        .back-to-blog:hover { color: #FFE8B0; gap: 0.8rem; }
+        .tip-box { background: rgba(255, 179, 63, 0.1); border-left: 4px solid #FFB33F; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .tip-box strong { color: #FFB33F; display: block; margin-bottom: 0.5rem; }
+        .warning-box { background: rgba(220, 53, 69, 0.1); border-left: 4px solid #dc3545; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .warning-box strong { color: #dc3545; display: block; margin-bottom: 0.5rem; }
+        @media (max-width: 768px) { .blog-post-container { padding: 90px 20px 2rem; } .blog-post-header h1 { font-size: 1.8rem; } .blog-post-content { font-size: 1rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.8rem;">
+                    <img src="../assets/icons/my logo.png" alt="Rohan Handore Logo" class="logo-img" loading="lazy">
+                    <h2>Rohan Handore</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="../index.html#portfolio" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="../assets/CV.pdf" download="Rohan_Handore_Resume.pdf" class="nav-resume-btn"><i class="fas fa-download"></i> Resume</a>
+            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <div class="blog-post-container">
+        <a href="index.html" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        <article class="blog-post-content">
+            <div class="blog-post-header">
+                <span class="blog-category">Testing</span>
+                <h1>Testing Strategies: Unit, Integration, and Beyond</h1>
+                <div class="blog-post-meta">
+                    <span><i class="fas fa-calendar"></i> January 15, 2025</span>
+                    <span><i class="fas fa-clock"></i> 14 min read</span>
+                    <span><i class="fas fa-user"></i> Rohan Handore</span>
+                </div>
+            </div>
+            
+            <p>I've shipped code that broke production at 3 AM. I've also worked on codebases with 95% test coverage that still had bugs. Testing isn't about achieving a magic number—it's about building confidence that your code works. Let me share what actually matters.</p>
+
+            <h2>The Testing Pyramid: A Framework, Not a Religion</h2>
+            <p>You've probably seen the testing pyramid: lots of unit tests at the bottom, fewer integration tests in the middle, and even fewer end-to-end tests at the top. It's a useful mental model, but don't follow it blindly.</p>
+            <p>The real goal is <strong>fast feedback with high confidence</strong>. Sometimes that means more integration tests and fewer unit tests. It depends on your system.</p>
+
+            <h2>Unit Tests: Test Behavior, Not Implementation</h2>
+            <p>Unit tests should verify that your code does what it's supposed to do, not how it does it. Tests that break every time you refactor are worse than no tests at all.</p>
+
+            <pre><code>// Bad - testing implementation details
+it('should call validateEmail and then hashPassword', () => {
+    const validateSpy = jest.spyOn(utils, 'validateEmail');
+    const hashSpy = jest.spyOn(bcrypt, 'hash');
+    
+    userService.createUser({ email: 'test@test.com', password: 'pass' });
+    
+    expect(validateSpy).toHaveBeenCalledBefore(hashSpy);
+});
+
+// Good - testing behavior
+it('should create a user with a hashed password', async () => {
+    const user = await userService.createUser({
+        email: 'test@test.com',
+        password: 'plaintext'
+    });
+    
+    expect(user.email).toBe('test@test.com');
+    expect(user.password).not.toBe('plaintext');
+    expect(await bcrypt.compare('plaintext', user.password)).toBe(true);
+});</code></pre>
+
+            <h3>What Makes a Good Unit Test?</h3>
+            <ul>
+                <li><strong>Fast:</strong> Milliseconds, not seconds. If your tests are slow, you won't run them.</li>
+                <li><strong>Isolated:</strong> No database, no network, no file system. Mock external dependencies.</li>
+                <li><strong>Readable:</strong> The test name should tell you what broke without reading the code.</li>
+                <li><strong>Deterministic:</strong> Same input, same output, every time. Flaky tests erode trust.</li>
+            </ul>
+
+            <pre><code>// Test names should be sentences
+describe('ShoppingCart', () => {
+    describe('addItem', () => {
+        it('should increase total price when adding an item', () => { /* ... */ });
+        it('should increase quantity if item already exists', () => { /* ... */ });
+        it('should throw error if item is out of stock', () => { /* ... */ });
+    });
+    
+    describe('removeItem', () => {
+        it('should decrease total price when removing an item', () => { /* ... */ });
+        it('should remove item completely if quantity becomes zero', () => { /* ... */ });
+    });
+});</code></pre>
+
+            <h2>Integration Tests: Test the Seams</h2>
+            <p>Integration tests verify that different parts of your system work together. This is where you catch the bugs that unit tests miss—like database queries that work locally but fail with real data.</p>
+
+            <pre><code>describe('UserRepository Integration', () => {
+    let db;
+    
+    beforeAll(async () => {
+        db = await createTestDatabase();
+    });
+    
+    afterAll(async () => {
+        await db.close();
+    });
+    
+    beforeEach(async () => {
+        await db.clear(); // Clean state for each test
+    });
+    
+    it('should persist user to database', async () => {
+        const repo = new UserRepository(db);
+        
+        const user = await repo.create({
+            email: 'test@example.com',
+            name: 'Test User'
+        });
+        
+        const found = await repo.findById(user.id);
+        
+        expect(found.email).toBe('test@example.com');
+        expect(found.name).toBe('Test User');
+    });
+    
+    it('should enforce unique email constraint', async () => {
+        const repo = new UserRepository(db);
+        
+        await repo.create({ email: 'taken@example.com', name: 'First' });
+        
+        await expect(
+            repo.create({ email: 'taken@example.com', name: 'Second' })
+        ).rejects.toThrow('Email already exists');
+    });
+});</code></pre>
+
+            <div class="tip-box">
+                <strong>💡 Use Real Dependencies When Practical</strong>
+                <p>For integration tests, use real databases (Docker containers are great for this). In-memory substitutes often behave differently than the real thing—SQLite doesn't enforce the same constraints as PostgreSQL.</p>
+            </div>
+
+            <h2>End-to-End Tests: The Safety Net</h2>
+            <p>E2E tests simulate real user behavior. They're slow and flaky, but they catch bugs that nothing else will—like JavaScript errors that only occur in production builds.</p>
+
+            <pre><code>// Using Playwright for E2E testing
+describe('User Registration Flow', () => {
+    it('should allow new users to sign up', async ({ page }) => {
+        await page.goto('/signup');
+        
+        await page.fill('[name="email"]', 'newuser@example.com');
+        await page.fill('[name="password"]', 'SecurePass123!');
+        await page.fill('[name="confirmPassword"]', 'SecurePass123!');
+        
+        await page.click('button[type="submit"]');
+        
+        // Should redirect to dashboard after successful signup
+        await expect(page).toHaveURL('/dashboard');
+        await expect(page.locator('h1')).toContainText('Welcome');
+    });
+    
+    it('should show error for duplicate email', async ({ page }) => {
+        // Assume user already exists
+        await page.goto('/signup');
+        
+        await page.fill('[name="email"]', 'existing@example.com');
+        await page.fill('[name="password"]', 'SecurePass123!');
+        await page.fill('[name="confirmPassword"]', 'SecurePass123!');
+        
+        await page.click('button[type="submit"]');
+        
+        await expect(page.locator('.error-message'))
+            .toContainText('Email already registered');
+    });
+});</code></pre>
+
+            <h3>E2E Testing Best Practices</h3>
+            <ul>
+                <li><strong>Test critical paths only:</strong> Sign up, login, checkout—the flows that must never break.</li>
+                <li><strong>Use stable selectors:</strong> Test IDs (<code>data-testid="submit-button"</code>) are better than CSS classes that change with styling.</li>
+                <li><strong>Handle flakiness:</strong> Add retries, use proper waiting strategies, and quarantine flaky tests.</li>
+                <li><strong>Run in CI:</strong> E2E tests should block deploys, not just run on developer machines.</li>
+            </ul>
+
+            <h2>Testing Edge Cases: Where Bugs Hide</h2>
+            <p>Most bugs don't happen with normal input. They happen at the edges:</p>
+
+            <pre><code>describe('calculateDiscount', () => {
+    // Happy path
+    it('should apply 10% discount for orders over $100', () => {
+        expect(calculateDiscount(150)).toBe(15);
+    });
+    
+    // Edge cases - this is where bugs live
+    it('should handle zero amount', () => {
+        expect(calculateDiscount(0)).toBe(0);
+    });
+    
+    it('should handle negative amounts', () => {
+        expect(() => calculateDiscount(-50)).toThrow('Amount cannot be negative');
+    });
+    
+    it('should handle exactly $100', () => {
+        expect(calculateDiscount(100)).toBe(0); // Discount is for OVER $100
+    });
+    
+    it('should handle floating point precision', () => {
+        expect(calculateDiscount(100.01)).toBeCloseTo(10.001, 2);
+    });
+    
+    it('should handle extremely large amounts', () => {
+        expect(calculateDiscount(Number.MAX_SAFE_INTEGER)).toBeDefined();
+    });
+});</code></pre>
+
+            <h2>Test-Driven Development: A Tool, Not a Dogma</h2>
+            <p>TDD works great for:</p>
+            <ul>
+                <li>Well-understood problems with clear requirements</li>
+                <li>Bug fixes (write a failing test first, then fix)</li>
+                <li>Refactoring (tests give you confidence to change code)</li>
+            </ul>
+            
+            <p>TDD works poorly for:</p>
+            <ul>
+                <li>Exploratory coding where you're figuring out the design</li>
+                <li>UI work where visual feedback matters more than assertions</li>
+                <li>Prototype code that might be thrown away</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ Don't Test for Test Coverage</strong>
+                <p>100% code coverage with bad tests is worse than 70% coverage with good tests. Coverage tells you what code ran, not whether your tests actually verify anything useful.</p>
+            </div>
+
+            <h2>Mocking: Use Sparingly</h2>
+            <p>Mocks are necessary for unit testing, but too many mocks mean you're testing your mocks, not your code.</p>
+
+            <pre><code>// Over-mocked - what are we even testing?
+it('should process payment', async () => {
+    const mockUser = { id: 1, balance: 100 };
+    const mockPayment = { amount: 50 };
+    const mockResult = { success: true };
+    
+    jest.spyOn(userService, 'findById').mockResolvedValue(mockUser);
+    jest.spyOn(paymentGateway, 'charge').mockResolvedValue(mockResult);
+    jest.spyOn(userService, 'updateBalance').mockResolvedValue(mockUser);
+    jest.spyOn(emailService, 'sendReceipt').mockResolvedValue(undefined);
+    
+    const result = await paymentService.process(1, 50);
+    
+    expect(result.success).toBe(true);
+});
+
+// Better - test real behavior, mock only external services
+it('should deduct balance after successful payment', async () => {
+    const user = await createTestUser({ balance: 100 });
+    
+    // Only mock the external payment gateway
+    jest.spyOn(paymentGateway, 'charge').mockResolvedValue({ success: true });
+    
+    await paymentService.process(user.id, 50);
+    
+    const updatedUser = await userService.findById(user.id);
+    expect(updatedUser.balance).toBe(50);
+});</code></pre>
+
+            <h2>My Testing Strategy</h2>
+            <ol>
+                <li><strong>Write tests for business logic:</strong> The core algorithms and rules that make your app valuable.</li>
+                <li><strong>Integration test database operations:</strong> Queries, constraints, and data integrity.</li>
+                <li><strong>E2E test critical user flows:</strong> The paths that generate revenue or would cause support tickets if broken.</li>
+                <li><strong>Skip testing glue code:</strong> Simple wiring between components often isn't worth testing.</li>
+                <li><strong>Always write a test for bugs:</strong> Regression tests prevent the same bug from returning.</li>
+            </ol>
+
+            <h2>Conclusion</h2>
+            <p>Good tests give you confidence to ship fast. Bad tests slow you down and give false confidence. Focus on testing behavior, not implementation. Test the edges where bugs hide. And remember: the best test suite is one that catches bugs before your users do.</p>
+            <p>Ship with confidence. 🚀</p>
+        </article>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Created With ❤️ By Rohan</p>
+        </div>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation in Software Development | Rohan Handore</title>
+    <link rel="icon" type="image/png" href="../assets/images/Gemini_Generated_Image_2frcrz2frcrz2frc.png">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blog-post-container { max-width: 900px; margin: 0 auto; padding: 100px 20px 4rem; }
+        .blog-post-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #3B1C0E; }
+        .blog-post-header .blog-category { display: inline-block; margin-bottom: 1rem; padding: 0.5rem 1.5rem; background: rgba(255, 179, 63, 0.1); border: 2px solid #FFB33F; border-radius: 25px; color: #FFB33F; font-weight: 600; }
+        .blog-post-header h1 { font-size: 2.5rem; color: #FFE8B0; margin-bottom: 1rem; text-shadow: 0 0 10px rgba(255, 232, 176, 0.3); }
+        .blog-post-meta { display: flex; justify-content: center; align-items: center; gap: 2rem; color: #FFB33F; font-size: 0.95rem; flex-wrap: wrap; }
+        .blog-post-meta span { display: flex; align-items: center; gap: 0.5rem; }
+        .blog-post-content { color: #FFE8B0; line-height: 1.9; font-size: 1.1rem; }
+        .blog-post-content h2 { color: #FFB33F; font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.25rem; text-shadow: 0 0 8px rgba(255, 179, 63, 0.3); }
+        .blog-post-content h3 { color: #FFB33F; font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.8rem; }
+        .blog-post-content p { margin-bottom: 1.5rem; opacity: 0.9; }
+        .blog-post-content ul, .blog-post-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+        .blog-post-content li { margin-bottom: 0.8rem; opacity: 0.9; }
+        .blog-post-content strong { color: #FFB33F; }
+        .blog-post-content code { background: rgba(26, 14, 8, 0.8); padding: 0.2rem 0.5rem; border-radius: 4px; color: #FFB33F; font-family: 'Courier New', monospace; border: 1px solid #3B1C0E; }
+        .blog-post-content pre { background: rgba(26, 14, 8, 0.9); padding: 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.5rem 0; border: 1px solid #3B1C0E; }
+        .blog-post-content pre code { background: none; border: none; padding: 0; color: #FFE8B0; }
+        .back-to-blog { display: inline-flex; align-items: center; gap: 0.5rem; color: #FFB33F; text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: all 0.3s ease; }
+        .back-to-blog:hover { color: #FFE8B0; gap: 0.8rem; }
+        .tip-box { background: rgba(255, 179, 63, 0.1); border-left: 4px solid #FFB33F; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .tip-box strong { color: #FFB33F; display: block; margin-bottom: 0.5rem; }
+        @media (max-width: 768px) { .blog-post-container { padding: 90px 20px 2rem; } .blog-post-header h1 { font-size: 1.8rem; } .blog-post-content { font-size: 1rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.8rem;">
+                    <img src="../assets/icons/my logo.png" alt="Rohan Handore Logo" class="logo-img" loading="lazy">
+                    <h2>Rohan Handore</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="../index.html#portfolio" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="../assets/CV.pdf" download="Rohan_Handore_Resume.pdf" class="nav-resume-btn"><i class="fas fa-download"></i> Resume</a>
+            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <div class="blog-post-container">
+        <a href="index.html" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        <article class="blog-post-content">
+            <div class="blog-post-header">
+                <span class="blog-category">DevOps</span>
+                <h1>Automation in Software Development</h1>
+                <div class="blog-post-meta">
+                    <span><i class="fas fa-calendar"></i> January 10, 2025</span>
+                    <span><i class="fas fa-clock"></i> 11 min read</span>
+                    <span><i class="fas fa-user"></i> Rohan Handore</span>
+                </div>
+            </div>
+            
+            <p>There are two types of engineers: those who spend hours on repetitive manual tasks, and those who spend hours automating those tasks to save minutes. I'm firmly in the second camp—because those minutes add up to days, and those days add up to shipping more features.</p>
+
+            <h2>The Automation Mindset</h2>
+            <p>Every time you do something manually more than twice, ask yourself: "Could a computer do this?" The answer is usually yes. The question is whether it's worth the time investment.</p>
+            <p>Here's my rule of thumb: if a task takes 5 minutes and you do it daily, that's 20+ hours per year. Spending 4 hours to automate it is a massive win.</p>
+
+            <h2>1. CI/CD: Your First Line of Defense</h2>
+            <p>Continuous Integration and Continuous Deployment aren't just buzzwords—they're the foundation of shipping confidently.</p>
+
+            <h3>A Practical CI Pipeline</h3>
+            <pre><code># .github/workflows/ci.yml
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run linter
+        run: npm run lint
+      
+      - name: Run tests
+        run: npm test -- --coverage
+      
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build application
+        run: npm run build
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: dist/</code></pre>
+
+            <div class="tip-box">
+                <strong>💡 Fast Feedback Loop</strong>
+                <p>Your CI pipeline should complete in under 10 minutes. If it takes longer, developers will stop waiting for it and merge without checking. Parallelize tests, cache dependencies aggressively, and only run expensive checks on main branch.</p>
+            </div>
+
+            <h2>2. Pre-commit Hooks: Catch Issues Before They Spread</h2>
+            <p>Don't let bad code enter your repository. Pre-commit hooks catch issues at the earliest possible moment.</p>
+
+            <pre><code># .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: detect-private-key
+  
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        language_version: python3.11
+  
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest tests/ -x -q
+        language: system
+        types: [python]
+        pass_filenames: false</code></pre>
+
+            <h2>3. Automated Code Formatting</h2>
+            <p>Code style debates are a waste of time. Pick a formatter, configure it once, and never think about it again.</p>
+
+            <pre><code>// prettier.config.js
+module.exports = {
+    semi: true,
+    singleQuote: true,
+    tabWidth: 2,
+    trailingComma: 'es5',
+    printWidth: 100,
+};
+
+// package.json
+{
+    "scripts": {
+        "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
+        "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\""
+    }
+}</code></pre>
+
+            <h2>4. Database Migrations: Never Manual SQL in Production</h2>
+            <p>Every database change should be version-controlled and automatically applied.</p>
+
+            <pre><code># Using Alembic for Python/SQLAlchemy
+
+# Create a new migration
+alembic revision --autogenerate -m "Add user preferences table"
+
+# Generated migration file
+def upgrade():
+    op.create_table(
+        'user_preferences',
+        sa.Column('id', sa.Integer(), primary_key=True),
+        sa.Column('user_id', sa.Integer(), sa.ForeignKey('users.id')),
+        sa.Column('theme', sa.String(20), default='light'),
+        sa.Column('notifications_enabled', sa.Boolean(), default=True),
+        sa.Column('created_at', sa.DateTime(), server_default=sa.func.now()),
+    )
+    op.create_index('ix_user_preferences_user_id', 'user_preferences', ['user_id'])
+
+def downgrade():
+    op.drop_index('ix_user_preferences_user_id')
+    op.drop_table('user_preferences')</code></pre>
+
+            <h2>5. Infrastructure as Code</h2>
+            <p>Your infrastructure should be reproducible with a single command. No more "it works on my machine" or "we don't know how that server was configured."</p>
+
+            <pre><code># terraform/main.tf
+provider "aws" {
+    region = var.aws_region
+}
+
+resource "aws_instance" "web" {
+    ami           = var.ami_id
+    instance_type = var.instance_type
+    
+    tags = {
+        Name        = "${var.project_name}-web"
+        Environment = var.environment
+    }
+    
+    user_data = templatefile("${path.module}/scripts/init.sh", {
+        db_host = aws_db_instance.main.endpoint
+    })
+}
+
+resource "aws_db_instance" "main" {
+    identifier        = "${var.project_name}-db"
+    engine            = "postgres"
+    engine_version    = "14.7"
+    instance_class    = var.db_instance_class
+    allocated_storage = 20
+    
+    backup_retention_period = 7
+    skip_final_snapshot     = var.environment != "production"
+}</code></pre>
+
+            <h2>6. Automated Dependency Updates</h2>
+            <p>Security vulnerabilities in dependencies are a real risk. Automate updates with tools like Dependabot or Renovate.</p>
+
+            <pre><code># .github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "deps"
+    open-pull-requests-limit: 10
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"</code></pre>
+
+            <h2>7. Monitoring and Alerting Automation</h2>
+            <p>Set up alerts before problems become emergencies.</p>
+
+            <pre><code># docker-compose.monitoring.yml
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+  
+  grafana:
+    image: grafana/grafana:latest
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/provisioning:/etc/grafana/provisioning
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml</code></pre>
+
+            <h2>8. Automated Release Notes</h2>
+            <p>Generate changelogs from your commit history automatically.</p>
+
+            <pre><code># Use conventional commits
+git commit -m "feat: add user authentication"
+git commit -m "fix: resolve memory leak in cache"
+git commit -m "docs: update API documentation"
+
+# Generate changelog with semantic-release
+# .releaserc.json
+{
+    "branches": ["main"],
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        "@semantic-release/changelog",
+        "@semantic-release/github",
+        "@semantic-release/git"
+    ]
+}</code></pre>
+
+            <h2>Automation ROI Calculator</h2>
+            <p>Before automating, estimate the return:</p>
+
+            <pre><code>Time saved per occurrence × Frequency × Duration
+─────────────────────────────────────────────────
+        Time to build automation
+
+Example:
+- Manual deployment: 30 minutes
+- Frequency: Daily
+- Duration: 1 year
+- Automation time: 8 hours
+
+ROI = (30 min × 365 days) / 8 hours
+    = 10,950 minutes / 480 minutes
+    = 22.8x return</code></pre>
+
+            <h2>What NOT to Automate</h2>
+            <ul>
+                <li><strong>One-time tasks:</strong> If you'll never do it again, just do it manually.</li>
+                <li><strong>Tasks requiring human judgment:</strong> Code reviews, architectural decisions, user research.</li>
+                <li><strong>Rapidly changing processes:</strong> Automate stable processes first.</li>
+                <li><strong>Tasks you don't understand:</strong> Automating a broken process just creates faster broken results.</li>
+            </ul>
+
+            <h2>Getting Started: Pick One Thing</h2>
+            <ol>
+                <li><strong>Identify your biggest time sink:</strong> What manual task eats the most time each week?</li>
+                <li><strong>Start small:</strong> Automate one step, not the entire process.</li>
+                <li><strong>Document as you go:</strong> Your automation is only useful if others can maintain it.</li>
+                <li><strong>Iterate:</strong> Your first automation won't be perfect. Improve it over time.</li>
+            </ol>
+
+            <h2>Conclusion</h2>
+            <p>Automation isn't about replacing humans—it's about freeing humans to do the work that actually requires human intelligence. Every hour spent on repetitive tasks is an hour not spent on solving interesting problems.</p>
+            <p>Start with one thing. Automate it. Then find the next thing. The compound effect is enormous.</p>
+        </article>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Created With ❤️ By Rohan</p>
+        </div>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>

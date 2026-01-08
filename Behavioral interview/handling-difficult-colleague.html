@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" style="color-scheme: dark">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../assets/images/Gemini_Generated_Image_2frcrz2frcrz2frc.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handling a Difficult Colleague | Behavioral Interview Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #1A0E08;
+            --bg-secondary: #3B1C0E;
+            --text-primary: #FFE8B0;
+            --text-secondary: #D4C4A8;
+            --accent: #FFB33F;
+            --accent-hover: #F17500;
+            --border: #3B1C0E;
+        }
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+            color: var(--text-primary);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .top-nav {
+            background: rgba(26, 14, 8, 0.95);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .top-nav a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .top-nav a:hover { color: var(--text-primary); }
+        .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+        header { text-align: center; margin-bottom: 2.5rem; }
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            text-shadow: 0 0 20px rgba(255, 179, 63, 0.2);
+        }
+        .meta { color: var(--text-secondary); font-size: 0.9rem; }
+        .content { font-size: 1.05rem; color: var(--text-secondary); }
+        .content p { margin-bottom: 1.25rem; line-height: 1.9; }
+        .content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+        .content h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+        .content h3 { font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        .content ul, .content ol { margin: 1rem 0 1.5rem 0; padding-left: 1.5rem; }
+        .content li { margin-bottom: 0.5rem; padding-left: 0.5rem; }
+        .content li::marker { color: var(--accent); }
+        .content strong { color: var(--accent); font-weight: 600; }
+        .content code { background: #0D0705; padding: 0.2rem 0.5rem; border-radius: 4px; color: var(--accent); font-family: monospace; }
+        .question-box {
+            background: linear-gradient(135deg, rgba(255, 179, 63, 0.15) 0%, rgba(241, 117, 0, 0.1) 100%);
+            border-left: 4px solid var(--accent);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 12px 12px 0;
+            font-size: 1.1rem;
+        }
+        .question-box p { margin: 0; color: var(--text-primary); font-weight: 500; }
+        .intro-text {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .key-points {
+            background: rgba(26, 14, 8, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .key-points h3 { margin-top: 0; color: var(--accent); }
+        .example-box {
+            background: rgba(26, 14, 8, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+        }
+        .example-box.good { border-left: 4px solid #22c55e; }
+        .example-box.bad { border-left: 4px solid #ef4444; }
+        .example-label { font-weight: 600; margin-bottom: 0.5rem; display: block; }
+        .example-label.good { color: #22c55e; }
+        .example-label.bad { color: #ef4444; }
+        .star-section {
+            background: rgba(26, 14, 8, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .star-section h4 { color: var(--accent); font-size: 1.1rem; margin-bottom: 0.75rem; }
+        .star-section p { margin-bottom: 0.75rem; }
+        .star-section p:last-child { margin-bottom: 0; }
+        .tip-box {
+            background: rgba(255, 179, 63, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip-box strong { display: block; margin-bottom: 0.5rem; }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border);
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .prev-btn, .next-btn { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+        .prev-btn:hover, .next-btn:hover { background: var(--accent); color: var(--bg-primary); }
+        .back-to-index { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: var(--bg-primary); }
+        @media (max-width: 768px) {
+            .container { padding: 2rem 1.25rem; }
+            h1 { font-size: 1.75rem; }
+            .nav-buttons { flex-direction: column; }
+            .nav-btn { width: 100%; justify-content: center; }
+            .top-nav { padding: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+        }
+        html { scroll-behavior: smooth; }
+        ::selection { background: var(--accent); color: var(--bg-primary); }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html"><i class="fas fa-th-list"></i> All Topics</a>
+        <a href="../index.html"><i class="fas fa-home"></i> Portfolio</a>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>Handling a Difficult Colleague</h1>
+            <p class="meta">Behavioral Interview Guide</p>
+        </header>
+        <div class="content">
+            <div class="question-box">
+                <p><strong>Interview Question:</strong> Tell me about a time you had to work with a difficult colleague.</p>
+            </div>
+            <div class="intro-text">Not everyone is easy to work with. Interviewers want to see you can <strong>maintain professionalism and effectiveness</strong> even when dealing with challenging personalities, without resorting to drama or escalation.</div>
+
+            <h2>What Interviewers Are Looking For</h2>
+            <div class="key-points">
+                <ul>
+                    <li><strong>Professionalism:</strong> Can you work with anyone?</li>
+                    <li><strong>Empathy:</strong> Can you understand what's driving their behavior?</li>
+                    <li><strong>Adaptability:</strong> Can you adjust your approach?</li>
+                    <li><strong>Focus on Work:</strong> Can you keep the project on track?</li>
+                </ul>
+            </div>
+            <h2>STAR Framework</h2>
+            <div class="star-section">
+                <h4>S - Situation</h4>
+                <p>What made this colleague difficult? (Communication style, attitude, reliability)</p>
+            </div>
+            <div class="star-section">
+                <h4>A - Action</h4>
+                <ul>
+                    <li>Try to understand their perspective</li>
+                    <li>Adapt your communication style</li>
+                    <li>Focus on shared goals</li>
+                    <li>Set clear expectations and boundaries</li>
+                </ul>
+            </div>
+            <div class="star-section">
+                <h4>R - Result</h4>
+                <p>Successful collaboration despite the challenges.</p>
+            </div>
+            <div class="example-box good">
+                <span class="example-label good">✓ Strong Answer</span>
+                <p>"I worked with an engineer who dismissed every suggestion in code reviews. Instead of getting defensive, I asked to understand their standards better. I learned they valued performance highly due to past production issues. Once I started leading with performance considerations, they became much more receptive. We ended up shipping a highly optimized feature together."</p>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn back-to-index"><i class="fas fa-th-list"></i> All Topics</a>
+            <a href="going-above-beyond.html" class="nav-btn prev-btn"><i class="fas fa-arrow-left"></i> Previous</a>
+            <a href="helping-solve-challenge.html" class="nav-btn next-btn">Next <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</body>
+</html>

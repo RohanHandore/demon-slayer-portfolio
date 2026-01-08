@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Maintainable Code: Best Practices | Rohan Handore</title>
+    <link rel="icon" type="image/png" href="../assets/images/Gemini_Generated_Image_2frcrz2frcrz2frc.png">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blog-post-container { max-width: 900px; margin: 0 auto; padding: 100px 20px 4rem; }
+        .blog-post-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #3B1C0E; }
+        .blog-post-header .blog-category { display: inline-block; margin-bottom: 1rem; padding: 0.5rem 1.5rem; background: rgba(255, 179, 63, 0.1); border: 2px solid #FFB33F; border-radius: 25px; color: #FFB33F; font-weight: 600; }
+        .blog-post-header h1 { font-size: 2.5rem; color: #FFE8B0; margin-bottom: 1rem; text-shadow: 0 0 10px rgba(255, 232, 176, 0.3); }
+        .blog-post-meta { display: flex; justify-content: center; align-items: center; gap: 2rem; color: #FFB33F; font-size: 0.95rem; flex-wrap: wrap; }
+        .blog-post-meta span { display: flex; align-items: center; gap: 0.5rem; }
+        .blog-post-content { color: #FFE8B0; line-height: 1.9; font-size: 1.1rem; }
+        .blog-post-content h2 { color: #FFB33F; font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.25rem; text-shadow: 0 0 8px rgba(255, 179, 63, 0.3); }
+        .blog-post-content h3 { color: #FFB33F; font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.8rem; }
+        .blog-post-content p { margin-bottom: 1.5rem; opacity: 0.9; }
+        .blog-post-content ul, .blog-post-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+        .blog-post-content li { margin-bottom: 0.8rem; opacity: 0.9; }
+        .blog-post-content strong { color: #FFB33F; }
+        .blog-post-content code { background: rgba(26, 14, 8, 0.8); padding: 0.2rem 0.5rem; border-radius: 4px; color: #FFB33F; font-family: 'Courier New', monospace; border: 1px solid #3B1C0E; }
+        .blog-post-content pre { background: rgba(26, 14, 8, 0.9); padding: 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.5rem 0; border: 1px solid #3B1C0E; }
+        .blog-post-content pre code { background: none; border: none; padding: 0; color: #FFE8B0; }
+        .back-to-blog { display: inline-flex; align-items: center; gap: 0.5rem; color: #FFB33F; text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: all 0.3s ease; }
+        .back-to-blog:hover { color: #FFE8B0; gap: 0.8rem; }
+        .tip-box { background: rgba(255, 179, 63, 0.1); border-left: 4px solid #FFB33F; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .tip-box strong { color: #FFB33F; display: block; margin-bottom: 0.5rem; }
+        .warning-box { background: rgba(220, 53, 69, 0.1); border-left: 4px solid #dc3545; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .warning-box strong { color: #dc3545; display: block; margin-bottom: 0.5rem; }
+        @media (max-width: 768px) { .blog-post-container { padding: 90px 20px 2rem; } .blog-post-header h1 { font-size: 1.8rem; } .blog-post-content { font-size: 1rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.8rem;">
+                    <img src="../assets/icons/my logo.png" alt="Rohan Handore Logo" class="logo-img" loading="lazy">
+                    <h2>Rohan Handore</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="../index.html#portfolio" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="../assets/CV.pdf" download="Rohan_Handore_Resume.pdf" class="nav-resume-btn"><i class="fas fa-download"></i> Resume</a>
+            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <div class="blog-post-container">
+        <a href="index.html" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+        <article class="blog-post-content">
+            <div class="blog-post-header">
+                <span class="blog-category">Software Engineering</span>
+                <h1>Building Maintainable Code: Best Practices</h1>
+                <div class="blog-post-meta">
+                    <span><i class="fas fa-calendar"></i> January 27, 2025</span>
+                    <span><i class="fas fa-clock"></i> 12 min read</span>
+                    <span><i class="fas fa-user"></i> Rohan Handore</span>
+                </div>
+            </div>
+            
+            <p>After years of working on production systems, I've learned that writing code is the easy part. The hard part? Writing code that your future self—and your teammates—won't curse you for six months later. Let's talk about what actually makes code maintainable.</p>
+
+            <h2>The Real Cost of Unmaintainable Code</h2>
+            <p>I once inherited a codebase where a single "utility" function was 800 lines long. It handled authentication, database queries, email sending, and somehow also managed user preferences. Every bug fix in that function was a two-day affair because no one understood what it actually did.</p>
+            <p>The true cost of unmaintainable code isn't just technical debt—it's developer morale, missed deadlines, and the constant fear of breaking something when you make changes. Here's what I've learned about avoiding that trap.</p>
+
+            <h2>1. Write Code for Humans, Not Compilers</h2>
+            <p>Your code will be read far more times than it will be written. Optimize for readability first.</p>
+
+            <h3>Naming Things Properly</h3>
+            <p>This sounds basic, but I still see senior developers name variables <code>temp</code>, <code>data</code>, or <code>x</code>. Here's the rule: if you have to think about what a variable contains, the name is wrong.</p>
+
+            <pre><code>// Bad - What does this even mean?
+const d = users.filter(u => u.a > 30 && u.s === 'active');
+
+// Good - Crystal clear intent
+const activeAdultUsers = users.filter(
+    user => user.age > 30 && user.status === 'active'
+);</code></pre>
+
+            <div class="tip-box">
+                <strong>💡 Pro Tip</strong>
+                <p>Spend 2 minutes thinking about a name. It will save 20 minutes of confusion later. If you can't name something clearly, you probably don't understand what it does yet.</p>
+            </div>
+
+            <h3>Function Length and Responsibility</h3>
+            <p>A function should do one thing. If you're writing a comment that says "// Now we do X", that's a sign you need a new function.</p>
+            <p>My rule of thumb: if a function doesn't fit on one screen without scrolling, it's probably too long. If the function name requires "and" to describe it (<code>validateAndSaveUser</code>), split it up.</p>
+
+            <h2>2. Embrace the Single Responsibility Principle</h2>
+            <p>Every module, class, or function should have one reason to change. Not two. Not "just this one exception." One.</p>
+
+            <pre><code>// Bad - This class does too much
+class UserManager {
+    createUser(data) { /* ... */ }
+    sendWelcomeEmail(user) { /* ... */ }
+    generateReport(users) { /* ... */ }
+    validateCreditCard(cardNumber) { /* ... */ }
+}
+
+// Good - Separate concerns
+class UserRepository {
+    create(userData) { /* ... */ }
+    findById(id) { /* ... */ }
+}
+
+class EmailService {
+    sendWelcomeEmail(user) { /* ... */ }
+}
+
+class ReportGenerator {
+    generateUserReport(users) { /* ... */ }
+}</code></pre>
+
+            <h2>3. Make Dependencies Explicit</h2>
+            <p>Hidden dependencies are maintainability killers. When a function secretly depends on global state or makes assumptions about the environment, bugs become nearly impossible to track down.</p>
+
+            <pre><code>// Bad - Hidden dependency on global config
+function processPayment(amount) {
+    const apiKey = global.config.stripeKey; // Where does this come from?
+    // ...
+}
+
+// Good - Explicit dependency injection
+function processPayment(amount, paymentGateway) {
+    return paymentGateway.charge(amount);
+}</code></pre>
+
+            <p>Dependency injection isn't just for enterprise Java applications. It makes your code testable, understandable, and flexible.</p>
+
+            <h2>4. Write Tests That Document Behavior</h2>
+            <p>Good tests are documentation that can't go stale. When I join a new project, the first thing I do is read the tests—they tell me what the code is supposed to do.</p>
+
+            <pre><code>// Tests as documentation
+describe('UserService', () => {
+    describe('createUser', () => {
+        it('should hash the password before storing', async () => {
+            const user = await userService.createUser({
+                email: 'test@example.com',
+                password: 'plaintext123'
+            });
+            
+            expect(user.password).not.toBe('plaintext123');
+            expect(await bcrypt.compare('plaintext123', user.password)).toBe(true);
+        });
+
+        it('should reject duplicate email addresses', async () => {
+            await userService.createUser({ email: 'taken@example.com', password: 'pass' });
+            
+            await expect(
+                userService.createUser({ email: 'taken@example.com', password: 'pass' })
+            ).rejects.toThrow('Email already exists');
+        });
+    });
+});</code></pre>
+
+            <h2>5. Handle Errors Properly</h2>
+            <p>Silent failures are the worst kind of bugs. When something goes wrong, make it loud and clear.</p>
+
+            <div class="warning-box">
+                <strong>⚠️ Common Mistake</strong>
+                <p>Never catch an exception and do nothing with it. That empty catch block will haunt you at 3 AM during an outage.</p>
+            </div>
+
+            <pre><code>// Bad - Swallowing errors
+try {
+    await saveUser(user);
+} catch (e) {
+    // TODO: handle this later (narrator: they never did)
+}
+
+// Good - Proper error handling
+try {
+    await saveUser(user);
+} catch (error) {
+    logger.error('Failed to save user', { userId: user.id, error: error.message });
+    throw new UserSaveError(`Could not save user ${user.id}`, { cause: error });
+}</code></pre>
+
+            <h2>6. Document the "Why", Not the "What"</h2>
+            <p>Comments that explain what code does are usually a sign that the code isn't clear enough. Instead, document why you made certain decisions.</p>
+
+            <pre><code>// Bad comment - explains the obvious
+// Increment counter by 1
+counter++;
+
+// Good comment - explains the why
+// We retry up to 3 times because the payment provider 
+// occasionally returns transient 503 errors during peak hours
+const MAX_RETRIES = 3;</code></pre>
+
+            <h2>7. Consistency Trumps Cleverness</h2>
+            <p>I've seen developers write "clever" one-liners that save 3 lines of code but take 10 minutes to understand. Don't be that developer.</p>
+            <p>Pick patterns and stick with them. If your codebase uses callbacks in some places and Promises in others, async/await in some files and .then() chains in others, you're creating cognitive load for everyone.</p>
+
+            <h2>Practical Steps to Improve Today</h2>
+            <ol>
+                <li><strong>Start with the boy scout rule:</strong> Leave code cleaner than you found it. Every PR should improve something small.</li>
+                <li><strong>Refactor before adding features:</strong> If you're about to add code to a messy function, clean it up first.</li>
+                <li><strong>Use a linter:</strong> Automated style enforcement removes entire categories of debates from code review.</li>
+                <li><strong>Write a README:</strong> If someone new joins tomorrow, could they understand and run your project?</li>
+                <li><strong>Delete dead code:</strong> Version control remembers everything. That commented-out function from 2019 isn't helping anyone.</li>
+            </ol>
+
+            <h2>Conclusion</h2>
+            <p>Maintainable code isn't about following rules blindly—it's about empathy for the next person who reads your code. That person might be a teammate, a future hire, or yourself in six months.</p>
+            <p>The best codebases I've worked on weren't built by geniuses writing clever code. They were built by disciplined engineers who consistently made small, thoughtful decisions that compounded over time.</p>
+            <p>Start small. Be consistent. Your future self will thank you.</p>
+        </article>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Created With ❤️ By Rohan</p>
+        </div>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>

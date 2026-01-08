@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Blog - Rohan Handore | Software Engineering Articles</title>
+    <meta name="title" content="Blog - Rohan Handore | Software Engineering Articles">
+    <meta name="description" content="Read technical blog posts on software engineering, best practices, system design, testing, and more from Rohan Handore.">
+    <meta name="keywords" content="software engineering blog, programming tutorials, technical articles, system design, testing, backend development">
+    <meta name="author" content="Rohan Handore">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rohanhandore.com/blog/">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="../assets/images/Gemini_Generated_Image_2frcrz2frcrz2frc.png">
+    <link rel="shortcut icon" type="image/png" href="../assets/images/Gemini_Generated_Image_2frcrz2frcrz2frc.png">
+    <link rel="apple-touch-icon" href="../assets/images/Gemini_Generated_Image_2frcrz2frcrz2frc.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Theme -->
+    <meta name="theme-color" content="#1A0E08">
+    
+    <style>
+        .blog-page-header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            background: linear-gradient(180deg, #1A0E08 0%, #3B1C0E 50%, #1A0E08 100%);
+        }
+        
+        .blog-page-header h1 {
+            font-size: 3rem;
+            color: #FFE8B0;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 232, 176, 0.3);
+        }
+        
+        .blog-page-header p {
+            font-size: 1.2rem;
+            color: #FFE8B0;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .blog-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 3rem 0;
+            padding: 0 20px;
+        }
+        
+        .category-filter {
+            background: rgba(26, 14, 8, 0.9);
+            color: #FFB33F;
+            border: 2px solid #FFB33F;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.95rem;
+            border: none;
+        }
+        
+        .category-filter:hover,
+        .category-filter.active {
+            background: #FFB33F;
+            color: #1A0E08;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 179, 63, 0.5);
+        }
+        
+        .blog-posts-container {
+            padding: 2rem 0 4rem;
+        }
+        
+        .back-to-home {
+            position: fixed;
+            top: 90px;
+            left: 20px;
+            background: rgba(26, 14, 8, 0.9);
+            color: #FFB33F;
+            border: 2px solid #FFB33F;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-to-home:hover {
+            background: rgba(255, 179, 63, 0.1);
+            transform: translateX(-5px);
+            box-shadow: 0 4px 15px rgba(255, 179, 63, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .blog-page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .back-to-home {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin: 1rem 20px;
+                display: inline-flex;
+            }
+            
+            .blog-categories {
+                margin: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.8rem;">
+                    <img src="../assets/icons/my logo.png" alt="Rohan Handore Logo" class="logo-img" loading="lazy">
+                    <h2>Rohan Handore</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#experience" class="nav-link">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#portfolio" class="nav-link">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#interview-materials" class="nav-link">Interview Materials</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <a href="../assets/CV.pdf" download="Rohan_Handore_Resume.pdf" class="nav-resume-btn">
+                <i class="fas fa-download"></i> Resume
+            </a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Page Header -->
+    <section class="blog-page-header">
+        <div class="container">
+            <h1>My Blog</h1>
+            <p>Sharing insights on software engineering, best practices, and technical tutorials</p>
+        </div>
+    </section>
+
+    <!-- Blog Categories -->
+    <div class="container">
+        <div class="blog-categories">
+            <button class="category-filter active" data-category="all">All Posts</button>
+            <button class="category-filter" data-category="Software Engineering">Software Engineering</button>
+            <button class="category-filter" data-category="Backend">Backend</button>
+            <button class="category-filter" data-category="Testing">Testing</button>
+            <button class="category-filter" data-category="DevOps">DevOps</button>
+            <button class="category-filter" data-category="System Design">System Design</button>
+            <button class="category-filter" data-category="Career">Career</button>
+        </div>
+    </div>
+
+    <!-- Blog Posts -->
+    <section class="blog-posts-container">
+        <div class="container">
+            <a href="../index.html" class="back-to-home">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <article class="blog-item" data-category="Software Engineering">
+                    <div class="blog-image">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar"></i> Jan 27, 2025</span>
+                            <span class="blog-category">Software Engineering</span>
+                        </div>
+                        <h3>Building Maintainable Code: Best Practices</h3>
+                        <p>Exploring the fundamentals of writing clean, maintainable code that stands the test of time. Learn about code organization, naming conventions, and documentation practices that make codebases easier to understand and extend.</p>
+                        <a href="building-maintainable-code.html" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="blog-item" data-category="Backend">
+                    <div class="blog-image">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar"></i> Jan 20, 2025</span>
+                            <span class="blog-category">Backend</span>
+                        </div>
+                        <h3>REST API Design: Principles and Patterns</h3>
+                        <p>Dive into RESTful API design principles, covering resource naming, HTTP methods, status codes, and versioning strategies. Discover patterns for building scalable and developer-friendly APIs.</p>
+                        <a href="rest-api-design.html" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="blog-item" data-category="Testing">
+                    <div class="blog-image">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar"></i> Jan 15, 2025</span>
+                            <span class="blog-category">Testing</span>
+                        </div>
+                        <h3>Testing Strategies: Unit, Integration, and Beyond</h3>
+                        <p>Understanding different testing approaches and when to use them. From unit tests to integration tests, learn how to build confidence in your code through comprehensive testing practices.</p>
+                        <a href="testing-strategies.html" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4 -->
+                <article class="blog-item" data-category="DevOps">
+                    <div class="blog-image">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar"></i> Jan 10, 2025</span>
+                            <span class="blog-category">DevOps</span>
+                        </div>
+                        <h3>Automation in Software Development</h3>
+                        <p>Exploring automation tools and scripts that streamline development workflows. Learn how automation can reduce manual checks, improve release confidence, and save valuable development time.</p>
+                        <a href="automation-software-development.html" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 5 -->
+                <article class="blog-item" data-category="System Design">
+                    <div class="blog-image">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar"></i> Jan 5, 2025</span>
+                            <span class="blog-category">System Design</span>
+                        </div>
+                        <h3>System Design Fundamentals</h3>
+                        <p>An introduction to system design concepts including scalability, reliability, data modeling, caching strategies, and observability. Essential knowledge for building production-ready systems.</p>
+                        <a href="system-design-fundamentals.html" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 6 -->
+                <article class="blog-item" data-category="Career">
+                    <div class="blog-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="fas fa-calendar"></i> Jan 1, 2025</span>
+                            <span class="blog-category">Career</span>
+                        </div>
+                        <h3>From Intern to Software Engineer: My Journey</h3>
+                        <p>Reflecting on the path from software engineering intern to early-career engineer. Sharing lessons learned, challenges faced, and growth opportunities in the tech industry.</p>
+                        <a href="intern-to-engineer-journey.html" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Created With ❤️ By Rohan</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Category Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryFilters = document.querySelectorAll('.category-filter');
+            const blogItems = document.querySelectorAll('.blog-item');
+            
+            categoryFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Update active state
+                    categoryFilters.forEach(f => f.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Get selected category
+                    const selectedCategory = this.getAttribute('data-category');
+                    
+                    // Filter blog items
+                    blogItems.forEach(item => {
+                        if (selectedCategory === 'all' || item.getAttribute('data-category') === selectedCategory) {
+                            item.style.display = 'block';
+                            item.style.animation = 'fadeInUp 0.5s ease';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
