@@ -609,6 +609,14 @@ function initGlitchEffect() {
 
 // Matrix Rain Effect
 function createMatrixRain() {
+    // Don't create matrix rain on blog pages or behavioral interview pages
+    if (window.location.pathname.includes('/blog/') || 
+        window.location.pathname.includes('/Behavioral') ||
+        window.location.pathname.includes('blog/') ||
+        window.location.pathname.includes('Behavioral')) {
+        return;
+    }
+    
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     
