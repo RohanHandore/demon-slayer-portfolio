@@ -27,6 +27,10 @@
     <meta name="theme-color" content="#1A0E08">
     
     <style>
+        /* Disable background animations for reading */
+        body { background: linear-gradient(180deg, #1A0E08 0%, #3B1C0E 50%, #1A0E08 100%) !important; animation: none !important; }
+        body::before, body::after { display: none !important; }
+        
         .blog-page-header {
             text-align: center;
             padding: 4rem 0 2rem;

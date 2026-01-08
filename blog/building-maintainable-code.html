@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Disable background animations for reading */
+        body { background: linear-gradient(180deg, #1A0E08 0%, #3B1C0E 50%, #1A0E08 100%) !important; animation: none !important; }
+        body::before, body::after { display: none !important; }
         .blog-post-container { max-width: 900px; margin: 0 auto; padding: 100px 20px 4rem; }
         .blog-post-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #3B1C0E; }
         .blog-post-header .blog-category { display: inline-block; margin-bottom: 1rem; padding: 0.5rem 1.5rem; background: rgba(255, 179, 63, 0.1); border: 2px solid #FFB33F; border-radius: 25px; color: #FFB33F; font-weight: 600; }
