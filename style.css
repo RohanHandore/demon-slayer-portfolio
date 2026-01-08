@@ -286,6 +286,22 @@ body {
     animation: fadeInRight 1s ease-out 0.8s both;
 }
 
+.profile-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.profile-card-link:hover {
+    transform: translateY(-5px);
+}
+
+.profile-card-link:hover .profile-card {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 179, 63, 0.3);
+    border-color: #FFB33F;
+}
+
 .profile-card {
     background: rgba(26, 14, 8, 0.8);
     backdrop-filter: blur(15px);
@@ -296,6 +312,8 @@ body {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 179, 63, 0.1);
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .profile-card::before {
@@ -346,6 +364,7 @@ body {
     position: relative;
     z-index: 2;
 }
+
 
 .profile-card p {
     opacity: 0.8;
