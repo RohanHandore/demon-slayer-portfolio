@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLD Interview Questions | Rohan Handore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1A0E08 0%, #2d1b1b 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-top: 40px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: #22c55e;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: #16a34a;
+        }
+        
+        .back-link i {
+            margin-right: 8px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: #22c55e;
+            margin-bottom: 5px;
+        }
+        
+        .stat-card p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .difficulty-section {
+            margin-bottom: 50px;
+        }
+        
+        .difficulty-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(34, 197, 94, 0.3);
+        }
+        
+        .difficulty-header h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+        
+        .difficulty-header .badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .difficulty-header.easy h2 {
+            color: #22c55e;
+        }
+        
+        .difficulty-header.easy .badge {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.5);
+        }
+        
+        .difficulty-header.medium h2 {
+            color: #f59e0b;
+        }
+        
+        .difficulty-header.medium .badge {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.5);
+        }
+        
+        .difficulty-header.hard h2 {
+            color: #ef4444;
+        }
+        
+        .difficulty-header.hard .badge {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.5);
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .topic-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .topic-card:hover {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: #22c55e;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+        }
+        
+        .topic-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .topic-card p {
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .topic-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #22c55e;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .stat-card {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html#interview-materials" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </a>
+        
+        <div class="header">
+            <h1>Low Level Design (LLD) Interview Questions</h1>
+            <p>Master system design with comprehensive LLD questions and solutions</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>35</h3>
+                <p>Total Questions</p>
+            </div>
+            <div class="stat-card">
+                <h3>8</h3>
+                <p>Easy Level</p>
+            </div>
+            <div class="stat-card">
+                <h3>13</h3>
+                <p>Medium Level</p>
+            </div>
+            <div class="stat-card">
+                <h3>14</h3>
+                <p>Hard Level</p>
+            </div>
+        </div>
+        
+        <!-- Easy Level -->
+        <div class="difficulty-section">
+            <div class="difficulty-header easy">
+                <h2><i class="fas fa-seedling"></i> Easy Level</h2>
+                <span class="badge">8 Questions</span>
+            </div>
+            <div class="topics-grid">
+                <a href="Design Bloom Filter ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：14：43).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-filter"></i></div>
+                    <h3>Design Bloom Filter</h3>
+                    <p>Learn to design a probabilistic data structure for efficient membership testing</p>
+                </a>
+                <a href="Design Lru Cache ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：14：19).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-memory"></i></div>
+                    <h3>Design LRU Cache</h3>
+                    <p>Implement a Least Recently Used cache with O(1) operations</p>
+                </a>
+                <a href="Design Notification System ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：16：44).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-bell"></i></div>
+                    <h3>Design Notification System</h3>
+                    <p>Build a scalable notification system for real-time alerts</p>
+                </a>
+                <a href="Design Parking Lot ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：15：13).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-parking"></i></div>
+                    <h3>Design Parking Lot</h3>
+                    <p>Design a parking lot management system with multiple vehicle types</p>
+                </a>
+                <a href="Design Search Autocomplete ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：15：49).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-search"></i></div>
+                    <h3>Design Search Autocomplete</h3>
+                    <p>Create an autocomplete system with prefix matching and suggestions</p>
+                </a>
+                <a href="Design Snake And Ladder ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：13：41).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-dice"></i></div>
+                    <h3>Design Snake and Ladder</h3>
+                    <p>Implement the classic board game with game logic and state management</p>
+                </a>
+                <a href="Design Task Management System ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：16：19).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-tasks"></i></div>
+                    <h3>Design Task Management System</h3>
+                    <p>Build a task management system with CRUD operations and status tracking</p>
+                </a>
+                <a href="Design Tic Tac Toe ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：13：01).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3>Design Tic Tac Toe</h3>
+                    <p>Create a tic-tac-toe game with win detection and player management</p>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Medium Level -->
+        <div class="difficulty-section">
+            <div class="difficulty-header medium">
+                <h2><i class="fas fa-chart-line"></i> Medium Level</h2>
+                <span class="badge">13 Questions</span>
+            </div>
+            <div class="topics-grid">
+                <a href="MEDIUM/Design Atm ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：19：35).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>Design ATM</h3>
+                    <p>Design an ATM system with transaction processing and security</p>
+                </a>
+                <a href="MEDIUM/Design Chat Application ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：22：03).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Design Chat Application</h3>
+                    <p>Build a real-time chat application with messaging and presence</p>
+                </a>
+                <a href="MEDIUM/Design Elevator System ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：21：38).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-building"></i></div>
+                    <h3>Design Elevator System</h3>
+                    <p>Implement an elevator control system with scheduling algorithms</p>
+                </a>
+                <a href="MEDIUM/Design Inventory Management System ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：25：05).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-warehouse"></i></div>
+                    <h3>Design Inventory Management System</h3>
+                    <p>Create an inventory system with stock tracking and order management</p>
+                </a>
+                <a href="MEDIUM/Design Logging Framework ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：20：06).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Design Logging Framework</h3>
+                    <p>Design a logging framework with different log levels and handlers</p>
+                </a>
+                <a href="MEDIUM/Design Payment Gateway ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：23：40).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h3>Design Payment Gateway</h3>
+                    <p>Build a payment gateway with transaction processing and validation</p>
+                </a>
+                <a href="MEDIUM/Design Pub Sub ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：20：29).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-broadcast-tower"></i></div>
+                    <h3>Design Pub/Sub System</h3>
+                    <p>Implement a publish-subscribe messaging system</p>
+                </a>
+                <a href="MEDIUM/Design Rate Limiter ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：24：36).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <h3>Design Rate Limiter</h3>
+                    <p>Create a rate limiting system to control API request rates</p>
+                </a>
+                <a href="MEDIUM/Design Search Engine ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：22：42).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-search-plus"></i></div>
+                    <h3>Design Search Engine</h3>
+                    <p>Build a search engine with indexing and ranking algorithms</p>
+                </a>
+                <a href="MEDIUM/Design Splitwise ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：23：14).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-users"></i></div>
+                    <h3>Design Splitwise</h3>
+                    <p>Design an expense splitting application with debt calculation</p>
+                </a>
+                <a href="MEDIUM/Design Stack Overflow ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：19：02).html" class="topic-card">
+                    <div class="topic-icon"><i class="fab fa-stack-overflow"></i></div>
+                    <h3>Design Stack Overflow</h3>
+                    <p>Create a Q&A platform with voting, reputation, and moderation</p>
+                </a>
+                <a href="MEDIUM/Design Url Shortener ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：24：12).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-link"></i></div>
+                    <h3>Design URL Shortener</h3>
+                    <p>Build a URL shortening service like bit.ly with analytics</p>
+                </a>
+                <a href="MEDIUM/Design Vending Machine ｜ LLD ｜ AlgoMaster.io (30_12_2025 18：25：30).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-cookie-bite"></i></div>
+                    <h3>Design Vending Machine</h3>
+                    <p>Implement a vending machine with payment and inventory management</p>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Hard Level -->
+        <div class="difficulty-section">
+            <div class="difficulty-header hard">
+                <h2><i class="fas fa-fire"></i> Hard Level</h2>
+                <span class="badge">14 Questions</span>
+            </div>
+            <div class="topics-grid">
+                <a href="MEDIUM/HARD/Design Amazon ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：17：32).html" class="topic-card">
+                    <div class="topic-icon"><i class="fab fa-amazon"></i></div>
+                    <h3>Design Amazon</h3>
+                    <p>Design a comprehensive e-commerce platform with multiple services</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Coffee Vending Machine ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：18：48).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-coffee"></i></div>
+                    <h3>Design Coffee Vending Machine</h3>
+                    <p>Build an advanced vending machine with recipe management</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Cricinfo ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：18：29).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-baseball-ball"></i></div>
+                    <h3>Design Cricinfo</h3>
+                    <p>Create a sports information system with live score updates</p>
+                </a>
+                <a href="MEDIUM/HARD/Design In Memory File System ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：20：48).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-folder"></i></div>
+                    <h3>Design In-Memory File System</h3>
+                    <p>Implement a file system with directory structure and file operations</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Linkedin ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：17：54).html" class="topic-card">
+                    <div class="topic-icon"><i class="fab fa-linkedin"></i></div>
+                    <h3>Design LinkedIn</h3>
+                    <p>Design a professional networking platform with connections and feeds</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Movie Booking System ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：19：44).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-film"></i></div>
+                    <h3>Design Movie Booking System</h3>
+                    <p>Build a movie ticket booking system with seat selection</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Online Auction System ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：20：20).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-gavel"></i></div>
+                    <h3>Design Online Auction System</h3>
+                    <p>Create an auction platform with bidding and time management</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Online Food Delivery Service ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：21：22).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-utensils"></i></div>
+                    <h3>Design Online Food Delivery Service</h3>
+                    <p>Design a food delivery platform with order tracking and payment</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Online Stock Exchange ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：19：27).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Design Online Stock Exchange</h3>
+                    <p>Build a stock trading platform with order matching and execution</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Restaurant Management System ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：19：08).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-utensils"></i></div>
+                    <h3>Design Restaurant Management System</h3>
+                    <p>Create a restaurant management system with table and order management</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Spotify ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：16：19).html" class="topic-card">
+                    <div class="topic-icon"><i class="fab fa-spotify"></i></div>
+                    <h3>Design Spotify</h3>
+                    <p>Design a music streaming platform with playlists and recommendations</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Task Scheduler ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：22：08).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3>Design Task Scheduler</h3>
+                    <p>Implement a task scheduling system with priority and dependencies</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Uber ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：21：50).html" class="topic-card">
+                    <div class="topic-icon"><i class="fas fa-car"></i></div>
+                    <h3>Design Uber</h3>
+                    <p>Build a ride-sharing platform with matching and tracking</p>
+                </a>
+                <a href="MEDIUM/HARD/Design Version Control System ｜ LLD ｜ AlgoMaster.io (03_01_2026 15：21：04).html" class="topic-card">
+                    <div class="topic-icon"><i class="fab fa-git-alt"></i></div>
+                    <h3>Design Version Control System</h3>
+                    <p>Create a version control system like Git with branching and merging</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
