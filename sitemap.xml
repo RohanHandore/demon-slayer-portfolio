@@ -3,223 +3,217 @@
   <url>
     <loc>https://rohanhandore.com/</loc>
     <lastmod>2026-10-02</lastmod>
-    <changefreq>1.0</changefreq>
-    <priority>weekly</priority>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/blog</loc>
+    <loc>https://rohanhandore.com/blog/</loc>
     <lastmod>2026-10-02</lastmod>
-    <changefreq>0.7</changefreq>
-    <priority>weekly</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rohanhandore.com/blog/automation-software-development.html</loc>
     <lastmod>2026-10-02</lastmod>
-    <changefreq>0.6</changefreq>
-    <priority>monthly</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://rohanhandore.com/blog/building-maintainable-code.html</loc>
     <lastmod>2026-10-02</lastmod>
-    <changefreq>0.6</changefreq>
-    <priority>monthly</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://rohanhandore.com/blog/intern-to-engineer-journey.html</loc>
     <lastmod>2026-10-02</lastmod>
-    <changefreq>0.6</changefreq>
-    <priority>monthly</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://rohanhandore.com/blog/rest-api-design.html</loc>
     <lastmod>2026-10-02</lastmod>
-    <changefreq>0.6</changefreq>
-    <priority>monthly</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://rohanhandore.com/blog/system-design-fundamentals.html</loc>
     <lastmod>2026-10-02</lastmod>
-    <changefreq>0.6</changefreq>
-    <priority>monthly</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://rohanhandore.com/blog/testing-strategies.html</loc>
     <lastmod>2026-10-02</lastmod>
-    <changefreq>0.6</changefreq>
-    <priority>monthly</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/automating-repetitive-tasks.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/choosing-best-solution.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/choosing-tech.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/conflict-with-teammate.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/cross-team-collaboration.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/delivering-under-challenge.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/disagreement-with-manager.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/enhancing-technical-knowledge.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/explaining-to-non-technical.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/giving-constructive-feedback.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/going-above-beyond.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/handling-difficult-colleague.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/helping-solve-challenge.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/incomplete-information-decision.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
-  </url>
-  <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview</loc>
+    <loc>https://rohanhandore.com/behavioral-interview/</loc>
     <lastmod>2026-10-02</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/leading-project.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/automating-repetitive-tasks.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/leading-without-asking.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/choosing-best-solution.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/low-contribution-teammate.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/choosing-tech.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/mentoring.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/conflict-with-teammate.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/missed-deadline-recovery.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/cross-team-collaboration.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/most-proud-project.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/delivering-under-challenge.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/multiple-tight-deadlines.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/disagreement-with-manager.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/outside-comfort-zone.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/enhancing-technical-knowledge.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/presenting-to-leadership.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/explaining-to-non-technical.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/production-outage-handling.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/giving-constructive-feedback.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/quickly-learning-new-tech.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/going-above-beyond.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/receiving-critical-feedback.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/handling-difficult-colleague.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/Behavioral%20interview/time-when-you-failed.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/helping-solve-challenge.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rohanhandore.com/LLD%20interview%20questions</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>0.5</changefreq>
-    <priority>monthly</priority>
+    <loc>https://rohanhandore.com/behavioral-interview/incomplete-information-decision.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/leading-project.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/leading-without-asking.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/low-contribution-teammate.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/mentoring.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/missed-deadline-recovery.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/most-proud-project.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/multiple-tight-deadlines.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/outside-comfort-zone.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/presenting-to-leadership.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/production-outage-handling.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/quickly-learning-new-tech.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/receiving-critical-feedback.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rohanhandore.com/behavioral-interview/time-when-you-failed.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

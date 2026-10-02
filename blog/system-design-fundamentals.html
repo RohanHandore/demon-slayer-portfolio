@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,65 +26,9 @@
     <meta name="twitter:description" content="Introduction to system design concepts including scalability, CAP theorem, database selection, caching strategies, message queues, and observability.">
 
     <link rel="icon" type="image/png" href="../assets/icons/favicon-32.png">
-    <link rel="stylesheet" href="../style.css?v=20261002b">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Disable background animations for reading */
-        body { background: linear-gradient(180deg, #1A0E08 0%, #3B1C0E 50%, #1A0E08 100%) !important; animation: none !important; }
-        body::before, body::after { display: none !important; }
-        .blog-post-container { max-width: 900px; margin: 0 auto; padding: 100px 20px 4rem; }
-        .blog-post-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #3B1C0E; }
-        .blog-post-header .blog-category { display: inline-block; margin-bottom: 1rem; padding: 0.5rem 1.5rem; background: rgba(255, 179, 63, 0.1); border: 2px solid #FFB33F; border-radius: 25px; color: #FFB33F; font-weight: 600; }
-        .blog-post-header h1 { font-size: 2.5rem; color: #FFE8B0; margin-bottom: 1rem; text-shadow: 0 0 10px rgba(255, 232, 176, 0.3); }
-        .blog-post-meta { display: flex; justify-content: center; align-items: center; gap: 2rem; color: #FFB33F; font-size: 0.95rem; flex-wrap: wrap; }
-        .blog-post-meta span { display: flex; align-items: center; gap: 0.5rem; }
-        .blog-post-content { color: #FFE8B0; line-height: 1.9; font-size: 1.1rem; }
-        .blog-post-content h2 { color: #FFB33F; font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.25rem; text-shadow: 0 0 8px rgba(255, 179, 63, 0.3); }
-        .blog-post-content h3 { color: #FFB33F; font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.8rem; }
-        .blog-post-content p { margin-bottom: 1.5rem; opacity: 0.9; }
-        .blog-post-content ul, .blog-post-content ol { margin: 1.5rem 0; padding-left: 2rem; }
-        .blog-post-content li { margin-bottom: 0.8rem; opacity: 0.9; }
-        .blog-post-content strong { color: #FFB33F; }
-        .blog-post-content code { background: rgba(26, 14, 8, 0.8); padding: 0.2rem 0.5rem; border-radius: 4px; color: #FFB33F; font-family: 'Courier New', monospace; border: 1px solid #3B1C0E; }
-        .blog-post-content pre { background: rgba(26, 14, 8, 0.9); padding: 1.5rem; border-radius: 8px; overflow-x: auto; margin: 1.5rem 0; border: 1px solid #3B1C0E; }
-        .blog-post-content pre code { background: none; border: none; padding: 0; color: #FFE8B0; }
-        .back-to-blog { display: inline-flex; align-items: center; gap: 0.5rem; color: #FFB33F; text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: all 0.3s ease; }
-        .back-to-blog:hover { color: #FFE8B0; gap: 0.8rem; }
-        .tip-box { background: rgba(255, 179, 63, 0.1); border-left: 4px solid #FFB33F; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
-        .tip-box strong { color: #FFB33F; display: block; margin-bottom: 0.5rem; }
-        .warning-box { background: rgba(220, 53, 69, 0.1); border-left: 4px solid #dc3545; padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
-        .warning-box strong { color: #dc3545; display: block; margin-bottom: 0.5rem; }
-         .blog-post-content { font-size: 1rem; } }
-    
-        /* Mobile Responsive - iPhone 13 and similar (390px) */
-        @media (max-width: 768px) {
-            .blog-post-container { padding: 80px 16px 2rem; }
-            .blog-post-header h1 { font-size: 1.6rem; line-height: 1.3; }
-            .blog-post-header .blog-category { font-size: 0.8rem; padding: 0.4rem 1rem; }
-            .blog-post-meta { gap: 1rem; font-size: 0.85rem; }
-            .blog-post-content { font-size: 0.95rem; }
-            .blog-post-content h2 { font-size: 1.4rem; margin-top: 2rem; }
-            .blog-post-content h3 { font-size: 1.15rem; }
-            .blog-post-content pre { padding: 1rem; font-size: 0.8rem; margin: 1rem -16px; border-radius: 0; }
-            .blog-post-content ul, .blog-post-content ol { padding-left: 1.25rem; }
-            .tip-box, .warning-box { padding: 1rem; margin: 1.5rem 0; }
-            .back-to-blog { font-size: 0.9rem; }
-        }
-        @media (max-width: 480px) {
-            .blog-post-container { padding: 75px 12px 1.5rem; }
-            .blog-post-header h1 { font-size: 1.4rem; }
-            .blog-post-header { margin-bottom: 2rem; padding-bottom: 1.5rem; }
-            .blog-post-meta { flex-direction: column; gap: 0.5rem; }
-            .blog-post-content { font-size: 0.9rem; line-height: 1.8; }
-            .blog-post-content h2 { font-size: 1.25rem; }
-            .blog-post-content h3 { font-size: 1.05rem; }
-            .blog-post-content code { font-size: 0.8rem; word-break: break-word; }
-            .blog-post-content pre { padding: 0.75rem; font-size: 0.75rem; }
-            .blog-post-content pre code { white-space: pre-wrap; word-break: break-word; }
-        }
-
-    </style>
+    <link rel="stylesheet" href="../assets/fonts/fonts.css">
+    <link rel="stylesheet" href="../assets/icons/icons.css">
+    <link rel="stylesheet" href="../style.css?v=2026-10-rebuild">
 </head>
 <body>
     <nav class="navbar">
@@ -95,16 +39,20 @@
                     <h2>Rohan Handore</h2>
                 </a>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item"><a href="../index.html#home" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="../index.html#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="../index.html#experience" class="nav-link">Experience</a></li>
-                <li class="nav-item"><a href="../index.html#portfolio" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="../index.html#work" class="nav-link">Portfolio</a></li>
                 <li class="nav-item"><a href="index.html" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
             </ul>
             <a href="../assets/CV.pdf" download="Rohan_Handore_Resume.pdf" class="nav-resume-btn"><i class="fas fa-download"></i> Resume</a>
-            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+            <button class="hamburger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </div>
     </nav>
 
