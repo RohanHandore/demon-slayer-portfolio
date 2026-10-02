@@ -7,6 +7,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -1444,8 +1445,10 @@ img[loading="lazy"].loading {
 
 .interview-materials-wrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
 }
 
 .interview-card {
@@ -1455,6 +1458,8 @@ img[loading="lazy"].loading {
     padding: 3rem;
     max-width: 900px;
     width: 100%;
+    flex: 1 1 380px;
+    min-width: 0;
     display: flex;
     gap: 2.5rem;
     align-items: flex-start;
