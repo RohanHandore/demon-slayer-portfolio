@@ -1307,6 +1307,32 @@ img[loading="lazy"].loading {
     text-shadow: 0 0 5px rgba(255, 179, 63, 0.3);
 }
 
+.contact-item a {
+    color: #FFE8B0;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 179, 63, 0.4);
+    transition: color 0.3s ease, border-color 0.3s ease;
+    word-break: break-word;
+}
+
+.contact-item a:hover {
+    color: #FFB33F;
+    border-color: #FFB33F;
+}
+
+.form-note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.85;
+    color: #FFE8B0;
+}
+
+.form-note a {
+    color: #FFB33F;
+    text-decoration: underline;
+    word-break: break-word;
+}
+
 .contact-form {
     background: rgba(26, 14, 8, 0.9);
     padding: 2rem;

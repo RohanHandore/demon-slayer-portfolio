@@ -247,17 +247,14 @@ function initFormHandling() {
                     contactForm.reset();
                 }, function(error) {
                     console.error('EmailJS Error:', error);
-                    let errorMessage = 'Failed to send message. ';
-                    
-                    // Provide more specific error messages
-                    if (error.text) {
-                        errorMessage += `Error: ${error.text}. `;
-                    } else if (error.status) {
-                        errorMessage += `Error code: ${error.status}. `;
-                    }
-                    
-                    errorMessage += 'Please try again or contact me directly at rohanhandore021@gmail.com';
-                    showNotification(errorMessage, 'error');
+                    // The form is the only way a visitor can reach him from this page, so a
+                    // failed send must hand them a working route instead of an apology. The
+                    // mailto carries their name, address and message so nothing is retyped.
+                    const directEmail = 'mailto:rohanhandore021@gmail.com'
+                        + '?subject=' + encodeURIComponent('Portfolio enquiry from ' + name)
+                        + '&body=' + encodeURIComponent(message + '\n\nFrom: ' + name + ' <' + email + '>');
+                    showNotification('That did not send, email me directly:', 'error',
+                        directEmail, 'rohanhandore021@gmail.com');
                 })
                 .finally(function() {
                     // Re-enable submit button
@@ -275,7 +272,7 @@ function isValidEmail(email) {
 }
 
 // Notification system
-function showNotification(message, type = 'info') {
+function showNotification(message, type = 'info', linkHref = null, linkText = '') {
     // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
@@ -285,12 +282,34 @@ function showNotification(message, type = 'info') {
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close">&times;</button>
-        </div>
-    `;
+
+    // Built with DOM nodes rather than a template string: the message can
+    // carry server text, and the optional link is the fallback that keeps a
+    // failed contact form from swallowing the visitor's message.
+    const content = document.createElement('div');
+    content.className = 'notification-content';
+
+    const messageEl = document.createElement('span');
+    messageEl.className = 'notification-message';
+    messageEl.textContent = message;
+    content.appendChild(messageEl);
+
+    if (linkHref) {
+        const link = document.createElement('a');
+        link.className = 'notification-link';
+        link.href = linkHref;
+        link.textContent = linkText || linkHref;
+        link.style.cssText = 'color:inherit;text-decoration:underline;font-weight:600;margin-left:0.4rem;';
+        content.appendChild(link);
+    }
+
+    const closeButton = document.createElement('button');
+    closeButton.className = 'notification-close';
+    closeButton.setAttribute('aria-label', 'Close');
+    closeButton.innerHTML = '&times;';
+    content.appendChild(closeButton);
+
+    notification.appendChild(content);
     
     // Add styles
     notification.style.cssText = `
@@ -322,13 +341,14 @@ function showNotification(message, type = 'info') {
         setTimeout(() => notification.remove(), 300);
     });
     
-    // Auto remove after 5 seconds
+    // Auto remove after 5 seconds, or longer when it carries a link the
+    // visitor needs time to click
     setTimeout(() => {
         if (notification.parentNode) {
             notification.style.transform = 'translateX(100%)';
             setTimeout(() => notification.remove(), 300);
         }
-    }, 5000);
+    }, linkHref ? 20000 : 5000);
 }
 
 // Loading screen
