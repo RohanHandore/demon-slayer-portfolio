@@ -22,6 +22,7 @@
     initContactForm();
     initBlogFilters();
     initBlogCards();
+    initPhotoView();
     initEmailJS();
   });
 
@@ -313,6 +314,97 @@
       item.addEventListener('click', function (event) {
         if (event.target.closest('a')) return;
         link.click();
+      });
+    });
+  }
+
+  /* --------------------------------------------------------- photo viewer */
+  // The nav avatar opens the full photograph in a lightbox. The trigger stays a
+  // real link to the image, so with JS off (or a new-tab click) the photo still
+  // opens on its own.
+  function initPhotoView() {
+    var triggers = document.querySelectorAll('[data-photo-view]');
+    if (!triggers.length) return;
+
+    var overlay = null;
+    var image = null;
+    var closeBtn = null;
+    var lastFocus = null;
+    var closeTimer = null;
+
+    function build() {
+      overlay = document.createElement('div');
+      overlay.className = 'photo-view';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', 'Profile photo');
+      overlay.hidden = true;
+
+      var frame = document.createElement('figure');
+      frame.className = 'photo-view-frame';
+
+      image = document.createElement('img');
+      image.className = 'photo-view-img';
+      image.alt = '';
+      image.decoding = 'async';
+      frame.appendChild(image);
+
+      var caption = document.createElement('figcaption');
+      caption.className = 'photo-view-caption';
+      caption.textContent = 'Rohan Handore';
+      frame.appendChild(caption);
+
+      closeBtn = document.createElement('button');
+      closeBtn.type = 'button';
+      closeBtn.className = 'photo-view-close';
+      closeBtn.setAttribute('aria-label', 'Close photo');
+      closeBtn.innerHTML = '&times;';
+
+      overlay.appendChild(frame);
+      overlay.appendChild(closeBtn);
+      document.body.appendChild(overlay);
+
+      overlay.addEventListener('click', function (event) {
+        if (event.target === overlay) close();
+      });
+      closeBtn.addEventListener('click', close);
+      document.addEventListener('keydown', function (event) {
+        if (!overlay.hidden && event.key === 'Escape') close();
+      });
+    }
+
+    function open(src, alt) {
+      if (!overlay) build();
+      if (closeTimer) { window.clearTimeout(closeTimer); closeTimer = null; }
+      lastFocus = document.activeElement;
+      image.setAttribute('src', src);
+      image.setAttribute('alt', alt || 'Rohan Handore');
+      overlay.hidden = false;
+      document.documentElement.classList.add('is-photo-open');
+      void overlay.offsetWidth; // let the browser see the un-hidden state first
+      overlay.classList.add('is-open');
+      closeBtn.focus();
+    }
+
+    function close() {
+      overlay.classList.remove('is-open');
+      document.documentElement.classList.remove('is-photo-open');
+      var done = function () {
+        overlay.hidden = true;
+        image.removeAttribute('src');
+      };
+      if (reducedMotion) done();
+      else closeTimer = window.setTimeout(done, 300);
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    Array.prototype.forEach.call(triggers, function (trigger) {
+      trigger.addEventListener('click', function (event) {
+        // Let modified and middle clicks behave like the plain link they are.
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+        event.preventDefault();
+        var thumb = trigger.querySelector('img');
+        open(trigger.getAttribute('data-photo-view'), thumb ? thumb.getAttribute('alt') : '');
       });
     });
   }

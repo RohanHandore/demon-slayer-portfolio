@@ -1,1 +1,4 @@
 .worktrees/
+
+# here.now publish state (claim token) — never belongs in the published site
+.herenow/
