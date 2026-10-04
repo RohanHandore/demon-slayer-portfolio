@@ -25,7 +25,7 @@
 
   --wrap: 1080px;
   --gutter: clamp(1.15rem, 4vw, 2.25rem);
-  --section-y: clamp(4.25rem, 8vw, 7rem);
+  --section-y: clamp(5rem, 9vw, 8.25rem);
   --radius: 10px;
   --shadow: 0 1px 2px rgba(20, 18, 16, 0.04), 0 12px 32px -18px rgba(20, 18, 16, 0.22);
 
@@ -319,7 +319,7 @@ section { position: relative; }
 
 /* ---------------------------------------------------------------- hero */
 .hero {
-  padding-block: clamp(3.25rem, 8vw, 6rem) clamp(2.5rem, 5vw, 3.5rem);
+  padding-block: clamp(3.75rem, 9vw, 7rem) clamp(3rem, 6vw, 4.75rem);
   overflow: clip;
 }
 .hero-kicker {
@@ -343,18 +343,20 @@ section { position: relative; }
   flex: none;
 }
 .hero-title {
-  font-size: var(--step-4);
+  font-size: clamp(2.6rem, 8.4vw, 5.6rem);
   font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 0.98;
-  margin: 0 0 1.1rem;
+  letter-spacing: -0.042em;
+  line-height: 0.94;
+  margin: 0 0 1.35rem;
   max-width: 22ch;
+  text-wrap: balance;
 }
 .hero-lede {
   font-size: var(--step-1);
   color: var(--ink-2);
-  max-width: 54ch;
-  margin: 0 0 2.1rem;
+  max-width: 50ch;
+  margin: 0 0 2.4rem;
+  text-wrap: pretty;
 }
 .hero-actions {
   display: flex;
@@ -367,13 +369,15 @@ section { position: relative; }
 .facts {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 0 1.5rem;
   border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  margin: 0;
+  border-bottom: 0;
+  margin: clamp(3.25rem, 6vw, 4.75rem) 0 0;
 }
 .fact {
-  padding: 1.2rem 1.5rem;
-  border-right: 1px solid var(--line);
+  padding: 1.2rem 1.6rem 0.25rem 0;
+  border-right: 0;
+  background: none;
 }
 .fact:first-child { padding-left: 0; }
 .fact:last-child { border-right: 0; padding-right: 0; }
@@ -387,10 +391,11 @@ section { position: relative; }
 }
 .fact dd {
   margin: 0;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.4;
+  font-size: var(--step--1);
+  font-weight: 450;
+  color: var(--ink-2);
+  line-height: 1.45;
+  max-width: 26ch;
 }
 
 /* --------------------------------------------------------------- about */
@@ -835,6 +840,37 @@ section { position: relative; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   .reveal { opacity: 1; transform: none; }
+}
+
+/* ---------------------------------------------------------- motion layer */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  z-index: 120;
+  pointer-events: none;
+}
+
+.navbar { transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 240ms ease; }
+.navbar.nav-hidden { transform: translateY(-100%); }
+.navbar.nav-compact { box-shadow: var(--shadow); }
+@media (prefers-reduced-motion: reduce) { .navbar { transition: none; } }
+
+/* never hide content when the script that reveals it is not running */
+html:not(.js) .reveal { opacity: 1; transform: none; }
+
+/* comfortable hit areas for text links (WCAG 2.2 target size) */
+.nav-menu a, .footer-links a, .post-link, .sec-link,
+.info-item a, .contact-item a { min-height: 26px; display: inline-flex; align-items: center; }
+
+/* pointer-tracked wash on cards, driven by --mx / --my from script.js */
+.job:hover, .card:hover, .post:hover { background: linear-gradient(90deg, var(--accent-wash), transparent 60%); }
+
+@media (min-width: 821px) {
+  .nav-menu { gap: 0.35rem; }
 }
 
 /* ---------------------------------------------------------- responsive */

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>document.documentElement.classList.add('js');</script>
 
     <!-- Primary Meta Tags -->
     <title>Rohan Handore — Application Support Engineer, Dublin</title>
@@ -88,6 +89,7 @@
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
     <!-- Navigation -->
     <nav class="navbar" aria-label="Main">
@@ -123,19 +125,19 @@
         <!-- Hero -->
         <section class="hero" id="home">
             <div class="container">
-                <p class="hero-kicker">
+                <p class="hero-kicker" data-reveal="hero">
                     <span class="dot" aria-hidden="true"></span>
                     <span>Open to software engineering roles &middot; Dublin, Ireland</span>
                     <span>&middot;</span>
                     <span>Stamp 1G to Sep 2027</span>
                 </p>
-                <h1 class="hero-title">Rohan Handore</h1>
-                <p class="hero-lede">
+                <h1 class="hero-title" data-reveal="hero">Rohan Handore</h1>
+                <p class="hero-lede" data-reveal="hero">
                     I keep a tier-1 payments estate running, and write the Python that automates
                     the boring parts. On-call owner for critical, customer-facing services, with
                     three years of teaching engineering fundamentals behind that.
                 </p>
-                <div class="hero-actions">
+                <div class="hero-actions" data-reveal="hero">
                     <a href="assets/CV.pdf" download="Rohan_Handore_CV.pdf" class="btn btn-primary">
                         <i class="fa-download" aria-hidden="true"></i> Download CV
                     </a>
@@ -144,7 +146,7 @@
                     </a>
                 </div>
 
-                <dl class="facts">
+                <dl class="facts" data-reveal="hero">
                     <div class="fact">
                         <dt>Now</dt>
                         <dd>Application Support Analyst<br>Global Payments, Dublin</dd>
@@ -668,6 +670,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=2026-10-rebuild"></script>
+    <script src="assets/vendor/motion.js" defer></script>
+    <script src="script.js?v=2026-10-motion"></script>
 </body>
 </html>
