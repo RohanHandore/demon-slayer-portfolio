@@ -15,6 +15,9 @@
     initNavigation();
     initReveal();
     initHeroIntro();
+    initIntroVideo();
+    initIdCard();
+    initMilestoneRail();
     initScrollProgress();
     initNavOnScroll();
     initCardPointer();
@@ -407,6 +410,130 @@
         open(trigger.getAttribute('data-photo-view'), thumb ? thumb.getAttribute('alt') : '');
       });
     });
+  }
+
+  /* ------------------------------------------------------- thirty second intro
+     The recording plays itself on arrival, muted, and never announces itself
+     when there is no file to play: the placeholder in the markup stands in. */
+  function initIntroVideo() {
+    var media = document.getElementById('introMedia');
+    var video = document.getElementById('introVideo');
+    var button = document.getElementById('introSound');
+    if (!media || !video) return;
+
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var thrifty = !!(connection && (connection.saveData ||
+      /(^|-)2g$/.test(connection.effectiveType || '')));
+    var autoPlay = !reducedMotion && !thrifty;
+
+    function label(text, pressed) {
+      if (!button) return;
+      button.textContent = text;
+      button.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+    }
+
+    function start(muted) {
+      video.muted = muted;
+      var attempt = video.play();
+      if (attempt && attempt.catch) attempt.catch(function () { /* blocked: the poster stays */ });
+      label(muted ? 'Sound on' : 'Sound off', !muted);
+    }
+
+    video.addEventListener('canplay', function () {
+      media.classList.add('is-live');
+      label(autoPlay && !video.paused ? 'Sound on' : 'Play intro', false);
+    });
+
+    // No file yet, or a broken one: leave the placeholder alone.
+    video.addEventListener('error', function () { media.classList.remove('is-live'); });
+    var source = video.querySelector('source');
+    if (source) source.addEventListener('error', function () { media.classList.remove('is-live'); });
+
+    if (autoPlay) start(true);
+
+    if (button) {
+      button.addEventListener('click', function () {
+        if (video.paused || video.ended) { start(false); return; }
+        video.muted = !video.muted;
+        label(video.muted ? 'Sound on' : 'Sound off', !video.muted);
+      });
+    }
+
+    // Do not leave a video running in a tab nobody is looking at.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) {
+            if (!video.paused) video.pause();
+          } else if (autoPlay && video.paused) {
+            start(true);
+          }
+        });
+      }, { threshold: 0.2 }).observe(video);
+    }
+  }
+
+  /* --------------------------------------------------------------- ID card */
+  function initIdCard() {
+    var card = document.getElementById('idcard');
+    var button = document.getElementById('idcardFlip');
+    var photo = document.getElementById('idcardPhoto');
+
+    if (photo) {
+      var img = photo.querySelector('img');
+      if (img) {
+        // The initials stand in only when there is no portrait to show, and
+        // never while it is still downloading: hiding the image mid-flight
+        // stops the browser fetching it at all.
+        if (img.complete && !img.naturalWidth) photo.classList.add('is-empty');
+        img.addEventListener('load', function () {
+          if (img.naturalWidth) photo.classList.remove('is-empty');
+        });
+        img.addEventListener('error', function () { photo.classList.add('is-empty'); });
+      }
+    }
+
+    if (!card || !button) return;
+    button.addEventListener('click', function () {
+      var flipped = card.classList.toggle('is-flipped');
+      button.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+    });
+  }
+
+  /* --------------------------------------------------------- milestone rail */
+  function initMilestoneRail() {
+    var rail = document.getElementById('milestoneRail');
+    var prev = document.getElementById('railPrev');
+    var next = document.getElementById('railNext');
+    if (!rail || !prev || !next) return;
+
+    function stepSize() {
+      var card = rail.querySelector('.rail-card');
+      return card ? card.getBoundingClientRect().width + 14 : rail.clientWidth * 0.8;
+    }
+
+    function update() {
+      var max = rail.scrollWidth - rail.clientWidth - 1;
+      prev.disabled = rail.scrollLeft <= 0;
+      next.disabled = rail.scrollLeft >= max;
+    }
+
+    function nudge(direction) {
+      rail.scrollBy({ left: direction * stepSize(), behavior: reducedMotion ? 'auto' : 'smooth' });
+    }
+
+    prev.addEventListener('click', function () { nudge(-1); });
+    next.addEventListener('click', function () { nudge(1); });
+    rail.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+
+    rail.setAttribute('tabindex', '0');
+    rail.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowRight') { event.preventDefault(); nudge(1); }
+      if (event.key === 'ArrowLeft') { event.preventDefault(); nudge(-1); }
+    });
+
+    update();
   }
 
   /* --------------------------------------------------------- notifications */

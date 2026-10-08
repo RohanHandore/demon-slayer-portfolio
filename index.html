@@ -43,7 +43,7 @@
     <link rel="preload" href="assets/fonts/space-grotesk-latin-var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/icons/icons.css">
-    <link rel="stylesheet" href="style.css?v=2026-10-photo1">
+    <link rel="stylesheet" href="style.css?v=2026-10-intro">
 
     <meta name="theme-color" content="#F7F5F1" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0E0D0C" media="(prefers-color-scheme: dark)">
@@ -53,7 +53,7 @@
     {
       "@context": "https://schema.org",
       "@type": "ProfilePage",
-      "dateModified": "2026-10-02",
+      "dateModified": "2026-10-08",
       "mainEntity": {
         "@type": "Person",
         "name": "Rohan Handore",
@@ -127,25 +127,76 @@
         <!-- Hero -->
         <section class="hero" id="home">
             <div class="container">
-                <p class="hero-kicker" data-reveal="hero">
-                    <span class="dot" aria-hidden="true"></span>
-                    <span>Open to software engineering roles &middot; Dublin, Ireland</span>
-                    <span>&middot;</span>
-                    <span>Stamp 1G to Sep 2027</span>
-                </p>
-                <h1 class="hero-title" data-reveal="hero">Rohan Handore</h1>
-                <p class="hero-lede" data-reveal="hero">
-                    I keep a tier-1 payments estate running, and write the Python that automates
-                    the boring parts. On-call owner for critical, customer-facing services, with
-                    three years of teaching engineering fundamentals behind that.
-                </p>
-                <div class="hero-actions" data-reveal="hero">
-                    <a href="assets/CV.pdf" download="Rohan_Handore_CV.pdf" class="btn btn-primary">
-                        <i class="fa-download" aria-hidden="true"></i> Download CV
-                    </a>
-                    <a href="mailto:rohanhandore021@gmail.com" class="btn btn-ghost">
-                        <i class="fa-envelope" aria-hidden="true"></i> rohanhandore021@gmail.com
-                    </a>
+                <div class="hero-grid">
+                    <div class="hero-copy">
+                        <p class="hero-kicker" data-reveal="hero">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span>Open to software engineering roles &middot; Dublin, Ireland</span>
+                            <span>&middot;</span>
+                            <span>Stamp 1G to Sep 2027</span>
+                        </p>
+                        <h1 class="hero-title" data-reveal="hero">Rohan Handore</h1>
+                        <p class="hero-lede" data-reveal="hero">
+                            I keep a tier-1 payments estate running, and write the Python that automates
+                            the boring parts. On-call owner for critical, customer-facing services, with
+                            three years of teaching engineering fundamentals behind that.
+                        </p>
+                        <div class="hero-actions" data-reveal="hero">
+                            <a href="assets/CV.pdf" download="Rohan_Handore_CV.pdf" class="btn btn-primary">
+                                <i class="fa-download" aria-hidden="true"></i> Download CV
+                            </a>
+                            <a href="mailto:rohanhandore021@gmail.com" class="btn btn-ghost">
+                                <i class="fa-envelope" aria-hidden="true"></i> rohanhandore021@gmail.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <aside class="hero-aside" aria-label="Introduction">
+                        <div data-reveal="hero">
+                            <p class="rail-label">Thirty second intro</p>
+                            <figure class="intro-media" id="introMedia">
+                                <video class="intro-video" id="introVideo" playsinline muted loop
+                                       preload="none" poster="assets/media/intro-poster.jpg"
+                                       aria-label="Rohan Handore introduces himself in thirty seconds">
+                                    <source src="assets/media/intro.mp4" type="video/mp4">
+                                </video>
+                                <div class="intro-placeholder">
+                                    <span class="mark">RH</span>
+                                    <p>Thirty seconds on who I am, what I keep running, and what I automate.</p>
+                                    <span class="intro-status">Ready to record</span>
+                                </div>
+                                <button type="button" class="intro-sound" id="introSound" aria-pressed="false">Sound on</button>
+                            </figure>
+                        </div>
+
+                        <div class="idcard" id="idcard" data-reveal="hero">
+                            <p class="rail-label">ID card &middot; hover or tap to turn it</p>
+                            <button class="idcard-flip" id="idcardFlip" type="button" aria-pressed="false"
+                                    aria-label="Turn the ID card over for the details on the back">
+                                <span class="idcard-face idcard-front">
+                                    <span class="idcard-photo" id="idcardPhoto">
+                                        <img src="assets/images/id-photo.jpg" alt="" width="420" height="512"
+                                             decoding="async">
+                                        <span class="idcard-initials" aria-hidden="true">RH</span>
+                                    </span>
+                                    <span class="idcard-body">
+                                        <span class="idcard-name">Rohan Handore</span>
+                                        <span class="idcard-role">Application Support Analyst</span>
+                                        <span class="idcard-org">Global Payments &middot; Dublin</span>
+                                        <span class="idcard-foot"><span class="idcard-chip" aria-hidden="true"></span> Stamp 1G to Sep 2027</span>
+                                    </span>
+                                </span>
+                                <span class="idcard-face idcard-back">
+                                    <span class="idcard-back-title">On the estate</span>
+                                    <span class="idcard-back-row">Python &middot; Bash &middot; SQL</span>
+                                    <span class="idcard-back-row">AWS &middot; Kubernetes &middot; Terraform</span>
+                                    <span class="idcard-back-row">Prometheus &middot; Grafana &middot; Splunk &middot; Kibana</span>
+                                    <span class="idcard-code" aria-hidden="true"></span>
+                                    <span class="idcard-back-foot">24x7 on-call &middot; Dublin</span>
+                                </span>
+                            </button>
+                        </div>
+                    </aside>
                 </div>
 
                 <dl class="facts" data-reveal="hero">
@@ -229,6 +280,128 @@
                             <p>Teaching and mentoring, stakeholder communication, writing runbooks people actually follow</p>
                         </div>
                     </div>
+                </div>
+
+                <div class="skills-table reveal">
+                    <h3>The periodic table of what I work with</h3>
+                    <p class="skills-table-note">
+                        The same list the CV carries, arranged so it can be read in one pass.
+                        Colours group the themes: reliability, cloud, observability, data, languages, delivery.
+                    </p>
+                    <ul class="elements" role="list">
+                        <li class="el" data-group="rel"><span class="el-sym">SLO</span><span class="el-name">Service level objective</span></li>
+                        <li class="el" data-group="rel"><span class="el-sym">SLI</span><span class="el-name">Service level indicator</span></li>
+                        <li class="el" data-group="rel"><span class="el-sym">EB</span><span class="el-name">Error budget</span></li>
+                        <li class="el" data-group="rel"><span class="el-sym">OnC</span><span class="el-name">On-call rotation</span></li>
+                        <li class="el" data-group="rel"><span class="el-sym">RB</span><span class="el-name">Runbooks</span></li>
+                        <li class="el" data-group="rel"><span class="el-sym">IR</span><span class="el-name">Incident response</span></li>
+                        <li class="el" data-group="rel"><span class="el-sym">RCA</span><span class="el-name">Root cause analysis</span></li>
+                        <li class="el" data-group="cloud"><span class="el-sym">AWS</span><span class="el-name">Amazon Web Services</span></li>
+                        <li class="el" data-group="cloud"><span class="el-sym">K8s</span><span class="el-name">Kubernetes</span></li>
+                        <li class="el" data-group="cloud"><span class="el-sym">Tf</span><span class="el-name">Terraform</span></li>
+                        <li class="el" data-group="cloud"><span class="el-sym">Ans</span><span class="el-name">Ansible</span></li>
+                        <li class="el" data-group="cloud"><span class="el-sym">GitOps</span><span class="el-name">GitOps</span></li>
+                        <li class="el" data-group="cloud"><span class="el-sym">Dkr</span><span class="el-name">Docker</span></li>
+                        <li class="el" data-group="cloud"><span class="el-sym">Lin</span><span class="el-name">Linux administration</span></li>
+                        <li class="el" data-group="obs"><span class="el-sym">Prm</span><span class="el-name">Prometheus</span></li>
+                        <li class="el" data-group="obs"><span class="el-sym">Grf</span><span class="el-name">Grafana</span></li>
+                        <li class="el" data-group="obs"><span class="el-sym">CW</span><span class="el-name">CloudWatch</span></li>
+                        <li class="el" data-group="obs"><span class="el-sym">Splk</span><span class="el-name">Splunk</span></li>
+                        <li class="el" data-group="obs"><span class="el-sym">Kib</span><span class="el-name">Kibana</span></li>
+                        <li class="el" data-group="obs"><span class="el-sym">APM</span><span class="el-name">APM and telemetry</span></li>
+                        <li class="el" data-group="obs"><span class="el-sym">DD</span><span class="el-name">Datadog</span></li>
+                        <li class="el" data-group="data"><span class="el-sym">SQL</span><span class="el-name">SQL</span></li>
+                        <li class="el" data-group="data"><span class="el-sym">Pg</span><span class="el-name">PostgreSQL</span></li>
+                        <li class="el" data-group="data"><span class="el-sym">My</span><span class="el-name">MySQL</span></li>
+                        <li class="el" data-group="data"><span class="el-sym">Mg</span><span class="el-name">MongoDB</span></li>
+                        <li class="el" data-group="data"><span class="el-sym">Tune</span><span class="el-name">Query tuning</span></li>
+                        <li class="el" data-group="data"><span class="el-sym">Pipe</span><span class="el-name">Data pipelines</span></li>
+                        <li class="el" data-group="code"><span class="el-sym">Py</span><span class="el-name">Python</span></li>
+                        <li class="el" data-group="code"><span class="el-sym">Bash</span><span class="el-name">Shell scripting</span></li>
+                        <li class="el" data-group="code"><span class="el-sym">JS</span><span class="el-name">JavaScript</span></li>
+                        <li class="el" data-group="code"><span class="el-sym">PHP</span><span class="el-name">PHP</span></li>
+                        <li class="el" data-group="code"><span class="el-sym">Java</span><span class="el-name">Java</span></li>
+                        <li class="el" data-group="code"><span class="el-sym">Go</span><span class="el-name">Go</span></li>
+                        <li class="el" data-group="code"><span class="el-sym">Web</span><span class="el-name">HTML and CSS</span></li>
+                        <li class="el" data-group="code"><span class="el-sym">Git</span><span class="el-name">Git and GitHub</span></li>
+                        <li class="el" data-group="build"><span class="el-sym">Jnk</span><span class="el-name">Jenkins</span></li>
+                        <li class="el" data-group="build"><span class="el-sym">GHA</span><span class="el-name">GitHub Actions</span></li>
+                        <li class="el" data-group="build"><span class="el-sym">Argo</span><span class="el-name">Argo</span></li>
+                        <li class="el" data-group="build"><span class="el-sym">CI/CD</span><span class="el-name">Release and rollback</span></li>
+                    </ul>
+                    <p class="elements-legend">
+                        <span data-group="rel"><i aria-hidden="true"></i> Reliability</span>
+                        <span data-group="cloud"><i aria-hidden="true"></i> Cloud and infrastructure</span>
+                        <span data-group="obs"><i aria-hidden="true"></i> Observability</span>
+                        <span data-group="data"><i aria-hidden="true"></i> Data</span>
+                        <span data-group="code"><i aria-hidden="true"></i> Languages</span>
+                        <span data-group="build"><i aria-hidden="true"></i> Delivery</span>
+                    </p>
+                </div>
+
+                <div class="milestones reveal">
+                    <div class="milestones-head">
+                        <h3>Milestones</h3>
+                        <div class="rail-nav">
+                            <button type="button" class="rail-btn" id="railPrev" aria-label="Scroll the milestones backwards">
+                                <i class="fa-arrow-left icon" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="rail-btn" id="railNext" aria-label="Scroll the milestones forwards">
+                                <i class="fa-arrow-right icon" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="rail" id="milestoneRail" role="list">
+                        <li class="rail-card">
+                            <span class="rail-tag">Impact</span>
+                            <span class="rail-metric">30%</span>
+                            <h4>Lower mean time to resolution</h4>
+                            <p>Automated the routine operational work at TechnoKraft: Python and Bash for log parsing, health checks and data fixes, so recurring problems stopped being manual.</p>
+                        </li>
+                        <li class="rail-card">
+                            <span class="rail-tag">Certification</span>
+                            <h4>Google Professional Data Engineer</h4>
+                            <p>Cloud data engineering, held alongside AWS Solutions Architect foundations training. Next on the list is the AWS certification.</p>
+                        </li>
+                        <li class="rail-card">
+                            <span class="rail-tag">Education</span>
+                            <span class="rail-metric">70.5%</span>
+                            <h4>MSc Big Data Management and Analytics</h4>
+                            <p>Griffith College Dublin. Distributed systems, cloud architecture, database systems and data pipelines, delivered through team projects.</p>
+                        </li>
+                        <li class="rail-card">
+                            <span class="rail-tag">Reliability</span>
+                            <h4>SLIs, SLOs and error budgets in production</h4>
+                            <p>Designed and implemented for the services my team owns, and used every week to decide what gets fixed first.</p>
+                        </li>
+                        <li class="rail-card">
+                            <span class="rail-tag">Ownership</span>
+                            <h4>24x7 on-call on a tier-1 payments estate</h4>
+                            <p>One of the on-call engineers for critical, customer-facing payment applications, weekends and holidays included.</p>
+                        </li>
+                        <li class="rail-card">
+                            <span class="rail-tag">Teaching</span>
+                            <h4>Three years teaching engineering fundamentals</h4>
+                            <p>Data structures, algorithms and system design at colleges and at TechnoKraft. It is where the plain-English incident updates come from.</p>
+                        </li>
+                        <li class="rail-card">
+                            <span class="rail-tag">Delivery</span>
+                            <span class="rail-metric">3 weeks</span>
+                            <h4>Client site rebuilt and shipped</h4>
+                            <p>Nifty Driver rebuilt end to end and deployed to the Artemee production server inside a three week deadline.</p>
+                        </li>
+                        <li class="rail-card">
+                            <span class="rail-tag">Education</span>
+                            <span class="rail-metric">82%</span>
+                            <h4>BSc Computer Science</h4>
+                            <p>Savitribai Phule Pune University. Computer networks, operating systems, database systems and software engineering.</p>
+                        </li>
+                        <li class="rail-card">
+                            <span class="rail-tag">Observability</span>
+                            <h4>Monitoring where there was none</h4>
+                            <p>Built AWS CloudWatch dashboards and alarms, set the thresholds and wrote the runbooks that cut escalations.</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -673,6 +846,6 @@
     </footer>
 
     <script src="assets/vendor/motion.js" defer></script>
-    <script src="script.js?v=2026-10-photo1"></script>
+    <script src="script.js?v=2026-10-intro"></script>
 </body>
 </html>
