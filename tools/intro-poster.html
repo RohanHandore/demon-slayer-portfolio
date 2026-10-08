@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+@page { size: 800px 1000px; margin: 0; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; width: 800px; height: 1000px; overflow: hidden;
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  background: #F7F5F1; color: #141210;
+  display: grid; align-content: center; justify-items: center; gap: 18px;
+  position: relative;
+}
+body::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 50% 32%, rgba(200,65,15,0.12), transparent 58%),
+    repeating-linear-gradient(135deg, transparent 0 15px, rgba(200,65,15,0.05) 15px 16px);
+}
+.grain { position: absolute; inset: 0; opacity: .5;
+  background-image: radial-gradient(rgba(20,18,16,.05) 1px, transparent 1px);
+  background-size: 7px 7px; }
+.mark { position: relative; font-size: 128px; font-weight: 700; letter-spacing: -6px; color: #C8410F; line-height: 1; }
+.name { position: relative; font-size: 40px; font-weight: 700; letter-spacing: -1.4px; }
+.rule { position: relative; width: 150px; height: 4px; background: #141210; border-radius: 2px; }
+.role { position: relative; font-size: 19px; color: #46403A; }
+.kicker { position: absolute; left: 56px; bottom: 52px; font-family: 'JetBrains Mono', monospace;
+  font-size: 15px; letter-spacing: 3px; text-transform: uppercase; color: #6B645B; }
+.stamp { position: absolute; right: 56px; bottom: 52px; font-family: 'JetBrains Mono', monospace;
+  font-size: 15px; letter-spacing: 3px; text-transform: uppercase; color: #6B645B; }
+</style></head><body>
+  <div class="grain"></div>
+  <span class="mark">RH</span>
+  <span class="rule"></span>
+  <span class="name">Rohan Handore</span>
+  <span class="role">Thirty second introduction</span>
+  <span class="kicker">rohanhandore.com</span>
+  <span class="stamp">Dublin, Ireland</span>
+</body></html>
