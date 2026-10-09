@@ -27,6 +27,7 @@
     initBlogCards();
     initPhotoView();
     initEmailJS();
+    initMascot();
   });
 
   /* ------------------------------------------------------------ navigation */
@@ -234,6 +235,75 @@
     });
   }
 
+  /* --------------------------------------------------------------- mascot */
+  /* The character on the contact form. Moods are set here as data-mood and
+     drawn by style.css; the form tells it when something went wrong and when
+     a message actually left, so the face never lies about the state. */
+  function initMascot() {
+    var mascot = document.getElementById('form-mascot');
+    var form = document.getElementById('contact-form');
+    if (!mascot || !form) return;
+
+    var mood = 'asleep';
+    var revert = null;
+    var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function set(next, holdFor) {
+      if (next === mood && next !== 'happy') return;
+      mood = next;
+      mascot.setAttribute('data-mood', next);
+      if (revert) window.clearTimeout(revert);
+      revert = null;
+      if (holdFor) {
+        revert = window.setTimeout(function () { set(mood === 'asleep' ? 'asleep' : 'awake'); }, holdFor);
+      }
+    }
+
+    function wrong() {
+      var email = form.elements.email;
+      var value = (email.value || '').trim();
+      return value !== '' && !EMAIL.test(value);
+    }
+
+    // Wakes when the form comes into view rather than on page load: a character
+    // already asleep at the top of the page would be reacting to nothing.
+    if ('IntersectionObserver' in window) {
+      var watcher = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            set('awake');
+            watcher.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      watcher.observe(form);
+    } else {
+      set('awake');
+    }
+
+    [form.elements.name, form.elements.email, form.elements.message].forEach(function (field) {
+      if (!field) return;
+      field.addEventListener('focus', function () { if (mood !== 'happy') set('awake'); });
+      field.addEventListener('input', function () {
+        if (mood === 'happy') return;
+        if (wrong()) set('alert', 2600);
+        else if (mood === 'alert') set('awake');
+      });
+      field.addEventListener('blur', function () {
+        if (mood === 'happy') return;
+        if (!(field.value || '').trim()) set('alert', 2200);
+        else if (wrong()) set('alert', 2600);
+      });
+      field.addEventListener('invalid', function () { set('alert', 2600); });
+    });
+
+    // The form calls these two; both are safe no-ops if it never does.
+    window.portfolioMascot = {
+      alert: function () { set('alert', 2600); },
+      celebrate: function () { set('happy', 3600); }
+    };
+  }
+
   function initContactForm() {
     var form = document.getElementById('contact-form');
     if (!form) return;
@@ -247,10 +317,12 @@
 
       if (!name || !email || !message) {
         notify('Please fill in every field.', 'error');
+        if (window.portfolioMascot) window.portfolioMascot.alert();
         return;
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         notify('That email address does not look right.', 'error');
+        if (window.portfolioMascot) window.portfolioMascot.alert();
         return;
       }
 
@@ -274,6 +346,7 @@
         })
         .then(function () {
           notify('Message sent. I will come back to you soon.', 'success');
+          if (window.portfolioMascot) window.portfolioMascot.celebrate();
           form.reset();
         })
         .catch(function () {
