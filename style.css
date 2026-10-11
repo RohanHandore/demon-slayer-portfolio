@@ -2321,3 +2321,57 @@ p.project-tags { margin: 0.6rem 0 0; }
 
 /* the tag line is text, not a rail: let it wrap instead of clipping */
 .project-tags { white-space: normal; overflow-wrap: anywhere; }
+
+/* ---------- revert: the element tiles are a periodic table, not pills ---------- */
+.el {
+  border-radius: 6px;              /* was 999px from the pill rule */
+  padding: 0.6rem 0.45rem 0.55rem;
+}
+.el:hover { transform: translateY(-2px); }
+.elements { gap: 0.4rem; }
+.elements-legend { gap: 0.5rem 1.1rem; }
+
+/* the barcode has square ends, as barcodes do */
+.idcard-code { border-radius: 2px; }
+
+/* ---------- the ID card back needs its own room ----------
+   The back face is absolutely positioned inside the flip, so it inherits the
+   front's height. It needs 205px at desktop and more on a phone; below that the
+   skills, barcode and footer were being squeezed into the front's 150px. */
+.idcard-flip { min-height: 252px; }
+.idcard-back {
+  gap: 0.42rem;
+  padding: 1rem 1.05rem;
+  align-content: center;
+}
+.idcard-back-title { margin-bottom: 0.45rem; }
+.idcard-back-row { line-height: 1.5; }
+.idcard-code { height: 1.7rem; margin-top: 0.6rem; }
+.idcard-back-foot { margin-top: 0.55rem; }
+
+@media (max-width: 620px) {
+  .idcard-flip { min-height: 252px; }
+  .idcard-back { padding: 0.95rem 1rem; }
+}
+
+/* ID card back: more air, the barcode inset so it never touches the sides */
+.idcard-back { padding: 1.15rem 1.2rem; gap: 0.5rem; }
+.idcard-back-title { margin-bottom: 0.5rem; }
+.idcard-code { margin: 0.7rem 0.1rem 0; height: 1.75rem; }
+.idcard-back-foot { margin-top: 0.6rem; }
+@media (max-width: 620px) {
+  .idcard-back { padding: 1.05rem 1.1rem; }
+  .idcard-flip { min-height: 252px; }
+}
+
+/* ID card back, final rhythm: more room around the barcode, even feet */
+.idcard-code { margin-top: 0.85rem; }
+.idcard-back-foot { margin-top: 0.8rem; }
+.idcard-back { padding: 1.2rem 1.25rem 1.25rem; }
+
+/* narrow phones: the skill lines wrap, so give the card a little more room */
+@media (max-width: 420px) { .idcard-flip { min-height: 268px; } }
+
+/* ID card back: barcode a touch narrower, footer a touch lower, ends the balance pass */
+.idcard-code { margin: 0.7rem 0.35rem 0; }
+.idcard-back-foot { margin-top: 0.9rem; }
