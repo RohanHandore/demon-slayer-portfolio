@@ -1607,3 +1607,469 @@ main > section[id] { scroll-margin-top: 5rem; }
   body { background: #fff; color: #000; }
   .section { border-top: 0; padding-block: 1.2rem; }
 }
+
+/* ==========================================================================
+   GLASS THEME — added 11 Oct 2026 at Rohan's request.
+   iOS / macOS glassmorphism: frosted surfaces, system palette, SF type.
+   Appended last on purpose so these rules win on equal specificity.
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  /* iOS system palette */
+  --ios-blue:    #007AFF;
+  --ios-indigo:  #5856D6;
+  --ios-purple:  #AF52DE;
+  --ios-teal:    #30B0C7;
+  --ios-pink:    #FF2D55;
+  --ios-green:   #34C759;
+  --ios-orange:  #FF9500;
+
+  /* Token remap — the whole site inherits the glass system from here */
+  --paper:      #E9EDF6;
+  --paper-2:    #DFE6F3;
+  --surface:    rgba(255, 255, 255, 0.62);
+  --ink:        #0A0E1A;
+  --ink-2:      #2A3242;
+  --muted:      #5C6579;
+  --line:       rgba(13, 20, 38, 0.08);
+  --line-2:     rgba(13, 20, 38, 0.14);
+  --accent:     #007AFF;
+  --accent-2:   #5856D6;
+  --on-accent:  #FFFFFF;
+  --accent-wash: rgba(0, 122, 255, 0.10);
+
+  /* Glass system */
+  --glass-bg:        rgba(255, 255, 255, 0.55);
+  --glass-bg-raised: rgba(255, 255, 255, 0.72);
+  --glass-bg-sunken: rgba(255, 255, 255, 0.38);
+  --glass-border:    rgba(255, 255, 255, 0.75);
+  --glass-hairline:  rgba(13, 20, 38, 0.09);
+  --glass-blur:      22px;
+  --glass-sat:       180%;
+  --glass-hi:        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --glass-shadow:    0 1px 1px rgba(15, 23, 42, 0.04),
+                     0 14px 34px -14px rgba(15, 23, 42, 0.22);
+  --glass-shadow-lg: 0 1px 1px rgba(15, 23, 42, 0.05),
+                     0 30px 60px -22px rgba(15, 23, 42, 0.32);
+
+  /* iOS geometry + motion */
+  --radius:      22px;
+  --radius-sm:   14px;
+  --radius-xs:   10px;
+  --radius-pill: 999px;
+  --ease-ios:    cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* SF first, self-hosted Inter where there is no Apple system font */
+  --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI',
+          Roboto, Helvetica, Arial, sans-serif;
+  --display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Space Grotesk',
+             'Inter', 'Segoe UI', sans-serif;
+  --mono: ui-monospace, 'SF Mono', SFMono-Regular, 'JetBrains Mono', Menlo,
+          Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:    #05070E;
+    --paper-2:  #0A0E18;
+    --surface:  rgba(255, 255, 255, 0.06);
+    --ink:      #F5F7FB;
+    --ink-2:    #C9D2E3;
+    --muted:    #93A0B8;
+    --line:     rgba(255, 255, 255, 0.10);
+    --line-2:   rgba(255, 255, 255, 0.18);
+    --accent:   #0A84FF;
+    --accent-2: #7C7AFF;
+    --on-accent:#FFFFFF;
+    --accent-wash: rgba(10, 132, 255, 0.18);
+
+    --glass-bg:        rgba(255, 255, 255, 0.07);
+    --glass-bg-raised: rgba(255, 255, 255, 0.11);
+    --glass-bg-sunken: rgba(255, 255, 255, 0.04);
+    --glass-border:    rgba(255, 255, 255, 0.16);
+    --glass-hairline:  rgba(255, 255, 255, 0.12);
+    --glass-hi:        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    --glass-shadow:    0 1px 1px rgba(0, 0, 0, 0.4),
+                       0 18px 40px -16px rgba(0, 0, 0, 0.65);
+    --glass-shadow-lg: 0 1px 1px rgba(0, 0, 0, 0.5),
+                       0 36px 70px -24px rgba(0, 0, 0, 0.78);
+  }
+}
+
+/* ---------- the light behind the glass ---------- */
+
+html { background: var(--paper); }
+
+body {
+  background: transparent;
+  font-family: var(--sans);
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -25%;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 34% at 12% 10%, rgba(0, 122, 255, 0.42), transparent 62%),
+    radial-gradient(34% 32% at 88% 6%,  rgba(175, 82, 222, 0.34), transparent 64%),
+    radial-gradient(42% 40% at 74% 88%, rgba(48, 176, 199, 0.32), transparent 62%),
+    radial-gradient(36% 36% at 16% 84%, rgba(255, 45, 85, 0.20), transparent 64%),
+    radial-gradient(30% 30% at 50% 46%, rgba(88, 86, 214, 0.22), transparent 66%);
+  filter: blur(46px) saturate(150%);
+  animation: glass-drift 30s var(--ease-ios) infinite alternate;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-color-scheme: dark) {
+  body::before {
+    background:
+      radial-gradient(40% 36% at 10% 8%, rgba(10, 132, 255, 0.40), transparent 62%),
+      radial-gradient(36% 34% at 90% 4%, rgba(124, 122, 255, 0.34), transparent 64%),
+      radial-gradient(44% 42% at 78% 90%, rgba(48, 176, 199, 0.24), transparent 62%),
+      radial-gradient(38% 38% at 14% 86%, rgba(191, 90, 242, 0.22), transparent 64%);
+    filter: blur(52px) saturate(140%);
+    opacity: 0.85;
+  }
+  body::after { opacity: 0.04; }
+}
+
+@keyframes glass-drift {
+  0%   { transform: translate3d(-2%, -1%, 0) scale(1); }
+  50%  { transform: translate3d(2%, 1.5%, 0) scale(1.06); }
+  100% { transform: translate3d(-1%, 2%, 0) scale(1.02); }
+}
+
+/* ---------- typography: the SF curve ---------- */
+
+h1, h2, h3, h4, .hero-title, .section-title, .sec-head, .brand-name {
+  font-family: var(--display);
+  letter-spacing: -0.022em;
+}
+
+.hero-title { font-weight: 700; letter-spacing: -0.03em; }
+.section-title, .sec-head { font-weight: 650; }
+.eyebrow, .sec-num, .nav-link, .nav-resume-btn, .btn, .skill-tag, .tech {
+  letter-spacing: 0.005em;
+}
+.eyebrow, .sec-num {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+
+/* ---------- glass surface recipe ---------- */
+
+.navbar,
+.job, .project, .panel, .rail-card, .idcard-face, .contact-form,
+.info-item, .fact, .post-row, .skills-block, .milestones, .cv-item,
+.coursework, .lang-list, .footer-inner, .hero-aside > * {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), var(--glass-hi);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .navbar, .job, .project, .panel, .rail-card, .idcard-face, .contact-form,
+  .info-item, .fact, .post-row, .skills-block, .milestones, .cv-item,
+  .coursework, .lang-list, .footer-inner {
+    background: var(--glass-bg-raised);
+  }
+}
+
+/* ---------- navigation: an iOS translucent toolbar ---------- */
+
+.navbar {
+  background: color-mix(in srgb, var(--glass-bg-raised) 92%, transparent);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  backdrop-filter: blur(28px) saturate(200%);
+  border: 0;
+  border-bottom: 1px solid var(--glass-hairline);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset,
+              0 8px 30px -22px rgba(15, 23, 42, 0.45);
+  border-radius: 0;
+}
+
+.nav-logo h2 {
+  font-family: var(--display);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+/* the avatar becomes an iOS app icon: squircle, gradient ring, specular sheen */
+.logo-img {
+  border-radius: 13px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6),
+              0 0 0 3px rgba(0, 122, 255, 0.18),
+              0 8px 18px -8px rgba(15, 23, 42, 0.45);
+  transition: transform 0.35s var(--ease-ios), box-shadow 0.35s var(--ease-ios);
+}
+.logo-link:hover .logo-img,
+.logo-link:focus-visible .logo-img {
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7),
+              0 0 0 4px rgba(0, 122, 255, 0.28),
+              0 12px 22px -8px rgba(15, 23, 42, 0.5);
+}
+@media (prefers-color-scheme: dark) {
+  .logo-img { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22),
+                         0 0 0 3px rgba(10, 132, 255, 0.30),
+                         0 10px 20px -10px rgba(0, 0, 0, 0.8); }
+}
+
+.nav-link {
+  border-radius: var(--radius-pill);
+  padding: 0.42rem 0.72rem;
+  transition: background 0.28s var(--ease-ios), color 0.28s var(--ease-ios);
+}
+.nav-link:hover, .nav-link:focus-visible {
+  background: var(--glass-bg-sunken);
+  text-decoration: none;
+}
+.nav-link.active, .nav-link[aria-current="page"] {
+  background: var(--accent-wash);
+  color: var(--accent);
+}
+
+.nav-resume-btn {
+  border-radius: var(--radius-pill);
+  background: linear-gradient(180deg, #3395FF, var(--accent));
+  color: #fff;
+  border: 0;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset,
+              0 8px 20px -10px rgba(0, 122, 255, 0.75);
+  transition: transform 0.28s var(--ease-ios), box-shadow 0.28s var(--ease-ios);
+}
+.nav-resume-btn:hover { transform: translateY(-1px); }
+
+.hamburger { border-radius: var(--radius-xs); }
+.hamburger .bar { border-radius: var(--radius-pill); background: var(--ink); }
+
+/* ---------- buttons: iOS filled and tinted ---------- */
+
+.btn {
+  border-radius: var(--radius-pill);
+  padding: 0.72rem 1.15rem;
+  font-weight: 600;
+  font-family: var(--sans);
+  transition: transform 0.24s var(--ease-ios), box-shadow 0.24s var(--ease-ios),
+              background 0.24s var(--ease-ios);
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: linear-gradient(180deg, #3395FF, var(--accent));
+  color: var(--on-accent);
+  border: 0;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset,
+              0 10px 24px -12px rgba(0, 122, 255, 0.8);
+}
+.btn-primary:hover { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset,
+                                 0 14px 30px -12px rgba(0, 122, 255, 0.9); }
+
+.btn-ghost {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  color: var(--ink);
+  box-shadow: var(--glass-shadow), var(--glass-hi);
+}
+.btn-ghost:hover { background: var(--glass-bg-raised); }
+
+/* ---------- cards and content blocks ---------- */
+
+.job, .project, .panel, .rail-card, .post-row, .cv-item, .info-item, .fact,
+.skills-block, .milestones, .coursework, .lang-list {
+  border-radius: var(--radius);
+  transition: transform 0.4s var(--ease-ios), box-shadow 0.4s var(--ease-ios);
+}
+.job:hover, .project:hover, .panel:hover, .rail-card:hover, .post-row:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glass-shadow-lg), var(--glass-hi);
+}
+
+/* a specular top edge, the way iOS 26 glass catches light */
+.panel, .job, .project, .rail-card, .contact-form, .idcard-face { position: relative; }
+.panel::after, .job::after, .project::after, .contact-form::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 42%);
+  opacity: 0.9;
+}
+
+.skill-tag, .tech, .project-tags span, .project-tags a, .rail-tag, .rail-label {
+  border-radius: var(--radius-pill);
+  background: var(--glass-bg-sunken);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  padding: 0.28rem 0.62rem;
+}
+
+/* ---------- forms ---------- */
+
+.form-group input,
+.form-group textarea,
+.form-group select,
+input[type="text"], input[type="email"], textarea {
+  background: var(--glass-bg-sunken);
+  border: 1px solid var(--glass-hairline);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition: border-color 0.24s var(--ease-ios), box-shadow 0.24s var(--ease-ios);
+}
+.form-group input:focus,
+.form-group textarea:focus,
+input:focus-visible, textarea:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-wash);
+}
+
+/* ---------- the ID card and rails keep their character, in glass ---------- */
+
+.idcard-face { border-radius: var(--radius); }
+.rail-card { border-radius: var(--radius-sm); }
+
+/* ---------- footer ---------- */
+
+.footer-inner {
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+}
+
+/* ---------- chrome: selection, scrollbar, focus, progress ---------- */
+
+::selection { background: var(--accent); color: var(--on-accent); }
+
+* { scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb {
+  background: var(--line-2);
+  border: 3px solid transparent;
+  border-radius: var(--radius-pill);
+  background-clip: content-box;
+}
+
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+.scroll-progress {
+  background: linear-gradient(90deg, var(--ios-teal), var(--accent), var(--ios-purple));
+  height: 3px;
+  border-radius: var(--radius-pill);
+}
+
+/* ---------- motion hygiene ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+  .job:hover, .project:hover, .panel:hover, .rail-card:hover, .post-row:hover,
+  .btn:active, .logo-link:hover .logo-img { transform: none; }
+}
+
+/* ---------- contrast and polish pass (same glass theme, 11 Oct 2026) ----------
+   The browser check showed the nav links sitting too light over the new mesh.
+   Everything here is aimed at AA contrast and calm, Apple-like weight. */
+
+.nav-link {
+  color: color-mix(in srgb, var(--ink) 82%, transparent);
+  font-weight: 500;
+}
+.nav-link:hover, .nav-link:focus-visible, .nav-link.active { color: var(--ink); }
+
+.hero-lede, .sec-sub, .about-text p, .job-body p, .project p, .post-row p {
+  color: color-mix(in srgb, var(--ink) 88%, transparent);
+}
+
+.eyebrow, .sec-num { color: color-mix(in srgb, var(--accent) 88%, var(--ink)); }
+
+a:not(.btn):not(.nav-link):not(.nav-resume-btn) {
+  color: color-mix(in srgb, var(--accent) 92%, var(--ink));
+}
+
+.muted, .form-note, .skills-table-note, .colophon, .job-meta, .job-where {
+  color: color-mix(in srgb, var(--ink) 62%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav-link { color: color-mix(in srgb, var(--ink) 80%, transparent); }
+  .muted, .form-note, .skills-table-note, .colophon, .job-meta, .job-where {
+    color: color-mix(in srgb, var(--ink) 68%, transparent);
+  }
+}
+
+/* the toolbar should not fight the glass panels under it */
+.navbar { z-index: 60; }
+.nav-menu {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+/* hero: a touch more air, Apple-like rhythm */
+.hero { padding-block: clamp(4.5rem, 9vw, 7.5rem) clamp(3.5rem, 6vw, 5.5rem); }
+.hero-title { margin-block: 0.35rem 0.9rem; }
+
+/* section heads: hairline rules become soft glass edges */
+.sec-head { border-bottom-color: var(--glass-hairline); }
+
+/* tables and lists keep their structure, in a glass frame */
+.skills-table, .facts, .milestones { border-radius: var(--radius); overflow: hidden; }
+.skills-table th { background: var(--glass-bg-sunken); }
+
+/* the intro card's controls, readable over the poster frame */
+.intro-sound, .rail-btn {
+  border-radius: var(--radius-pill);
+  background: var(--glass-bg-raised);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  color: var(--ink);
+}
+
+/* the mascot in the contact form keeps its moods, now on glass */
+.mascot-head, .mascot-badge { filter: drop-shadow(0 10px 22px rgba(15, 23, 42, 0.18)); }
+
+/* mobile: a floating glass toolbar feel */
+@media (max-width: 860px) {
+  .navbar {
+    border-radius: 0 0 var(--radius) var(--radius);
+    border-bottom: 1px solid var(--glass-hairline);
+  }
+  .nav-menu {
+    background: color-mix(in srgb, var(--glass-bg-raised) 88%, transparent);
+    -webkit-backdrop-filter: blur(26px) saturate(190%);
+    backdrop-filter: blur(26px) saturate(190%);
+    border-radius: var(--radius);
+  }
+}
