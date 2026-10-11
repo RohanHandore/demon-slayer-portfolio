@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="RH">
+  <!-- Rohan Handore mark, in the theme the site and dashboard use: iOS blue to indigo, a glass
+       hairline and a top-left highlight. Favicon source of truth; the PNG set and favicon.ico are
+       rendered from this file. -->
+  <defs>
+    <linearGradient id="rh-face" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A84FF"/>
+      <stop offset="0.55" stop-color="#3B6BF6"/>
+      <stop offset="1" stop-color="#5E5CE6"/>
+    </linearGradient>
+    <radialGradient id="rh-hi" cx="0.26" cy="0.18" r="0.62">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rh-sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.20"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="512" height="512" rx="114" fill="url(#rh-face)"/>
+  <rect x="0" y="0" width="512" height="512" rx="114" fill="url(#rh-hi)"/>
+  <rect x="0" y="0" width="512" height="512" rx="114" fill="url(#rh-sheen)"/>
+  <rect x="9" y="9" width="494" height="494" rx="106" fill="none"
+        stroke="#ffffff" stroke-opacity="0.26" stroke-width="7"/>
+
+  <g fill="#ffffff" font-family="Inter, 'SF Pro Display', -apple-system, 'Helvetica Neue', 'DejaVu Sans', Arial, sans-serif"
+     font-weight="700" font-size="232" text-anchor="middle">
+    <!-- y is the baseline: 336 puts the glyph box dead centre in the 512 tile, measured, not guessed -->
+    <text x="256" y="336">RH</text>
+  </g>
+</svg>
