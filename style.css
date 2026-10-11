@@ -1609,9 +1609,15 @@ main > section[id] { scroll-margin-top: 5rem; }
 }
 
 /* ==========================================================================
-   GLASS THEME — added 11 Oct 2026 at Rohan's request.
-   iOS / macOS glassmorphism: frosted surfaces, system palette, SF type.
-   Appended last on purpose so these rules win on equal specificity.
+   GLASS THEME v2 — 11 Oct 2026, second pass after Rohan's review.
+   Rules learned the hard way and encoded here:
+     1. never change position, display, overflow or transform of an existing
+        component; the ID card's back face is absolutely positioned and dies
+        the moment a later rule makes its container relative;
+     2. never lay a pseudo-element over content. A gradient wash above text
+        reads as "sloppy" even when it is technically transparent;
+     3. glass is background, border, blur and shadow. Nothing else;
+     4. min-width: 0 and overflow-wrap on card children, so nothing can spill.
    ========================================================================== */
 
 :root {
@@ -1626,86 +1632,83 @@ main > section[id] { scroll-margin-top: 5rem; }
   --ios-green:   #34C759;
   --ios-orange:  #FF9500;
 
-  /* Token remap — the whole site inherits the glass system from here */
-  --paper:      #E9EDF6;
-  --paper-2:    #DFE6F3;
-  --surface:    rgba(255, 255, 255, 0.62);
+  /* token remap */
+  --paper:      #EDF1F8;
+  --paper-2:    #E4EAF4;
+  --surface:    rgba(255, 255, 255, 0.66);
   --ink:        #0A0E1A;
-  --ink-2:      #2A3242;
-  --muted:      #5C6579;
-  --line:       rgba(13, 20, 38, 0.08);
-  --line-2:     rgba(13, 20, 38, 0.14);
+  --ink-2:      #2B3342;
+  --muted:      #566074;
+  --line:       rgba(13, 20, 38, 0.09);
+  --line-2:     rgba(13, 20, 38, 0.16);
   --accent:     #007AFF;
   --accent-2:   #5856D6;
   --on-accent:  #FFFFFF;
   --accent-wash: rgba(0, 122, 255, 0.10);
 
-  /* Glass system */
-  --glass-bg:        rgba(255, 255, 255, 0.55);
-  --glass-bg-raised: rgba(255, 255, 255, 0.72);
-  --glass-bg-sunken: rgba(255, 255, 255, 0.38);
-  --glass-border:    rgba(255, 255, 255, 0.75);
+  /* glass system */
+  --glass-bg:        rgba(255, 255, 255, 0.60);
+  --glass-bg-raised: rgba(255, 255, 255, 0.76);
+  --glass-bg-sunken: rgba(255, 255, 255, 0.42);
+  --glass-border:    rgba(255, 255, 255, 0.78);
   --glass-hairline:  rgba(13, 20, 38, 0.09);
-  --glass-blur:      22px;
-  --glass-sat:       180%;
-  --glass-hi:        inset 0 1px 0 rgba(255, 255, 255, 0.85);
-  --glass-shadow:    0 1px 1px rgba(15, 23, 42, 0.04),
-                     0 14px 34px -14px rgba(15, 23, 42, 0.22);
-  --glass-shadow-lg: 0 1px 1px rgba(15, 23, 42, 0.05),
-                     0 30px 60px -22px rgba(15, 23, 42, 0.32);
+  --glass-blur:      20px;
+  --glass-hi:        inset 0 1px 0 rgba(255, 255, 255, 0.90);
+  --glass-shadow:    0 1px 2px rgba(15, 23, 42, 0.05),
+                     0 16px 34px -18px rgba(15, 23, 42, 0.24);
+  --glass-shadow-lg: 0 1px 2px rgba(15, 23, 42, 0.06),
+                     0 30px 58px -26px rgba(15, 23, 42, 0.34);
 
-  /* iOS geometry + motion */
-  --radius:      22px;
-  --radius-sm:   14px;
-  --radius-xs:   10px;
+  /* geometry + motion */
+  --radius:      20px;
+  --radius-sm:   13px;
   --radius-pill: 999px;
   --ease-ios:    cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* SF first, self-hosted Inter where there is no Apple system font */
+  /* SF on Apple hardware, self-hosted Inter everywhere else */
   --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI',
           Roboto, Helvetica, Arial, sans-serif;
-  --display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Space Grotesk',
-             'Inter', 'Segoe UI', sans-serif;
-  --mono: ui-monospace, 'SF Mono', SFMono-Regular, 'JetBrains Mono', Menlo,
-          Consolas, monospace;
+  --display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter',
+             'Space Grotesk', 'Segoe UI', sans-serif;
+  --mono: ui-monospace, 'SF Mono', SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  --nav-h: 62px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --paper:    #05070E;
-    --paper-2:  #0A0E18;
+    --paper-2:  #0B101B;
     --surface:  rgba(255, 255, 255, 0.06);
-    --ink:      #F5F7FB;
-    --ink-2:    #C9D2E3;
-    --muted:    #93A0B8;
+    --ink:      #F4F7FC;
+    --ink-2:    #CBD4E4;
+    --muted:    #94A1B8;
     --line:     rgba(255, 255, 255, 0.10);
     --line-2:   rgba(255, 255, 255, 0.18);
     --accent:   #0A84FF;
     --accent-2: #7C7AFF;
-    --on-accent:#FFFFFF;
     --accent-wash: rgba(10, 132, 255, 0.18);
 
     --glass-bg:        rgba(255, 255, 255, 0.07);
     --glass-bg-raised: rgba(255, 255, 255, 0.11);
-    --glass-bg-sunken: rgba(255, 255, 255, 0.04);
-    --glass-border:    rgba(255, 255, 255, 0.16);
+    --glass-bg-sunken: rgba(255, 255, 255, 0.045);
+    --glass-border:    rgba(255, 255, 255, 0.14);
     --glass-hairline:  rgba(255, 255, 255, 0.12);
-    --glass-hi:        inset 0 1px 0 rgba(255, 255, 255, 0.14);
-    --glass-shadow:    0 1px 1px rgba(0, 0, 0, 0.4),
-                       0 18px 40px -16px rgba(0, 0, 0, 0.65);
-    --glass-shadow-lg: 0 1px 1px rgba(0, 0, 0, 0.5),
-                       0 36px 70px -24px rgba(0, 0, 0, 0.78);
+    --glass-hi:        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    --glass-shadow:    0 1px 2px rgba(0, 0, 0, 0.45),
+                       0 20px 40px -20px rgba(0, 0, 0, 0.70);
+    --glass-shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.55),
+                       0 36px 64px -28px rgba(0, 0, 0, 0.82);
   }
 }
 
 /* ---------- the light behind the glass ---------- */
 
 html { background: var(--paper); }
-
 body {
   background: transparent;
   font-family: var(--sans);
-  letter-spacing: -0.005em;
+  letter-spacing: -0.004em;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -1717,256 +1720,249 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(38% 34% at 12% 10%, rgba(0, 122, 255, 0.42), transparent 62%),
-    radial-gradient(34% 32% at 88% 6%,  rgba(175, 82, 222, 0.34), transparent 64%),
-    radial-gradient(42% 40% at 74% 88%, rgba(48, 176, 199, 0.32), transparent 62%),
-    radial-gradient(36% 36% at 16% 84%, rgba(255, 45, 85, 0.20), transparent 64%),
-    radial-gradient(30% 30% at 50% 46%, rgba(88, 86, 214, 0.22), transparent 66%);
-  filter: blur(46px) saturate(150%);
-  animation: glass-drift 30s var(--ease-ios) infinite alternate;
+    radial-gradient(36% 32% at 10% 8%,  rgba(0, 122, 255, 0.38), transparent 62%),
+    radial-gradient(32% 30% at 90% 4%,  rgba(175, 82, 222, 0.28), transparent 64%),
+    radial-gradient(40% 38% at 78% 90%, rgba(48, 176, 199, 0.26), transparent 62%),
+    radial-gradient(34% 34% at 12% 88%, rgba(255, 45, 85, 0.16), transparent 64%),
+    radial-gradient(28% 28% at 52% 48%, rgba(88, 86, 214, 0.18), transparent 66%);
+  filter: blur(48px) saturate(140%);
+  animation: glass-drift 34s var(--ease-ios) infinite alternate;
 }
-
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
-  opacity: 0.05;
+  opacity: 0.045;
   mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
-
 @media (prefers-color-scheme: dark) {
   body::before {
     background:
-      radial-gradient(40% 36% at 10% 8%, rgba(10, 132, 255, 0.40), transparent 62%),
-      radial-gradient(36% 34% at 90% 4%, rgba(124, 122, 255, 0.34), transparent 64%),
-      radial-gradient(44% 42% at 78% 90%, rgba(48, 176, 199, 0.24), transparent 62%),
-      radial-gradient(38% 38% at 14% 86%, rgba(191, 90, 242, 0.22), transparent 64%);
-    filter: blur(52px) saturate(140%);
-    opacity: 0.85;
+      radial-gradient(38% 34% at 8% 6%,  rgba(10, 132, 255, 0.40), transparent 62%),
+      radial-gradient(34% 32% at 92% 4%, rgba(124, 122, 255, 0.32), transparent 64%),
+      radial-gradient(42% 40% at 80% 92%, rgba(48, 176, 199, 0.22), transparent 62%),
+      radial-gradient(36% 36% at 12% 88%, rgba(191, 90, 242, 0.20), transparent 64%);
+    filter: blur(54px) saturate(140%);
+    opacity: 0.9;
   }
-  body::after { opacity: 0.04; }
+  body::after { opacity: 0.035; }
 }
-
 @keyframes glass-drift {
   0%   { transform: translate3d(-2%, -1%, 0) scale(1); }
-  50%  { transform: translate3d(2%, 1.5%, 0) scale(1.06); }
+  50%  { transform: translate3d(2%, 1.5%, 0) scale(1.05); }
   100% { transform: translate3d(-1%, 2%, 0) scale(1.02); }
 }
 
 /* ---------- typography: the SF curve ---------- */
 
-h1, h2, h3, h4, .hero-title, .section-title, .sec-head, .brand-name {
-  font-family: var(--display);
-  letter-spacing: -0.022em;
-}
+h1, h2, h3, h4, .section-title, .hero-title, .idcard-name, .sec-head { font-family: var(--display); }
+.hero-title { font-weight: 700; letter-spacing: -0.032em; line-height: 1.03; }
+.section-title, .sec-head h2, h2 { font-weight: 650; letter-spacing: -0.024em; }
+h3 { font-weight: 620; letter-spacing: -0.016em; }
+h4 { font-weight: 600; letter-spacing: -0.012em; }
 
-.hero-title { font-weight: 700; letter-spacing: -0.03em; }
-.section-title, .sec-head { font-weight: 650; }
-.eyebrow, .sec-num, .nav-link, .nav-resume-btn, .btn, .skill-tag, .tech {
-  letter-spacing: 0.005em;
-}
-.eyebrow, .sec-num {
+p, li, dd, dt, td, th, span, .job-body, .about-text { text-wrap: pretty; }
+h1, h2, h3, h4 { text-wrap: balance; }
+
+/* labels and eyebrows share one rhythm so nothing looks half-aligned */
+.eyebrow, .sec-num, .rail-label, .job-meta, .idcard-foot, .idcard-back-title,
+.idcard-back-foot, .skills-table th {
+  font-family: var(--mono);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 600;
-  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  font-size: 0.7rem;
+  color: color-mix(in srgb, var(--muted) 88%, var(--ink));
+}
+.sec-num, .eyebrow { color: color-mix(in srgb, var(--accent) 82%, var(--ink)); }
+
+/* ---------- the glass surface, applied to real components only ---------- */
+
+.job, .project, .panel, .rail-card, .info-item, .fact, .post-row,
+.skills-block, .milestones, .cv-item, .coursework, .lang-list, .footer-inner {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(170%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(170%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-hi), var(--glass-shadow);
 }
 
-/* ---------- glass surface recipe ---------- */
-
-.navbar,
-.job, .project, .panel, .rail-card, .idcard-face, .contact-form,
-.info-item, .fact, .post-row, .skills-block, .milestones, .cv-item,
-.coursework, .lang-list, .footer-inner, .hero-aside > * {
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+.contact-form, .panels, .intro-media {
+  background: var(--glass-bg-raised);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow), var(--glass-hi);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-hi), var(--glass-shadow);
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .navbar, .job, .project, .panel, .rail-card, .idcard-face, .contact-form,
-  .info-item, .fact, .post-row, .skills-block, .milestones, .cv-item,
-  .coursework, .lang-list, .footer-inner {
+  .job, .project, .panel, .rail-card, .info-item, .fact, .post-row, .skills-block,
+  .milestones, .cv-item, .coursework, .lang-list, .footer-inner, .contact-form, .panels {
     background: var(--glass-bg-raised);
   }
 }
 
-/* ---------- navigation: an iOS translucent toolbar ---------- */
+/* nothing inside a card may spill out of it */
+.job, .project, .panel, .rail-card, .info-item, .fact, .post-row, .cv-item, .skills-block {
+  min-inline-size: 0;
+}
+.job > *, .project > *, .panel > *, .rail-card > *, .info-item > *, .fact > *,
+.post-row > *, .cv-item > *, .skills-block > * { min-inline-size: 0; }
+.job-body p, .project p, .rail-card p, .panel p, .post-row p, .cv-item p,
+.job-body li, .project li, .panel li, h1, h2, h3, h4 {
+  overflow-wrap: anywhere;
+}
+.rail-metric, .stat-v, .idcard-code, .job-where { font-variant-numeric: tabular-nums; }
+
+/* cards: lift without a wash over the text */
+.job, .project, .rail-card, .post-row, .cv-item {
+  transition: transform 0.42s var(--ease-ios), box-shadow 0.42s var(--ease-ios),
+              border-color 0.42s var(--ease-ios);
+}
+@media (hover: hover) {
+  .job:hover, .project:hover, .rail-card:hover, .post-row:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent) 26%, var(--glass-border));
+    box-shadow: var(--glass-hi), var(--glass-shadow-lg);
+  }
+}
+
+/* ---------- navigation: an iOS toolbar ---------- */
 
 .navbar {
-  background: color-mix(in srgb, var(--glass-bg-raised) 92%, transparent);
-  -webkit-backdrop-filter: blur(28px) saturate(200%);
-  backdrop-filter: blur(28px) saturate(200%);
-  border: 0;
+  background: color-mix(in srgb, var(--paper) 62%, transparent);
+  -webkit-backdrop-filter: blur(26px) saturate(190%);
+  backdrop-filter: blur(26px) saturate(190%);
   border-bottom: 1px solid var(--glass-hairline);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset,
-              0 8px 30px -22px rgba(15, 23, 42, 0.45);
-  border-radius: 0;
 }
-
-.nav-logo h2 {
-  font-family: var(--display);
-  font-weight: 650;
-  letter-spacing: -0.02em;
-}
-
-/* the avatar becomes an iOS app icon: squircle, gradient ring, specular sheen */
+.nav-logo h2 { font-family: var(--display); font-weight: 650; letter-spacing: -0.02em; }
 .logo-img {
-  border-radius: 13px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6),
-              0 0 0 3px rgba(0, 122, 255, 0.18),
-              0 8px 18px -8px rgba(15, 23, 42, 0.45);
-  transition: transform 0.35s var(--ease-ios), box-shadow 0.35s var(--ease-ios);
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.65),
+              0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent),
+              0 8px 16px -8px rgba(15, 23, 42, 0.4);
 }
-.logo-link:hover .logo-img,
-.logo-link:focus-visible .logo-img {
-  transform: translateY(-1px) scale(1.04);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7),
-              0 0 0 4px rgba(0, 122, 255, 0.28),
-              0 12px 22px -8px rgba(15, 23, 42, 0.5);
-}
-@media (prefers-color-scheme: dark) {
-  .logo-img { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22),
-                         0 0 0 3px rgba(10, 132, 255, 0.30),
-                         0 10px 20px -10px rgba(0, 0, 0, 0.8); }
-}
-
-.nav-link {
-  border-radius: var(--radius-pill);
-  padding: 0.42rem 0.72rem;
-  transition: background 0.28s var(--ease-ios), color 0.28s var(--ease-ios);
-}
-.nav-link:hover, .nav-link:focus-visible {
-  background: var(--glass-bg-sunken);
-  text-decoration: none;
-}
-.nav-link.active, .nav-link[aria-current="page"] {
-  background: var(--accent-wash);
-  color: var(--accent);
-}
+.nav-link, .nav-resume-btn { font-family: var(--mono); }
 
 .nav-resume-btn {
   border-radius: var(--radius-pill);
   background: linear-gradient(180deg, #3395FF, var(--accent));
   color: #fff;
   border: 0;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset,
-              0 8px 20px -10px rgba(0, 122, 255, 0.75);
-  transition: transform 0.28s var(--ease-ios), box-shadow 0.28s var(--ease-ios);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35),
+              0 8px 18px -10px rgba(0, 122, 255, 0.75);
 }
-.nav-resume-btn:hover { transform: translateY(-1px); }
+.nav-link.active, .nav-link[aria-current] { color: var(--accent); }
 
-.hamburger { border-radius: var(--radius-xs); }
-.hamburger .bar { border-radius: var(--radius-pill); background: var(--ink); }
-
-/* ---------- buttons: iOS filled and tinted ---------- */
+/* ---------- buttons ---------- */
 
 .btn {
   border-radius: var(--radius-pill);
-  padding: 0.72rem 1.15rem;
-  font-weight: 600;
   font-family: var(--sans);
-  transition: transform 0.24s var(--ease-ios), box-shadow 0.24s var(--ease-ios),
-              background 0.24s var(--ease-ios);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  transition: transform 0.22s var(--ease-ios), box-shadow 0.22s var(--ease-ios),
+              background 0.22s var(--ease-ios), border-color 0.22s var(--ease-ios);
 }
-.btn:active { transform: scale(0.97); }
-
+.btn:active { transform: scale(0.975); }
 .btn-primary {
   background: linear-gradient(180deg, #3395FF, var(--accent));
   color: var(--on-accent);
   border: 0;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset,
-              0 10px 24px -12px rgba(0, 122, 255, 0.8);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35),
+              0 10px 22px -12px rgba(0, 122, 255, 0.8);
 }
-.btn-primary:hover { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset,
-                                 0 14px 30px -12px rgba(0, 122, 255, 0.9); }
-
 .btn-ghost {
-  background: var(--glass-bg);
+  background: var(--glass-bg-raised);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid var(--glass-border);
   color: var(--ink);
-  box-shadow: var(--glass-shadow), var(--glass-hi);
-}
-.btn-ghost:hover { background: var(--glass-bg-raised); }
-
-/* ---------- cards and content blocks ---------- */
-
-.job, .project, .panel, .rail-card, .post-row, .cv-item, .info-item, .fact,
-.skills-block, .milestones, .coursework, .lang-list {
-  border-radius: var(--radius);
-  transition: transform 0.4s var(--ease-ios), box-shadow 0.4s var(--ease-ios);
-}
-.job:hover, .project:hover, .panel:hover, .rail-card:hover, .post-row:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--glass-shadow-lg), var(--glass-hi);
+  box-shadow: var(--glass-hi), var(--glass-shadow);
 }
 
-/* a specular top edge, the way iOS 26 glass catches light */
-.panel, .job, .project, .rail-card, .contact-form, .idcard-face { position: relative; }
-.panel::after, .job::after, .project::after, .contact-form::after {
-  content: "";
+/* ---------- the ID card: glass, position untouched ---------- */
+
+.idcard-face {
+  background: var(--glass-bg-raised);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-hi), var(--glass-shadow-lg);
+}
+.idcard-back {
+  /* declared again on purpose: this must never lose its absolute inset */
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 42%);
-  opacity: 0.9;
+  background: var(--glass-bg-raised);
 }
+.idcard-front { background: var(--glass-bg-raised); }
+.idcard-name { letter-spacing: -0.024em; }
+.idcard-role { color: color-mix(in srgb, var(--ink) 86%, transparent); }
+.idcard-org, .idcard-foot { color: var(--muted); }
+.idcard-chip, .idcard-code { border-radius: var(--radius-sm); }
 
-.skill-tag, .tech, .project-tags span, .project-tags a, .rail-tag, .rail-label {
+/* ---------- tags, chips, small type ---------- */
+
+.skill-tag, .tech, .project-tags span, .project-tags a, .rail-tag,
+.rail-label, .el, .coursework span {
   border-radius: var(--radius-pill);
+}
+.skill-tag, .tech, .project-tags span, .project-tags a, .rail-tag {
   background: var(--glass-bg-sunken);
   border: 1px solid var(--glass-border);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  padding: 0.28rem 0.62rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding: 0.26rem 0.6rem;
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+.rail-label {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-bottom: 0.55rem;
 }
 
 /* ---------- forms ---------- */
 
-.form-group input,
-.form-group textarea,
-.form-group select,
+.form-group input, .form-group textarea, .form-group select,
 input[type="text"], input[type="email"], textarea {
   background: var(--glass-bg-sunken);
   border: 1px solid var(--glass-hairline);
   border-radius: var(--radius-sm);
   color: var(--ink);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  transition: border-color 0.24s var(--ease-ios), box-shadow 0.24s var(--ease-ios);
+  font-family: var(--sans);
+  font-size: 1rem;            /* 16px: stops iOS zooming the page on focus */
+  transition: border-color 0.22s var(--ease-ios), box-shadow 0.22s var(--ease-ios);
 }
-.form-group input:focus,
-.form-group textarea:focus,
+.form-group input:focus, .form-group textarea:focus,
 input:focus-visible, textarea:focus-visible {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-wash);
 }
-
-/* ---------- the ID card and rails keep their character, in glass ---------- */
-
-.idcard-face { border-radius: var(--radius); }
-.rail-card { border-radius: var(--radius-sm); }
-
-/* ---------- footer ---------- */
-
-.footer-inner {
-  border-radius: var(--radius);
+.intro-sound, .rail-btn {
+  min-height: 40px;
+  border-radius: var(--radius-pill);
+  background: var(--glass-bg-raised);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-hi), var(--glass-shadow);
+  color: var(--ink);
+  font-weight: 600;
 }
 
-/* ---------- chrome: selection, scrollbar, focus, progress ---------- */
+/* ---------- footer, chrome, focus ---------- */
 
+.footer-inner { border-radius: var(--radius); }
 ::selection { background: var(--accent); color: var(--on-accent); }
-
 * { scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
 *::-webkit-scrollbar { width: 10px; height: 10px; }
 *::-webkit-scrollbar-thumb {
@@ -1975,101 +1971,353 @@ input:focus-visible, textarea:focus-visible {
   border-radius: var(--radius-pill);
   background-clip: content-box;
 }
-
-a:focus-visible, button:focus-visible, .btn:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent);
+a:focus-visible, button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 50%, transparent);
   outline-offset: 2px;
-  border-radius: var(--radius-xs);
+  border-radius: 10px;
 }
-
 .scroll-progress {
-  background: linear-gradient(90deg, var(--ios-teal), var(--accent), var(--ios-purple));
   height: 3px;
   border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--ios-teal), var(--accent), var(--ios-purple));
+}
+
+/* anchor jumps must clear the sticky toolbar */
+:target { scroll-margin-top: calc(var(--nav-h) + 16px); }
+section[id], div[id], h2[id], h3[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
+
+/* ---------- phone and tablet ---------- */
+
+@media (max-width: 1000px) {
+  .about-grid, .cv-grid, .contact-grid { gap: 1.5rem; }
+}
+
+@media (max-width: 820px) {
+  :root { --radius: 18px; }
+
+  /* the dropdown becomes a glass sheet rather than a flat strip */
+  .nav-menu {
+    background: color-mix(in srgb, var(--glass-bg-raised) 92%, transparent);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    backdrop-filter: blur(28px) saturate(190%);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 24px 40px -28px rgba(15, 23, 42, 0.5);
+  }
+  .nav-link { padding: 0.95rem 0; font-size: 0.82rem; }
+  .navbar.is-open .nav-menu { padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); }
+
+  .hamburger {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--glass-bg-sunken);
+    border: 1px solid var(--glass-border);
+  }
+  .hamburger .bar { background: var(--ink); }
+
+  /* roomier cards, thumb-sized controls */
+  .job, .project, .rail-card, .cv-item, .post-row { border-radius: var(--radius); }
+  .btn, .nav-resume-mobile .nav-link { min-height: 46px; }
+  .btn { padding-inline: 1.1rem; }
+  .rail-card { padding: 1.1rem 1.05rem 1.2rem; }
+  .rail { grid-auto-columns: minmax(78%, 1fr); padding-bottom: 0.6rem; }
+
+  /* a hair more air between sections on a phone */
+  .section { padding-block: clamp(3.2rem, 9vw, 4.6rem); }
+}
+
+@media (max-width: 620px) {
+  .sec-head { align-items: baseline; }
+  .hero-title { font-size: clamp(2.05rem, 11vw, 3rem); letter-spacing: -0.034em; }
+  .hero-lede { font-size: 1.02rem; line-height: 1.6; }
+  .facts { gap: 0.5rem; }
+  .fact { border-radius: var(--radius-sm); }
+  .idcard-name { font-size: 1.06rem; }
+  .idcard-face { padding: 0.8rem; }
+  .contact-form { padding: 1.15rem; }
+  .footer-inner { padding: 1.15rem; }
+}
+
+/* bottom breathing room for the home indicator */
+@supports (padding: env(safe-area-inset-bottom)) {
+  body { padding-bottom: env(safe-area-inset-bottom); }
 }
 
 /* ---------- motion hygiene ---------- */
 
 @media (prefers-reduced-motion: reduce) {
   body::before { animation: none; }
-  .job:hover, .project:hover, .panel:hover, .rail-card:hover, .post-row:hover,
-  .btn:active, .logo-link:hover .logo-img { transform: none; }
+  .job:hover, .project:hover, .rail-card:hover, .post-row:hover { transform: none; }
+  .btn:active { transform: none; }
 }
 
-/* ---------- contrast and polish pass (same glass theme, 11 Oct 2026) ----------
-   The browser check showed the nav links sitting too light over the new mesh.
-   Everything here is aimed at AA contrast and calm, Apple-like weight. */
+/* ---------- print ---------- */
 
-.nav-link {
-  color: color-mix(in srgb, var(--ink) 82%, transparent);
-  font-weight: 500;
-}
-.nav-link:hover, .nav-link:focus-visible, .nav-link.active { color: var(--ink); }
-
-.hero-lede, .sec-sub, .about-text p, .job-body p, .project p, .post-row p {
-  color: color-mix(in srgb, var(--ink) 88%, transparent);
+@media print {
+  body::before, body::after { display: none; }
+  .job, .project, .panel, .rail-card { background: #fff; box-shadow: none; border-color: #ddd; }
 }
 
-.eyebrow, .sec-num { color: color-mix(in srgb, var(--accent) 88%, var(--ink)); }
+/* ==========================================================================
+   GLASS THEME v3 — proportion, rhythm and contrast pass, 11 Oct 2026.
+   Aim: kill the "comically large heading / cramped column / floating label"
+   feel. Sizes and spacing only; no layout mechanics touched.
+   ========================================================================== */
 
-a:not(.btn):not(.nav-link):not(.nav-resume-btn) {
-  color: color-mix(in srgb, var(--accent) 92%, var(--ink));
+:root {
+  /* one spacing rhythm for the whole page */
+  --section-y: clamp(3.4rem, 6.5vw, 5.5rem);
+  --stack-1: 0.5rem;
+  --stack-2: 0.9rem;
+  --stack-3: 1.4rem;
+  --stack-4: 2.1rem;
 }
 
-.muted, .form-note, .skills-table-note, .colophon, .job-meta, .job-where {
-  color: color-mix(in srgb, var(--ink) 62%, transparent);
+/* ---------- hero: a headline, not a billboard ---------- */
+
+.hero { padding-block: clamp(3rem, 6.5vw, 5.25rem) clamp(2.6rem, 5vw, 4rem); }
+.hero-title {
+  font-size: clamp(2.35rem, 5.6vw, 4.15rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin: 0 0 1.1rem;
+  max-width: 18ch;
 }
-
-@media (prefers-color-scheme: dark) {
-  .nav-link { color: color-mix(in srgb, var(--ink) 80%, transparent); }
-  .muted, .form-note, .skills-table-note, .colophon, .job-meta, .job-where {
-    color: color-mix(in srgb, var(--ink) 68%, transparent);
-  }
+.hero-lede {
+  font-size: clamp(1rem, 0.35vw + 0.94rem, 1.14rem);
+  line-height: 1.62;
+  color: color-mix(in srgb, var(--ink) 84%, transparent);
+  max-width: 46ch;
+  margin: 0 0 1.9rem;
 }
-
-/* the toolbar should not fight the glass panels under it */
-.navbar { z-index: 60; }
-.nav-menu {
-  background: transparent;
-  border: 0;
-  box-shadow: none;
+.hero-kicker {
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  color: color-mix(in srgb, var(--ink-2) 88%, transparent);
+  margin-bottom: 1.15rem;
+  row-gap: 0.35rem;
 }
+.hero-actions { gap: 0.75rem; align-items: center; }
+.hero-actions .btn, .hero-actions .btn-ghost { min-height: 46px; }
+.hero-aside { gap: 1.5rem; }
+.hero-aside > * { width: 100%; min-width: 0; }
 
-/* hero: a touch more air, Apple-like rhythm */
-.hero { padding-block: clamp(4.5rem, 9vw, 7.5rem) clamp(3.5rem, 6vw, 5.5rem); }
-.hero-title { margin-block: 0.35rem 0.9rem; }
+/* ---------- section heads: label and title on one line, rule on the floor ---------- */
 
-/* section heads: hairline rules become soft glass edges */
-.sec-head { border-bottom-color: var(--glass-hairline); }
-
-/* tables and lists keep their structure, in a glass frame */
-.skills-table, .facts, .milestones { border-radius: var(--radius); overflow: hidden; }
-.skills-table th { background: var(--glass-bg-sunken); }
-
-/* the intro card's controls, readable over the poster frame */
-.intro-sound, .rail-btn {
+.section { border-top-color: var(--glass-hairline); }
+.sec-head {
+  gap: 0.85rem;
+  margin-bottom: clamp(1.5rem, 2.6vw, 2.2rem);
+  padding-bottom: 0.8rem;
+  border-bottom-color: var(--glass-hairline);
+  flex-wrap: wrap;
+}
+.section-title { font-size: clamp(1.7rem, 2.6vw, 2.3rem); }
+.sec-num {
+  padding: 0.16rem 0.5rem;
   border-radius: var(--radius-pill);
-  background: var(--glass-bg-raised);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  backdrop-filter: blur(18px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  color: var(--ink);
+  background: var(--accent-wash);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  font-size: 0.68rem;
+  color: var(--accent);
+}
+.sec-sub { font-size: 0.95rem; line-height: 1.6; color: color-mix(in srgb, var(--ink) 72%, transparent); max-width: 70ch; }
+
+/* ---------- the intro card: tidy frame, no orphaned label ---------- */
+
+.intro-media { border-radius: var(--radius); }
+.intro-media video, .intro-media img { border-radius: calc(var(--radius) - 2px); }
+.intro-status { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; }
+.intro-sound { padding-inline: 0.85rem; }
+.rail-label { margin: 0 0 0.6rem; }
+
+/* ---------- cards: even padding, even corners ---------- */
+
+.job, .project, .rail-card, .cv-item, .post-row, .info-item, .fact, .skills-block {
+  padding-block: 1.15rem 1.25rem;
+}
+.job-body, .project-idx, .rail-card > * { min-width: 0; }
+.rail-metric { font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.1; }
+.rail-card h4 { font-size: 1.02rem; line-height: 1.3; margin: 0.35rem 0 0.5rem; }
+.rail-card p { font-size: 0.92rem; line-height: 1.55; }
+.rail-tag { font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+.job-where, .job-meta, .post-meta, .card-meta { font-size: 0.78rem; letter-spacing: 0.04em; }
+.job-body h3 { font-size: 1.08rem; }
+
+/* ---------- contrast: nothing below a comfortable read ---------- */
+
+.nav-link, .nav-resume-btn { color: color-mix(in srgb, var(--ink) 86%, transparent); font-weight: 500; }
+.nav-link:hover, .nav-link:focus-visible, .nav-link.active { color: var(--ink); }
+.footer-links a, .contact-item a, .info-item a, .post-link, .sec-link { color: color-mix(in srgb, var(--ink) 82%, transparent); }
+.footer-links a:hover, .contact-item a:hover, .info-item a:hover { color: var(--ink); }
+.colophon, .form-note, .skills-table-note, .idcard-foot, .idcard-back-foot, .muted {
+  color: color-mix(in srgb, var(--ink) 66%, transparent);
 }
 
-/* the mascot in the contact form keeps its moods, now on glass */
-.mascot-head, .mascot-badge { filter: drop-shadow(0 10px 22px rgba(15, 23, 42, 0.18)); }
+/* ---------- buttons: one height, one radius, one weight ---------- */
 
-/* mobile: a floating glass toolbar feel */
-@media (max-width: 860px) {
-  .navbar {
-    border-radius: 0 0 var(--radius) var(--radius);
-    border-bottom: 1px solid var(--glass-hairline);
-  }
-  .nav-menu {
-    background: color-mix(in srgb, var(--glass-bg-raised) 88%, transparent);
-    -webkit-backdrop-filter: blur(26px) saturate(190%);
-    backdrop-filter: blur(26px) saturate(190%);
-    border-radius: var(--radius);
-  }
+.btn { min-height: 44px; padding-inline: 1.05rem; }
+.btn-ghost { font-weight: 550; }
+.form-head h3 { font-size: 1.15rem; }
+.form-group label, .form-group > span { font-size: 0.86rem; font-weight: 550; color: color-mix(in srgb, var(--ink) 80%, transparent); }
+
+/* ---------- phone: air, not cramping ---------- */
+
+@media (max-width: 620px) {
+  :root { --section-y: clamp(2.9rem, 9vw, 3.9rem); }
+
+  .hero { padding-block: 2.5rem 2.25rem; }
+  .hero-title { font-size: clamp(2.05rem, 9.4vw, 2.75rem); line-height: 1.06; max-width: 14ch; }
+  .hero-lede { font-size: 1rem; line-height: 1.62; margin-bottom: 1.6rem; }
+  .hero-kicker { font-size: 0.7rem; gap: 0.3rem 0.5rem; margin-bottom: 1rem; }
+
+  .hero-actions { gap: 0.6rem; }
+  .hero-actions .btn, .hero-actions .btn-ghost { width: 100%; justify-content: center; min-height: 48px; }
+  .hero-aside { gap: 1.35rem; }
+
+  .sec-head { gap: 0.6rem; margin-bottom: 1.35rem; }
+  .section-title { font-size: 1.55rem; }
+  .card, .job, .project, .rail-card, .cv-item { border-radius: var(--radius-sm); }
+
+  .footer-links a, .contact-item a, .info-item a { min-height: 44px; display: inline-flex; align-items: center; }
+  .post-link, .sec-link { min-height: 44px; }
 }
+
+/* ==========================================================================
+   GLASS THEME v4 — the frame fix, 11 Oct 2026.
+   The rows below (.job, .project, .post-row, .fact) were designed as plain
+   list rows with vertical padding only and a hairline on top. Framing them as
+   glass cards without adding side padding is what put text hard against the
+   border. Every framed block now carries real box padding, and the old
+   divider borders are switched off where the frame replaces them.
+   ========================================================================== */
+
+/* ---------- rows that became cards get real padding ---------- */
+
+.job {
+  padding: 1.4rem 1.5rem;
+  border-top: 0;
+  gap: clamp(0.9rem, 2.4vw, 2rem);
+  align-items: start;
+}
+.project { padding: 1.3rem 1.4rem; border-top: 0; align-items: start; }
+.post-row { padding: 1rem 1.15rem; border-top: 0; }
+
+.facts { border-top: 0; gap: 0.85rem; }
+.fact { padding: 1.05rem 1.15rem; border-right: 0; }
+.fact:nth-child(2n) { padding-right: 1.15rem; }
+.fact:nth-child(n + 3) { border-top: 0; }
+
+.info-item { padding: 1rem 1.1rem; border: 1px solid var(--glass-border); border-radius: var(--radius-sm);
+             background: var(--glass-bg); box-shadow: var(--glass-hi), var(--glass-shadow); }
+.cv-item { padding: 1rem 1.1rem; }
+.skills-block { padding: 1.25rem 1.35rem; }
+.milestones { padding: 1.25rem 1.35rem; }
+.coursework { padding: 1.1rem 1.25rem; }
+.lang-list { padding: 1rem 1.15rem; gap: 0.6rem 1.5rem; }
+.footer-inner { padding: 1.6rem 1.5rem; gap: 1.25rem; flex-wrap: wrap; }
+
+/* the panels wrapper is a grid of cards, not a card itself */
+.panels { background: none; border: 0; box-shadow: none; backdrop-filter: none;
+          -webkit-backdrop-filter: none; gap: 1rem; }
+
+/* dividers inside framed blocks: hairlines, not full borders */
+.job + .job, .project + .project, .post-row + .post-row { margin-top: 0.9rem; }
+.jobs, .projects, .posts { display: grid; gap: 0.9rem; }
+
+/* ---------- tags: breathing room inside the pill ---------- */
+
+.skill-tag, .tech, .project-tags span, .project-tags a, .rail-tag {
+  padding: 0.3rem 0.7rem;
+  line-height: 1.3;
+}
+.tech { gap: 0.45rem; margin-top: 0.35rem; }
+
+/* ---------- hero rhythm, one more notch ---------- */
+
+.hero-lede { margin-bottom: 1.6rem; }
+.hero-kicker { row-gap: 0.45rem; }
+.hero-kicker span { color: color-mix(in srgb, var(--ink) 74%, transparent); font-weight: 500; }
+
+/* ---------- experience: dates and company lines line up ---------- */
+
+.job-meta { padding-top: 0.15rem; }
+.job-where { margin-bottom: 0.75rem; }
+.job-body h3 { margin-bottom: 0.25rem; }
+
+/* ---------- the stamp and other fine print stay readable ---------- */
+
+.idcard-foot, .idcard-back-foot, .idcard-back-title { color: color-mix(in srgb, var(--ink) 62%, transparent); }
+.form-note, .skills-table-note, .colophon { color: color-mix(in srgb, var(--ink) 68%, transparent); }
+
+/* ---------- phone: the same fix, tighter ---------- */
+
+@media (max-width: 620px) {
+  .job { padding: 1.15rem 1.15rem; }
+  .project { padding: 1.1rem 1.15rem; }
+  .post-row { padding: 0.9rem 1rem; }
+  .fact { padding: 0.95rem 1rem; }
+  .skills-block, .milestones { padding: 1.1rem 1.15rem; }
+  .footer-inner { padding: 1.25rem 1.15rem; }
+  .info-item, .cv-item, .coursework, .lang-list { padding: 0.95rem 1rem; }
+
+  .hero-title { margin-bottom: 1.25rem; }
+  .hero-actions .btn + .btn, .hero-actions .btn-ghost + .btn { margin-top: 0.15rem; }
+}
+
+/* ==========================================================================
+   GLASS THEME v5 — clearing the last of the old row rules, 11 Oct 2026.
+   The stylesheet zeroes the outer padding on first and last rows because they
+   used to be a continuous list with hairline dividers. Framed as cards, that
+   leaves a card with its text jammed against one edge. Each of those rules is
+   answered here with equal specificity, in the same order they appear below.
+   ========================================================================== */
+
+.job:first-child { padding-top: 1.4rem; }
+.job:last-child { padding-bottom: 1.4rem; }
+.project:first-child { padding-top: 1.3rem; }
+.project:last-child { padding-bottom: 1.3rem; }
+
+.fact:first-child { padding-left: 1.15rem; }
+.fact:last-child { padding-right: 1.15rem; }
+.skill-category:first-of-type { padding-top: 1.1rem; }
+
+/* the rows are separate cards now: the old margins-to-gap experiment goes */
+.jobs, .projects, .posts { display: block; }
+.job + .job, .project + .project, .post-row + .post-row { margin-top: 0.95rem; }
+
+@media (max-width: 620px) {
+  .job:first-child, .job, .job:last-child { padding: 1.15rem 1.15rem; }
+  .project:first-child, .project, .project:last-child { padding: 1.1rem 1.15rem; }
+  .fact, .fact:first-child, .fact:last-child, .fact:nth-child(2n), .fact:nth-child(n + 3) {
+    padding: 0.95rem 1rem;
+    border-top: 0;
+    border-right: 0;
+  }
+  .skill-category:first-of-type { padding-top: 1rem; }
+}
+
+/* ---------- final polish, same pass ---------- */
+.sec-num {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  padding: 0.28rem 0.52rem;
+}
+.fact dd, .fact dt, .fact p { text-wrap: pretty; }
+.idcard-foot, .idcard-back-foot { letter-spacing: 0.1em; }
+
+/* the tag row is a flex row, so nothing can clip inside it */
+.project-tags, .tech, .skill-tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem 0.45rem; align-items: center; }
+p.project-tags { margin: 0.6rem 0 0; }
+.project-tags span, .project-tags a { white-space: nowrap; }
+@media (max-width: 620px) { .project-tags { gap: 0.35rem 0.4rem; } }
+
+/* correction: keep the desktop tags right-aligned, let them wrap on phones */
+@media (min-width: 821px) {
+  .project-tags { display: block; text-align: right; white-space: normal; }
+  .project-tags span, .project-tags a { white-space: nowrap; }
+}
+
+/* the tag line is text, not a rail: let it wrap instead of clipping */
+.project-tags { white-space: normal; overflow-wrap: anywhere; }
