@@ -1476,7 +1476,7 @@ main > section[id] { scroll-margin-top: 5rem; }
 }
 .el .el-name {
   display: block;
-  font-size: 0.62rem;
+  font-size: 0.7rem;   /* 0.62rem rendered at 9.92px, under the legibility floor */
   line-height: 1.25;
   color: var(--muted);
   margin-top: 0.15rem;
